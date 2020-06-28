@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "ya-aioclient"
+version = "0.1.1"
+description = ""
+authors = ["Przemysław K. Rekucki <prekucki@rcl.pl>"]
+license = "LGPL-3.0-or-later"
+
+packages = [
+    { include = "ya_market", from="src" },
+    { include = "ya_payment", from="src" },
+    { include = "ya_activity", from="src" }
+]
+include=["py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+aiohttp = "^3.6.2"
+python-dateutil = "^2.8.1"
+
+[tool.poetry.dev-dependencies]
+pyyaml = "^5.3.1"
+dataclasses = { version = "^0.7", python = "~3.6"}
+mypy = "^0.782"
+any_case = "^0.1.6"
+
+[tool.poe.tasks]
+test = "pytest"
+diff = "./build-scripts/diff-module.sh"
+
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
