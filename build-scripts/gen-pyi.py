@@ -1,12 +1,13 @@
 from pathlib import Path
 from typing import Any, List, Optional, Dict, Iterator, Union, TypeVar, Type
+from typing_extensions import Final
 from collections import OrderedDict
 from dataclasses import dataclass, field
 from any_case import to_snake_case  # type: ignore
 import yaml
 
 REF_PREFIX = "#/components/schemas/"
-GENERATED_INDENT = " " * 4
+GENERATED_INDENT: Final = " " * 4
 
 
 class JsonObject(Dict[str, Union[str, float, int, bool, "JsonObject"]]):
@@ -81,8 +82,14 @@ class PropertyInfo:
     def base_name(self) -> str:
         if self.type == "string" and self.format == "date-time":
             return self.option(f"datetime")
+        if self.type == "boolean":
+            return self.option('bool')
         if self.type == "string":
             return self.option("str")
+        if self.type == "array":
+            return self.option("list")
+        if self.type == "integer":
+            return self.option("int")
         if self.type == "number":
             if self.format == "int64" or self.format == "int64":
                 return self.option("int")
@@ -110,6 +117,7 @@ class ModelInfo:
     base: List["ModelInfo"] = field(default_factory=list)
     props: Dict[str, PropertyInfo] = field(default_factory=OrderedDict)
     resolved: bool = False
+    enum: Optional[List[Any]] = None
 
     def init_args(self) -> Iterator[str]:
         props: Dict[str, PropertyInfo] = {}
@@ -121,15 +129,28 @@ class ModelInfo:
         optional = [k for (k, p) in props.items() if not p.required]
         for name in required + optional:
             prop = props[name]
-            if prop.read_only:
-                continue
             _type = prop.base_name()
             if prop.required:
                 yield f"{GENERATED_INDENT}{GENERATED_INDENT}{to_snake_case(name)}: {_type}"
             else:
                 yield f"{GENERATED_INDENT}{GENERATED_INDENT}{to_snake_case(name)}: {_type} = None"
 
+    def gen_enum(self) -> Iterator[str]:
+        assert self.enum is not None
+
+        yield f'class {self.name}:'
+        for item in self.enum:
+            yield f'{GENERATED_INDENT}{to_snake_case(item).upper()}: Final = {repr(item)}'
+        yield ''
+        yield ''
+
     def gen_code(self) -> Iterator[str]:
+        if self.enum:
+            yield from self.gen_enum()
+        else:
+            yield from self.gen_object()
+
+    def gen_object(self) -> Iterator[str]:
         bases = ",".join(base.name for base in self.base) if self.base else "object"
         yield f"class {self.name}({bases}):"
         for name in self.props:
@@ -143,6 +164,7 @@ class ModelInfo:
             yield f"{GENERATED_INDENT}) -> None: ..."
         else:
             yield f"{GENERATED_INDENT}def __init__(self) -> None: ..."
+        yield f"{GENERATED_INDENT}def to_dict(self) -> dict: ..."
         yield ""
         yield ""
 
@@ -169,6 +191,12 @@ def resolve_type(
         ctx[name] = info
 
     if info.resolved:
+        return info
+
+    _enum = type_info.get('enum')
+    if _enum:
+        info.enum = _enum
+        info.resolved = True
         return info
 
     def resolve_ref(_r: str) -> ModelInfo:
@@ -262,7 +290,7 @@ def gen_model(module: Any, *specs: Dict[str, Any]) -> Iterator[str]:
 
     yield """from typing import Optional, List
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Final
 """
     for name in ordered_names:
         info = ctx[name]
