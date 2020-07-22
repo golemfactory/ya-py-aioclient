@@ -19,7 +19,7 @@ gen() {
 	local VERSION=$2
 	local PROJECT_NAME=ya-$NAME
 	local PKG_NAME=ya_$NAME
-	local REPO_NAME="ya-py-aioclient-$NAME"
+	local SOURCE_ONLY=true
 	
 	cd "$BUILDDIR"
 	
@@ -27,15 +27,13 @@ gen() {
 		generate -g python \
 		--library asyncio \
 		--package-name "$PKG_NAME" \
-		-o "$BUILDDIR/$NAME" \
-		-p projectName="$PROJECT_NAME",packageVersion="$PROJECT_VERSION" \
-		--git-user-id prekucki --git-repo-id "$REPO_NAME" \
+		-o "$BUILDDIR" \
+		-p projectName="$PROJECT_NAME",packageVersion="$PROJECT_VERSION",generateSourceCodeOnly=$SOURCE_ONLY \
 		-i $BUILDDIR/ya-client/specs/${NAME}-api.yaml \
-		--skip-validate-spec --strict-spec false -o "${REPO_NAME}"
+		--skip-validate-spec --strict-spec false \
+		--global-property=apiDocs=false,modelDocs=false
 }
 
 gen activity 	0.1.0
-gen payment	0.1.0
-gen market	0.1.0
-
-
+gen payment		0.1.0
+gen market		0.1.0
