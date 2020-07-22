@@ -8,26 +8,22 @@ fail() {
 }
 
 ME="$(pwd)"
-WORKDIR="$(basename $ME)"
-
-if test "$WORKDIR" != "ya-py-aioclient"; then
-  fail "invalid workdir: $WORKDIR"
-fi
 
 ME_VER=($(poetry version))
 
 test "${ME_VER[0]}" == "ya-aioclient" || fail "invalid poetry setup"
 
-echo setep 1 cleaning src
+echo step 1 cleaning src
 
 set -x
 
 rm -fr src
 
+echo step 2 move modules into src
 mkdir src
 for name in $MODULES
 do
-  cp -r "target/ya-py-aioclient-$name/ya_$name" src/
+  cp -r "target/ya_$name" src/
 done
 
 apply_patches() {
@@ -50,11 +46,5 @@ apply_patches() {
   done
 
 }
-
+echo step 3 apply patches
 apply_patches "src" "$MODULES"
-
-if test "$1" == "apply"; then
-  for module in $MODULES; do
-    apply_patches "target/ya-py-aioclient-$module" "$module"
-  done
-fi
