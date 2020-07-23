@@ -29,7 +29,7 @@ gen() {
 		--package-name "$PKG_NAME" \
 		-o "$BUILDDIR" \
 		-p projectName="$PROJECT_NAME",packageVersion="$PROJECT_VERSION",generateSourceCodeOnly=$SOURCE_ONLY \
-		-i $BUILDDIR/ya-client/specs/${NAME}-api.yaml \
+		-i ../ya-client/specs/${NAME}-api.yaml \
 		--skip-validate-spec --strict-spec false \
 		--global-property=apiDocs=false,modelDocs=false
 }
