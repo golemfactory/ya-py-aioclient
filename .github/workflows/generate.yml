@@ -42,4 +42,5 @@ jobs:
       - name: Create Pull Request
         if: github.event_name == 'push'
         uses: peter-evans/create-pull-request@v3
-        base: patched
+        with:
+            base: patched
