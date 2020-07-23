@@ -19,5 +19,3 @@ if ! test -f "$GENERATOR"; then
 fi
 
 test "$(java -jar "$GENERATOR" version)" == "$GENERATOR_VERSION" || fail "unable to setup openapi generator"
-
-git clone https://github.com/golemfactory/ya-client.git target/ya-client --single-branch || true

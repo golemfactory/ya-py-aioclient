@@ -304,7 +304,7 @@ def load_spec(file_name: Union[str, Path]) -> JsonObject:
 
 def main(*modules: str):
     import importlib
-    build_dir = Path("target/ya-client/specs")
+    build_dir = Path("ya-client/specs")
     common_spec = load_spec(build_dir / "common.yaml")
 
     for module_name in modules:
