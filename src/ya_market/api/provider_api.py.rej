@@ -1,0 +1,206 @@
+*** api/provider_api.py	2020-07-21 19:59:05.000000000 +0200
+--- api/provider_api.py	2020-07-21 16:04:50.000000000 +0200
+***************
+*** 819,847 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/offers/{subscriptionId}/proposals/{proposalId}', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='Proposal',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+!     def post_query_reply_offers(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
+          """Handles dynamic property query.  # noqa: E501
+  
+          The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
+--- 903,938 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/offers/{subscriptionId}/proposals/{proposalId}",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="Proposal",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+!     def post_query_reply_offers(
+!         self, subscription_id, query_id, body, **kwargs
+!     ):  # noqa: E501
+          """Handles dynamic property query.  # noqa: E501
+  
+          The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
+***************
+*** 865,874 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.post_query_reply_offers_with_http_info(subscription_id, query_id, body, **kwargs)  # noqa: E501
+! 
+!     def post_query_reply_offers_with_http_info(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
+          """Handles dynamic property query.  # noqa: E501
+  
+          The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
+--- 956,969 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.post_query_reply_offers_with_http_info(
+!             subscription_id, query_id, body, **kwargs
+!         )  # noqa: E501
+! 
+!     def post_query_reply_offers_with_http_info(
+!         self, subscription_id, query_id, body, **kwargs
+!     ):  # noqa: E501
+          """Handles dynamic property query.  # noqa: E501
+  
+          The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
+***************
+*** 897,944 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'subscription_id',
+!             'query_id',
+!             'body'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method post_query_reply_offers" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'subscription_id' is set
+!         if self.api_client.client_side_validation and ('subscription_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['subscription_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `subscription_id` when calling `post_query_reply_offers`")  # noqa: E501
+          # verify the required parameter 'query_id' is set
+!         if self.api_client.client_side_validation and ('query_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['query_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `query_id` when calling `post_query_reply_offers`")  # noqa: E501
+          # verify the required parameter 'body' is set
+!         if self.api_client.client_side_validation and ('body' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['body'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `body` when calling `post_query_reply_offers`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'subscription_id' in local_var_params:
+!             path_params['subscriptionId'] = local_var_params['subscription_id']  # noqa: E501
+!         if 'query_id' in local_var_params:
+!             path_params['queryId'] = local_var_params['query_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 992,1049 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["subscription_id", "query_id", "body"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method post_query_reply_offers" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'subscription_id' is set
+!         if self.api_client.client_side_validation and (
+!             "subscription_id" not in local_var_params
+!             or local_var_params["subscription_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `subscription_id` when calling `post_query_reply_offers`"
+!             )  # noqa: E501
+          # verify the required parameter 'query_id' is set
+!         if self.api_client.client_side_validation and (
+!             "query_id" not in local_var_params
+!             or local_var_params["query_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `query_id` when calling `post_query_reply_offers`"
+!             )  # noqa: E501
+          # verify the required parameter 'body' is set
+!         if self.api_client.client_side_validation and (
+!             "body" not in local_var_params
+!             or local_var_params["body"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `body` when calling `post_query_reply_offers`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "subscription_id" in local_var_params:
+!             path_params["subscriptionId"] = local_var_params[
+!                 "subscription_id"
+!             ]  # noqa: E501
+!         if "query_id" in local_var_params:
+!             path_params["queryId"] = local_var_params["query_id"]  # noqa: E501
+  
+          query_params = []
+  
