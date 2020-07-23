@@ -16,6 +16,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Install Python 3.8
         uses: actions/setup-python@v1
@@ -38,7 +40,9 @@ jobs:
       
       - name: Run pytest
         run: poetry run pytest src
-
-      # TO DO run when golem-client specs updated
-      # - name: Create Pull Request
-      #   uses: peter-evans/create-pull-request@v2
+      
+      - name: Create Pull Request
+        if: github.event_name == 'push'
+        uses: peter-evans/create-pull-request@v3
+        with:
+            base: patched

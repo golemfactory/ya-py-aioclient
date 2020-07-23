@@ -1,8 +1,12 @@
 #! /bin/bash
 
 NAME=$1
-PATCH_NAME=$2
+DEST=$2
 
 test -n "$NAME" || exit 1
 
-diff -r -c "target/ya_$NAME" "src/ya_$NAME"
+if test -n "$DIST"; then
+    diff -r -c "target/ya_$NAME" "src/ya_$NAME" > patches/$DEST
+else
+    diff -r -c "target/ya_$NAME" "src/ya_$NAME"
+fi

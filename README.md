@@ -7,6 +7,7 @@ Python Rest binding of [Yapapi](https://github.com/golemfactory/yapapi), generat
 ## Prerequisites
 - Python 3.8.x
 - Poetry
+- [Poe](https://github.com/nat-n/poethepoet/blob/e8451601c81a2dfd6066cd02116f07fd7172625b/README.rst) (Optional)
 
 ## How to generate
 
@@ -30,6 +31,10 @@ Run `make setup` only.
 Then copy content of `src` into `target` (yes replace them all), then do your changes under `src`. 
 
 When you done with your changes, run;
+```bash
+poe diff COMPONENT_NAME COMPONENT_NAME/00X_PATCH_TITLE.patch
+```
+or (without poe)
 ```bash
 ./build-scripts/diff-module.sh COMPONENT_NAME > patches/COMPONENT_NAME/00X_PATCH_TITLE.patch
 ```
