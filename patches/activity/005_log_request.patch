@@ -1,0 +1,14 @@
+diff -r -c target/ya_activity/rest.py src/ya_activity/rest.py
+*** target/ya_activity/rest.py	2020-10-02 09:21:59.408269422 +0200
+--- src/ya_activity/rest.py	2020-10-02 09:22:27.589944886 +0200
+***************
+*** 165,170 ****
+--- 165,172 ----
+                           declared content type."""
+                  raise ApiException(status=0, reason=msg)
+  
++         logger.debug("request: %s", args)
++ 
+          r = await self.pool_manager.request(**args)
+          if _preload_content:
+  
