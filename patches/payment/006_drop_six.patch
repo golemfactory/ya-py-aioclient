@@ -1,0 +1,40 @@
+diff -r -c target/ya_payment/api/provider_api.py src/ya_payment/api/provider_api.py
+*** target/ya_payment/api/provider_api.py	2020-10-29 22:10:36.452000000 +0100
+--- src/ya_payment/api/provider_api.py	2020-10-29 22:11:25.903185107 +0100
+***************
+*** 1585,1591 ****
+              ]
+          )
+
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 1585,1591 ----
+              ]
+          )
+
+!         for key, val in local_var_params['kwargs']:
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+diff -r -c target/ya_payment/api/requestor_api.py src/ya_payment/api/requestor_api.py
+*** target/ya_payment/api/requestor_api.py	2020-10-29 22:10:36.452000000 +0100
+--- src/ya_payment/api/requestor_api.py	2020-10-29 22:11:19.619294549 +0100
+***************
+*** 2131,2137 ****
+              ]
+          )
+
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 2131,2137 ----
+              ]
+          )
+
+!         for key, val in local_var_params['kwargs']:
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
