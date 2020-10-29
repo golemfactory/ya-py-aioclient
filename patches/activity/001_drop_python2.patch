@@ -25,12 +25,13 @@ diff -r -c target/ya_activity/__init__.py src/ya_activity/__init__.py
   from ya_activity.models.activity_state import ActivityState
   from ya_activity.models.activity_usage import ActivityUsage
 ***************
-*** 42,45 ****
+*** 42,46 ****
   from ya_activity.models.get_activity_state import GetActivityState
   from ya_activity.models.get_activity_usage import GetActivityUsage
   from ya_activity.models.provider_event import ProviderEvent
+  from ya_activity.models.sgx_credentials import SgxCredentials
 - 
---- 40,42 ----
+--- 40,43 ----
 diff -r -c target/ya_activity/api/__init__.py src/ya_activity/api/__init__.py
 *** target/ya_activity/api/__init__.py	2020-07-21 19:59:05.000000000 +0200
 --- src/ya_activity/api/__init__.py	2020-07-21 13:59:15.000000000 +0200
@@ -1101,7 +1102,7 @@ diff -r -c target/ya_activity/api/requestor_control_api.py src/ya_activity/api/r
               body=body_params,
               post_params=form_params,
               files=local_var_files,
-!             response_type='str',  # noqa: E501
+!             response_type='CreateActivityResult',  # noqa: E501
               auth_settings=auth_settings,
 !             async_req=local_var_params.get('async_req'),
 !             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
@@ -1141,7 +1142,7 @@ diff -r -c target/ya_activity/api/requestor_control_api.py src/ya_activity/api/r
               body=body_params,
               post_params=form_params,
               files=local_var_files,
-!             response_type="str",  # noqa: E501
+!             response_type="CreateActivityResult",  # noqa: E501
               auth_settings=auth_settings,
 !             async_req=local_var_params.get("async_req"),
 !             _return_http_data_only=local_var_params.get(
@@ -3611,16 +3612,18 @@ diff -r -c target/ya_activity/models/create_activity.py src/ya_activity/models/c
   
 --- 13,18 ----
 ***************
-*** 32,44 ****
+*** 32,46 ****
         attribute_map (dict): The key is attribute name
                               and the value is json key in definition.
       """
 !     openapi_types = {
-!         'agreement_id': 'str'
+!         'agreement_id': 'str',
+!         'requestor_pub_key': 'str'
 !     }
 ! 
 !     attribute_map = {
-!         'agreement_id': 'agreementId'
+!         'agreement_id': 'agreementId',
+!         'requestor_pub_key': 'requestorPubKey'
 !     }
   
       def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
@@ -3629,9 +3632,9 @@ diff -r -c target/ya_activity/models/create_activity.py src/ya_activity/models/c
         attribute_map (dict): The key is attribute name
                               and the value is json key in definition.
       """
-!     openapi_types = {"agreement_id": "str"}
+!     openapi_types = {"agreement_id": "str", "requestor_pub_key": "str" }
 ! 
-!     attribute_map = {"agreement_id": "agreementId"}
+!     attribute_map = {"properties": "agreementId", "requestor_pub_key": "requestorPubKey"}
   
       def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
           """CreateActivity - a model defined in OpenAPI"""  # noqa: E501
@@ -3720,29 +3723,31 @@ diff -r -c target/ya_activity/models/create_activity_all_of.py src/ya_activity/m
   
 --- 13,18 ----
 ***************
-*** 32,44 ****
+*** 32,46 ****
         attribute_map (dict): The key is attribute name
                               and the value is json key in definition.
       """
 !     openapi_types = {
-!         'agreement_id': 'str'
+!         'agreement_id': 'str',
+!         'requestor_pub_key': 'str'
 !     }
 ! 
 !     attribute_map = {
-!         'agreement_id': 'agreementId'
+!         'agreement_id': 'agreementId',
+!         'requestor_pub_key': 'requestorPubKey'
 !     }
   
-      def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
+      def __init__(self, agreement_id=None, requestor_pub_key=None, local_vars_configuration=None):  # noqa: E501
           """CreateActivityAllOf - a model defined in OpenAPI"""  # noqa: E501
 --- 31,39 ----
         attribute_map (dict): The key is attribute name
                               and the value is json key in definition.
       """
-!     openapi_types = {"agreement_id": "str"}
+!     openapi_types = {"agreement_id": "str", "requestor_pub_key": "str"}
 ! 
-!     attribute_map = {"agreement_id": "agreementId"}
+!     attribute_map = {"agreement_id": "agreementId", "requestor_pub_key": "requestorPubKey"}
   
-      def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
+      def __init__(self, agreement_id=None, requestor_pub_key=None, local_vars_configuration=None):  # noqa: E501
           """CreateActivityAllOf - a model defined in OpenAPI"""  # noqa: E501
 ***************
 *** 77,97 ****
@@ -3999,12 +4004,14 @@ diff -r -c target/ya_activity/models/exe_script_command_result.py src/ya_activit
   
 --- 13,18 ----
 ***************
-*** 33,52 ****
+*** 33,56 ****
                               and the value is json key in definition.
       """
       openapi_types = {
 !         'index': 'int',
 !         'result': 'str',
+!         'stdout': 'str',
+!         'stderr': 'str',
 !         'message': 'str',
 !         'is_batch_finished': 'bool'
       }
@@ -4012,20 +4019,24 @@ diff -r -c target/ya_activity/models/exe_script_command_result.py src/ya_activit
       attribute_map = {
 !         'index': 'index',
 !         'result': 'result',
+!         'stdout': 'stdout',
+!         'stderr': 'stderr',
 !         'message': 'message',
 !         'is_batch_finished': 'isBatchFinished'
       }
   
-!     def __init__(self, index=None, result=None, message=None, is_batch_finished=None, local_vars_configuration=None):  # noqa: E501
+!     def __init__(self, index=None, result=None, stdout=None, stderr=None, message=None, is_batch_finished=None, local_vars_configuration=None):  # noqa: E501
           """ExeScriptCommandResult - a model defined in OpenAPI"""  # noqa: E501
           if local_vars_configuration is None:
               local_vars_configuration = Configuration()
---- 32,58 ----
+--- 32,64 ----
                               and the value is json key in definition.
       """
       openapi_types = {
 !         "index": "int",
 !         "result": "str",
+!         "stdout": "stdout",
+!         "stderr": "stderr",
 !         "message": "str",
 !         "is_batch_finished": "bool",
       }
@@ -4033,6 +4044,8 @@ diff -r -c target/ya_activity/models/exe_script_command_result.py src/ya_activit
       attribute_map = {
 !         "index": "index",
 !         "result": "result",
+!         "stdout": "stdout",
+!         "stderr": "stderr",
 !         "message": "message",
 !         "is_batch_finished": "isBatchFinished",
       }
@@ -4041,6 +4054,8 @@ diff -r -c target/ya_activity/models/exe_script_command_result.py src/ya_activit
 !         self,
 !         index=None,
 !         result=None,
+!         stdout=None,
+!         stderr=None,
 !         message=None,
 !         is_batch_finished=None,
 !         local_vars_configuration=None,
@@ -4587,8 +4602,8 @@ diff -r -c target/ya_activity/models/provider_event.py src/ya_activity/models/pr
 !     }
   
       discriminator_value_class_map = {
-!         'GetActivityState': 'GetActivityState',
 !         'GetActivityUsage': 'GetActivityUsage',
+!         'GetActivityState': 'GetActivityState',
 !         'CreateActivity': 'CreateActivity',
 !         'DestroyActivity': 'DestroyActivity'
       }
@@ -4606,8 +4621,8 @@ diff -r -c target/ya_activity/models/provider_event.py src/ya_activity/models/pr
 !     attribute_map = {"event_type": "eventType", "activity_id": "activityId"}
   
       discriminator_value_class_map = {
-!         "GetActivityState": "GetActivityState",
 !         "GetActivityUsage": "GetActivityUsage",
+!         "GetActivityState": "GetActivityState",
 !         "CreateActivity": "CreateActivity",
 !         "DestroyActivity": "DestroyActivity",
       }
@@ -5297,13 +5312,14 @@ diff -r -c target/ya_activity/test/test_create_activity.py src/ya_activity/test/
       """CreateActivity unit test stubs"""
   
 ***************
-*** 34,47 ****
+*** 34,48 ****
               params are included, when True both required and
               optional params are included """
           # model = ya_activity.models.create_activity.CreateActivity()  # noqa: E501
 !         if include_optional :
 !             return CreateActivity(
-!                 agreement_id = '0'
+!                 agreement_id = '0', 
+!                 requestor_pub_key = 'YQ=='
 !             )
 !         else :
 !             return CreateActivity(
@@ -5317,7 +5333,7 @@ diff -r -c target/ya_activity/test/test_create_activity.py src/ya_activity/test/
               optional params are included """
           # model = ya_activity.models.create_activity.CreateActivity()  # noqa: E501
 !         if include_optional:
-!             return CreateActivity(agreement_id="0")
+!             return CreateActivity(agreement_id="0",requestor_pub_key="YQ==")
 !         else:
 !             return CreateActivity(agreement_id="0",)
   
@@ -5362,13 +5378,14 @@ diff -r -c target/ya_activity/test/test_create_activity_all_of.py src/ya_activit
       """CreateActivityAllOf unit test stubs"""
   
 ***************
-*** 34,46 ****
+*** 34,47 ****
               params are included, when True both required and
               optional params are included """
           # model = ya_activity.models.create_activity_all_of.CreateActivityAllOf()  # noqa: E501
 !         if include_optional :
 !             return CreateActivityAllOf(
-!                 agreement_id = '0'
+!                 agreement_id = '0', 
+!                 requestor_pub_key = 'YQ=='
 !             )
 !         else :
 !             return CreateActivityAllOf(
@@ -5381,7 +5398,7 @@ diff -r -c target/ya_activity/test/test_create_activity_all_of.py src/ya_activit
               optional params are included """
           # model = ya_activity.models.create_activity_all_of.CreateActivityAllOf()  # noqa: E501
 !         if include_optional:
-!             return CreateActivityAllOf(agreement_id="0")
+!             return CreateActivityAllOf(agreement_id="0", requestor_pub_key="YQ==")
 !         else:
 !             return CreateActivityAllOf()
   
@@ -5568,7 +5585,7 @@ diff -r -c target/ya_activity/test/test_exe_script_command_result.py src/ya_acti
       """ExeScriptCommandResult unit test stubs"""
   
 ***************
-*** 34,51 ****
+*** 34,53 ****
               params are included, when True both required and
               optional params are included """
           # model = ya_activity.models.exe_script_command_result.ExeScriptCommandResult()  # noqa: E501
@@ -5576,6 +5593,8 @@ diff -r -c target/ya_activity/test/test_exe_script_command_result.py src/ya_acti
               return ExeScriptCommandResult(
 !                 index = 0, 
 !                 result = 'Ok', 
+!                 stdout = '0', 
+!                 stderr = '0', 
 !                 message = '0', 
 !                 is_batch_finished = True
               )
@@ -5593,7 +5612,7 @@ diff -r -c target/ya_activity/test/test_exe_script_command_result.py src/ya_acti
           # model = ya_activity.models.exe_script_command_result.ExeScriptCommandResult()  # noqa: E501
 !         if include_optional:
               return ExeScriptCommandResult(
-!                 index=0, result="Ok", message="0", is_batch_finished=True
+!                 index=0, result="Ok", stdout="0", stderr="0", message="0", is_batch_finished=True
               )
 !         else:
 !             return ExeScriptCommandResult(index=0, result="Ok",)

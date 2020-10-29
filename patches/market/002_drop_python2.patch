@@ -1121,7 +1121,7 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
 !             _request_timeout=local_var_params.get('_request_timeout'),
 !             collection_formats=collection_formats)
   
-!     def post_query_reply_offers(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
+!     def query_reply_offers(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
   
           The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
@@ -1156,7 +1156,7 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
 !             collection_formats=collection_formats,
 !         )
   
-!     def post_query_reply_offers(
+!     def query_reply_offers(
 !         self, subscription_id, query_id, body, **kwargs
 !     ):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
@@ -1168,9 +1168,9 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
                    returns the request thread.
           """
 !         kwargs['_return_http_data_only'] = True
-!         return self.post_query_reply_offers_with_http_info(subscription_id, query_id, body, **kwargs)  # noqa: E501
+!         return self.query_reply_offers_with_http_info(subscription_id, query_id, body, **kwargs)  # noqa: E501
 ! 
-!     def post_query_reply_offers_with_http_info(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
+!     def query_reply_offers_with_http_info(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
   
           The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
@@ -1179,11 +1179,11 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
                    returns the request thread.
           """
 !         kwargs["_return_http_data_only"] = True
-!         return self.post_query_reply_offers_with_http_info(
+!         return self.query_reply_offers_with_http_info(
 !             subscription_id, query_id, body, **kwargs
 !         )  # noqa: E501
 ! 
-!     def post_query_reply_offers_with_http_info(
+!     def query_reply_offers_with_http_info(
 !         self, subscription_id, query_id, body, **kwargs
 !     ):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
@@ -1212,22 +1212,22 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
-                      " to method post_query_reply_offers" % key
+                      " to method query_reply_offers" % key
                   )
               local_var_params[key] = val
 !         del local_var_params['kwargs']
           # verify the required parameter 'subscription_id' is set
 !         if self.api_client.client_side_validation and ('subscription_id' not in local_var_params or  # noqa: E501
 !                                                         local_var_params['subscription_id'] is None):  # noqa: E501
-!             raise ApiValueError("Missing the required parameter `subscription_id` when calling `post_query_reply_offers`")  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `subscription_id` when calling `query_reply_offers`")  # noqa: E501
           # verify the required parameter 'query_id' is set
 !         if self.api_client.client_side_validation and ('query_id' not in local_var_params or  # noqa: E501
 !                                                         local_var_params['query_id'] is None):  # noqa: E501
-!             raise ApiValueError("Missing the required parameter `query_id` when calling `post_query_reply_offers`")  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `query_id` when calling `query_reply_offers`")  # noqa: E501
           # verify the required parameter 'body' is set
 !         if self.api_client.client_side_validation and ('body' not in local_var_params or  # noqa: E501
 !                                                         local_var_params['body'] is None):  # noqa: E501
-!             raise ApiValueError("Missing the required parameter `body` when calling `post_query_reply_offers`")  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `body` when calling `query_reply_offers`")  # noqa: E501
   
           collection_formats = {}
   
@@ -1257,7 +1257,7 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
-                      " to method post_query_reply_offers" % key
+                      " to method query_reply_offers" % key
                   )
               local_var_params[key] = val
 !         del local_var_params["kwargs"]
@@ -1267,7 +1267,7 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
 !             or local_var_params["subscription_id"] is None  # noqa: E501
 !         ):  # noqa: E501
 !             raise ApiValueError(
-!                 "Missing the required parameter `subscription_id` when calling `post_query_reply_offers`"
+!                 "Missing the required parameter `subscription_id` when calling `query_reply_offers`"
 !             )  # noqa: E501
           # verify the required parameter 'query_id' is set
 !         if self.api_client.client_side_validation and (
@@ -1275,7 +1275,7 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
 !             or local_var_params["query_id"] is None  # noqa: E501
 !         ):  # noqa: E501
 !             raise ApiValueError(
-!                 "Missing the required parameter `query_id` when calling `post_query_reply_offers`"
+!                 "Missing the required parameter `query_id` when calling `query_reply_offers`"
 !             )  # noqa: E501
           # verify the required parameter 'body' is set
 !         if self.api_client.client_side_validation and (
@@ -1283,7 +1283,7 @@ diff -r -c target/ya_market/api/provider_api.py src/ya_market/api/provider_api.p
 !             or local_var_params["body"] is None  # noqa: E501
 !         ):  # noqa: E501
 !             raise ApiValueError(
-!                 "Missing the required parameter `body` when calling `post_query_reply_offers`"
+!                 "Missing the required parameter `body` when calling `query_reply_offers`"
 !             )  # noqa: E501
   
           collection_formats = {}
@@ -3585,7 +3585,7 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
 !             _request_timeout=local_var_params.get('_request_timeout'),
 !             collection_formats=collection_formats)
   
-!     def post_query_reply_demands(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
+!     def query_reply_demands(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
   
           The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
@@ -3620,7 +3620,7 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
 !             collection_formats=collection_formats,
 !         )
   
-!     def post_query_reply_demands(
+!     def query_reply_demands(
 !         self, subscription_id, query_id, body, **kwargs
 !     ):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
@@ -3632,9 +3632,9 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
                    returns the request thread.
           """
 !         kwargs['_return_http_data_only'] = True
-!         return self.post_query_reply_demands_with_http_info(subscription_id, query_id, body, **kwargs)  # noqa: E501
+!         return self.query_reply_demands_with_http_info(subscription_id, query_id, body, **kwargs)  # noqa: E501
 ! 
-!     def post_query_reply_demands_with_http_info(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
+!     def query_reply_demands_with_http_info(self, subscription_id, query_id, body, **kwargs):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
   
           The Market Matching Mechanism, when resolving the match relation for the specific Demand-Offer pair, is to detect the “dynamic” properties required (via constraints) by the other side. At this point, it is able to query the issuing node for those properties and submit the other side’s requested properties as the context of the query.  **Note**: The property query responses may be submitted in “chunks”, ie. the responder may choose to resolve ‘quick’/lightweight’ properties faster and provide response sooner, while still working on more time-consuming properties in the background. Therefore the response contains both the resolved properties, as well as list of properties which responder knows still require resolution.  **Note**: This method must be implemented for Market API Capability Level 2.   # noqa: E501
@@ -3643,11 +3643,11 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
                    returns the request thread.
           """
 !         kwargs["_return_http_data_only"] = True
-!         return self.post_query_reply_demands_with_http_info(
+!         return self.query_reply_demands_with_http_info(
 !             subscription_id, query_id, body, **kwargs
 !         )  # noqa: E501
 ! 
-!     def post_query_reply_demands_with_http_info(
+!     def query_reply_demands_with_http_info(
 !         self, subscription_id, query_id, body, **kwargs
 !     ):  # noqa: E501
           """Handles dynamic property query.  # noqa: E501
@@ -3676,22 +3676,22 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
-                      " to method post_query_reply_demands" % key
+                      " to method query_reply_demands" % key
                   )
               local_var_params[key] = val
 !         del local_var_params['kwargs']
           # verify the required parameter 'subscription_id' is set
 !         if self.api_client.client_side_validation and ('subscription_id' not in local_var_params or  # noqa: E501
 !                                                         local_var_params['subscription_id'] is None):  # noqa: E501
-!             raise ApiValueError("Missing the required parameter `subscription_id` when calling `post_query_reply_demands`")  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `subscription_id` when calling `query_reply_demands`")  # noqa: E501
           # verify the required parameter 'query_id' is set
 !         if self.api_client.client_side_validation and ('query_id' not in local_var_params or  # noqa: E501
 !                                                         local_var_params['query_id'] is None):  # noqa: E501
-!             raise ApiValueError("Missing the required parameter `query_id` when calling `post_query_reply_demands`")  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `query_id` when calling `query_reply_demands`")  # noqa: E501
           # verify the required parameter 'body' is set
 !         if self.api_client.client_side_validation and ('body' not in local_var_params or  # noqa: E501
 !                                                         local_var_params['body'] is None):  # noqa: E501
-!             raise ApiValueError("Missing the required parameter `body` when calling `post_query_reply_demands`")  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `body` when calling `query_reply_demands`")  # noqa: E501
   
           collection_formats = {}
   
@@ -3721,7 +3721,7 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
-                      " to method post_query_reply_demands" % key
+                      " to method query_reply_demands" % key
                   )
               local_var_params[key] = val
 !         del local_var_params["kwargs"]
@@ -3731,7 +3731,7 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
 !             or local_var_params["subscription_id"] is None  # noqa: E501
 !         ):  # noqa: E501
 !             raise ApiValueError(
-!                 "Missing the required parameter `subscription_id` when calling `post_query_reply_demands`"
+!                 "Missing the required parameter `subscription_id` when calling `query_reply_demands`"
 !             )  # noqa: E501
           # verify the required parameter 'query_id' is set
 !         if self.api_client.client_side_validation and (
@@ -3739,7 +3739,7 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
 !             or local_var_params["query_id"] is None  # noqa: E501
 !         ):  # noqa: E501
 !             raise ApiValueError(
-!                 "Missing the required parameter `query_id` when calling `post_query_reply_demands`"
+!                 "Missing the required parameter `query_id` when calling `query_reply_demands`"
 !             )  # noqa: E501
           # verify the required parameter 'body' is set
 !         if self.api_client.client_side_validation and (
@@ -3747,7 +3747,7 @@ diff -r -c target/ya_market/api/requestor_api.py src/ya_market/api/requestor_api
 !             or local_var_params["body"] is None  # noqa: E501
 !         ):  # noqa: E501
 !             raise ApiValueError(
-!                 "Missing the required parameter `body` when calling `post_query_reply_demands`"
+!                 "Missing the required parameter `body` when calling `query_reply_demands`"
 !             )  # noqa: E501
   
           collection_formats = {}
@@ -5827,7 +5827,7 @@ diff -r -c target/ya_market/configuration.py src/ya_market/configuration.py
 !         return "Python SDK Debug Report:\n"\
 !                "OS: {env}\n"\
 !                "Python Version: {pyversion}\n"\
-!                "Version of the API: 1.5.2\n"\
+!                "Version of the API: 1.6.0\n"\
 !                "SDK Package Version: ".\
 !                format(env=sys.platform, pyversion=sys.version)
   
@@ -5853,7 +5853,7 @@ diff -r -c target/ya_market/configuration.py src/ya_market/configuration.py
 !             "Python SDK Debug Report:\n"
 !             "OS: {env}\n"
 !             "Python Version: {pyversion}\n"
-!             "Version of the API: 1.5.2\n"
+!             "Version of the API: 1.6.0\n"
 !             "SDK Package Version: ".format(env=sys.platform, pyversion=sys.version)
 !         )
   
