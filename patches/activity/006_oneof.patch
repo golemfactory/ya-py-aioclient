@@ -1,0 +1,75 @@
+diff -r -c target/ya_activity/api/requestor_control_api.py src/ya_activity/api/requestor_control_api.py
+*** target/ya_activity/api/requestor_control_api.py	2020-10-29 20:08:23.080000000 +0100
+--- src/ya_activity/api/requestor_control_api.py	2020-10-29 20:12:02.624883227 +0100
+***************
+*** 313,319 ****
+                                   number provided, it will be total request
+                                   timeout. It can also be a pair (tuple) of
+                                   (connection, read) timeouts.
+!         :return: OneOfstringCreateActivityResult
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+--- 313,319 ----
+                                   number provided, it will be total request
+                                   timeout. It can also be a pair (tuple) of
+                                   (connection, read) timeouts.
+!         :return: oneOf[CreateActivityResult, str]
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+***************
+*** 340,346 ****
+                                   number provided, it will be total request
+                                   timeout. It can also be a pair (tuple) of
+                                   (connection, read) timeouts.
+!         :return: tuple(OneOfstringCreateActivityResult, status_code(int), headers(HTTPHeaderDict))
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+--- 340,346 ----
+                                   number provided, it will be total request
+                                   timeout. It can also be a pair (tuple) of
+                                   (connection, read) timeouts.
+!         :return: tuple(oneOf[CreateActivityResult, str], status_code(int), headers(HTTPHeaderDict))
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+***************
+*** 407,413 ****
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='OneOfstringCreateActivityResult',  # noqa: E501
+              auth_settings=auth_settings,
+              async_req=local_var_params.get('async_req'),
+              _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+--- 407,413 ----
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='oneOf[CreateActivityResult, str]',  # noqa: E501
+              auth_settings=auth_settings,
+              async_req=local_var_params.get('async_req'),
+              _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+diff -r -c target/ya_activity/api_client.py src/ya_activity/api_client.py
+*** target/ya_activity/api_client.py	2020-10-29 20:08:23.080000000 +0100
+--- src/ya_activity/api_client.py	2020-10-29 20:11:00.757753059 +0100
+***************
+*** 316,321 ****
+--- 316,330 ----
+                  sub_kls = re.match(r"dict\(([^,]*), (.*)\)", klass).group(2)
+                  return {k: self.__deserialize(v, sub_kls) for k, v in data.items()}
+
++             if klass.startswith("oneOf["):
++                 sub_kls = re.findall(r"([^,\s\[\]]+)", klass[5:])
++                 for k in sub_kls:
++                     try:
++                         return self.__deserialize(data, k)
++                     except:  # noqa
++                         pass
++                 raise RuntimeError(f"Unable to deserialize as {klass}")
++
+              # convert str to class
+              if klass in self.NATIVE_TYPES_MAPPING:
+                  klass = self.NATIVE_TYPES_MAPPING[klass]
