@@ -1,0 +1,25 @@
+diff -r -c target/ya_payment/api/provider_api.py src/ya_payment/api/provider_api.py
+*** target/ya_payment/api/provider_api.py	2020-10-29 21:13:00.004000000 +0100
+--- src/ya_payment/api/provider_api.py	2020-10-29 21:15:00.674208435 +0100
+***************
+*** 11,16 ****
+--- 11,17 ----
+
+
+  import re  # noqa: F401
++ import six
+
+  # python 2 and python 3 compatibility library
+
+diff -r -c target/ya_payment/api/requestor_api.py src/ya_payment/api/requestor_api.py
+*** target/ya_payment/api/requestor_api.py	2020-10-29 21:13:00.004000000 +0100
+--- src/ya_payment/api/requestor_api.py	2020-10-29 21:14:52.250356238 +0100
+***************
+*** 11,16 ****
+--- 11,17 ----
+
+
+  import re  # noqa: F401
++ import six
+
+  # python 2 and python 3 compatibility library

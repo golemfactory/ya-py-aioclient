@@ -1,0 +1,26 @@
+diff -r -c target/ya_activity/api/provider_api.py src/ya_activity/api/provider_api.py
+*** target/ya_activity/api/provider_api.py	2020-10-29 21:13:00.016000000 +0100
+--- src/ya_activity/api/provider_api.py	2020-10-29 21:14:23.242865338 +0100
+***************
+*** 10,15 ****
+--- 10,16 ----
+  """
+
+  import re  # noqa: F401
++ import six
+
+  # python 2 and python 3 compatibility library
+  from ya_activity.api_client import ApiClient
+diff -r -c target/ya_activity/api/requestor_control_api.py src/ya_activity/api/requestor_control_api.py
+*** target/ya_activity/api/requestor_control_api.py	2020-10-29 21:13:00.024000000 +0100
+--- src/ya_activity/api/requestor_control_api.py	2020-10-29 21:14:11.547070670 +0100
+***************
+*** 10,15 ****
+--- 10,16 ----
+  """
+
+  import re  # noqa: F401
++ import six
+
+
+  from ya_activity.api_client import ApiClient
