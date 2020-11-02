@@ -14,7 +14,7 @@ diff -r -c target/ya_payment/api/provider_api.py src/ya_payment/api/provider_api
               ]
           )
 
-!         for key, val in local_var_params['kwargs']:
+!         for key, val in local_var_params['kwargs'].items():
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
@@ -34,7 +34,7 @@ diff -r -c target/ya_payment/api/requestor_api.py src/ya_payment/api/requestor_a
               ]
           )
 
-!         for key, val in local_var_params['kwargs']:
+!         for key, val in local_var_params['kwargs'].items():
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
