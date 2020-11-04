@@ -38,3 +38,85 @@ diff -r -c target/ya_payment/api/requestor_api.py src/ya_payment/api/requestor_a
               if key not in all_params:
                   raise ApiTypeError(
                       "Got an unexpected keyword argument '%s'"
+diff -r -c target/ya_payment/models/market_decoration.py src/ya_payment/models/market_decoration.py
+*** target/ya_payment/models/market_decoration.py	2020-11-04 14:18:44.875000000 +0100
+--- src/ya_payment/models/market_decoration.py	2020-11-04 14:19:42.718724205 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+
+- import six
+-
+  from ya_payment.configuration import Configuration
+
+
+--- 13,18 ----
+***************
+*** 105,111 ****
+          """Returns the model properties as a dict"""
+          result = {}
+
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 103,109 ----
+          """Returns the model properties as a dict"""
+          result = {}
+
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_payment/models/market_property.py src/ya_payment/models/market_property.py
+*** target/ya_payment/models/market_property.py	2020-11-04 14:18:44.875000000 +0100
+--- src/ya_payment/models/market_property.py	2020-11-04 14:19:55.222590187 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+
+- import six
+-
+  from ya_payment.configuration import Configuration
+
+
+--- 13,18 ----
+***************
+*** 105,111 ****
+          """Returns the model properties as a dict"""
+          result = {}
+
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 103,109 ----
+          """Returns the model properties as a dict"""
+          result = {}
+
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_payment/api/requestor_api.py src/ya_payment/api/requestor_api.py
+*** target/ya_payment/api/requestor_api.py	2020-11-04 14:31:06.075000000 +0100
+--- src/ya_payment/api/requestor_api.py	2020-11-04 14:31:23.507426188 +0100
+***************
+*** 683,689 ****
+              ]
+          )
+
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 683,689 ----
+              ]
+          )
+
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
