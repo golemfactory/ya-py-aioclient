@@ -1,0 +1,35 @@
+Only in src/ya_payment/api: __pycache__
+diff -r -c target/ya_payment/models/account.py src/ya_payment/models/account.py
+*** target/ya_payment/models/account.py	2020-12-05 15:48:50.257000000 +0100
+--- src/ya_payment/models/account.py	2020-12-05 15:52:33.259588143 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_payment.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 105,111 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 103,109 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+Only in src/ya_payment/models: __pycache__
+Only in src/ya_payment: __pycache__
+Only in src/ya_payment/test: __pycache__

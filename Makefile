@@ -23,10 +23,7 @@ m.pre-stub: m.patch
 	poetry run python ./build-scripts/gen-pyi.py market activity payment
 
 clean:
-	# rm -fr target
-	# for development
-	find target \! -name 'openapi-generator-cli.jar' -delete
-	rm m.*
+	rm -rf target m.*
 
 .PHONY: all
 
