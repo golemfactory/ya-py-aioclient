@@ -1074,3 +1074,299 @@ diff -r -c target/ya_market/test/test_proposal.py src/ya_market/test/test_propos
                   constraints = '0',
                   proposal_id = '0',
                   issuer_id = '0',
+Only in src/ya_market/api: __pycache__
+Only in src/ya_market/models: __pycache__
+Only in src/ya_market: __pycache__
+Only in src/ya_market/test: __pycache__
+diff -r -c target/ya_market/test/test_agreement_event_all_of.py src/ya_market/test/test_agreement_event_all_of.py
+*** target/ya_market/test/test_agreement_event_all_of.py	2020-12-07 13:51:36.053000000 +0100
+--- src/ya_market/test/test_agreement_event_all_of.py	2020-12-07 13:55:51.922740046 +0100
+***************
+*** 34,67 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.agreement_event_all_of.AgreementEventAllOf()  # noqa: E501
+          if include_optional :
+              return AgreementEventAllOf(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = null,
+!                     offer = null,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', )
+              )
+          else :
+              return AgreementEventAllOf(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = null,
+!                     offer = null,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', ),
+          )
+
+--- 34,69 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.agreement_event_all_of.AgreementEventAllOf()  # noqa: E501
++         demand = ya_market.models.DemandOfferBase(properties=dict(), constraints=str())
++         offer = ya_market.models.DemandOfferBase(properties=dict(), constraints=str())
+          if include_optional :
+              return AgreementEventAllOf(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = demand,
+!                     offer = offer,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', )
+              )
+          else :
+              return AgreementEventAllOf(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = demand,
+!                     offer = offer,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', ),
+          )
+
+diff -r -c target/ya_market/test/test_agreement_event.py src/ya_market/test/test_agreement_event.py
+*** target/ya_market/test/test_agreement_event.py	2020-12-07 13:51:36.053000000 +0100
+--- src/ya_market/test/test_agreement_event.py	2020-12-07 13:55:01.895322210 +0100
+***************
+*** 34,67 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.agreement_event.AgreementEvent()  # noqa: E501
+          if include_optional :
+              return AgreementEvent(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = null,
+!                     offer = null,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', )
+              )
+          else :
+              return AgreementEvent(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = null,
+!                     offer = null,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', ),
+          )
+
+--- 34,69 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.agreement_event.AgreementEvent()  # noqa: E501
++         demand = ya_market.models.DemandOfferBase(properties=dict(), constraints=str())
++         offer = ya_market.models.DemandOfferBase(properties=dict(), constraints=str())
+          if include_optional :
+              return AgreementEvent(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = demand,
+!                     offer = offer,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', )
+              )
+          else :
+              return AgreementEvent(
+                  agreement = ya_market.models.agreement.Agreement(
+!                     agreement_id = '0',
+!                     demand = demand,
+!                     offer = offer,
+!                     valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     state = 'Proposal',
+!                     timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                     app_session_id = '0',
+!                     proposed_signature = '0',
+!                     approved_signature = '0',
+                      committed_signature = '0', ),
+          )
+
+diff -r -c target/ya_market/test/test_agreement.py src/ya_market/test/test_agreement.py
+*** target/ya_market/test/test_agreement.py	2020-12-07 13:51:36.053000000 +0100
+--- src/ya_market/test/test_agreement.py	2020-12-07 13:54:38.131598602 +0100
+***************
+*** 34,58 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.agreement.Agreement()  # noqa: E501
+          if include_optional :
+              return Agreement(
+!                 agreement_id = '0',
+!                 demand = null,
+!                 offer = null,
+!                 valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 state = 'Proposal',
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 app_session_id = '0',
+!                 proposed_signature = '0',
+!                 approved_signature = '0',
+                  committed_signature = '0'
+              )
+          else :
+              return Agreement(
+                  agreement_id = '0',
+!                 demand = null,
+!                 offer = null,
+                  valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                  state = 'Proposal',
+                  timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+--- 34,60 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.agreement.Agreement()  # noqa: E501
++         demand = ya_market.models.DemandOfferBase(properties=dict(), constraints=str())
++         offer = ya_market.models.DemandOfferBase(properties=dict(), constraints=str())
+          if include_optional :
+              return Agreement(
+!                 agreement_id = '0',
+!                 demand = demand,
+!                 offer = offer,
+!                 valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 approved_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 state = 'Proposal',
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 app_session_id = '0',
+!                 proposed_signature = '0',
+!                 approved_signature = '0',
+                  committed_signature = '0'
+              )
+          else :
+              return Agreement(
+                  agreement_id = '0',
+!                 demand = demand,
+!                 offer = offer,
+                  valid_to = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                  state = 'Proposal',
+                  timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+diff -r -c target/ya_market/test/test_property_query_event_all_of.py src/ya_market/test/test_property_query_event_all_of.py
+*** target/ya_market/test/test_property_query_event_all_of.py	2020-12-07 13:51:36.049000000 +0100
+--- src/ya_market/test/test_property_query_event_all_of.py	2020-12-07 13:53:41.976251334 +0100
+***************
+*** 38,45 ****
+          if include_optional :
+              return PropertyQueryEventAllOf(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = ya_market.models.issuer_properties.issuerProperties(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], )
+--- 38,45 ----
+          if include_optional :
+              return PropertyQueryEventAllOf(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = dict(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], )
+***************
+*** 47,54 ****
+          else :
+              return PropertyQueryEventAllOf(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = ya_market.models.issuer_properties.issuerProperties(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], ),
+--- 47,54 ----
+          else :
+              return PropertyQueryEventAllOf(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = dict(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], ),
+diff -r -c target/ya_market/test/test_property_query_event.py src/ya_market/test/test_property_query_event.py
+*** target/ya_market/test/test_property_query_event.py	2020-12-07 13:51:36.049000000 +0100
+--- src/ya_market/test/test_property_query_event.py	2020-12-07 13:55:32.602964915 +0100
+***************
+*** 36,43 ****
+          if include_optional :
+              return PropertyQueryEvent(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = ya_market.models.issuer_properties.issuerProperties(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], )
+--- 36,43 ----
+          if include_optional :
+              return PropertyQueryEvent(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = dict(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], )
+***************
+*** 45,52 ****
+          else :
+              return PropertyQueryEvent(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = ya_market.models.issuer_properties.issuerProperties(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], ),
+--- 45,52 ----
+          else :
+              return PropertyQueryEvent(
+                  property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = dict(),
+!                     query_id = '0',
+                      queried_properties = [
+                          '0'
+                          ], ),
