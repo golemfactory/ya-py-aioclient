@@ -1,0 +1,1602 @@
+Only in target/ya_activity/api: provider_api.py.orig
+Only in target/ya_activity/api: provider_api.py.rej
+Only in src/ya_activity/api: __pycache__
+diff -r -c target/ya_activity/api/requestor_control_api.py src/ya_activity/api/requestor_control_api.py
+*** target/ya_activity/api/requestor_control_api.py	2020-12-14 16:11:39.785000000 +0100
+--- src/ya_activity/api/requestor_control_api.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 610,616 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 610,616 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+Only in target/ya_activity/api: requestor_control_api.py.orig
+Only in target/ya_activity/api: requestor_control_api.py.rej
+Only in target/ya_activity/api: requestor_state_api.py.orig
+Only in target/ya_activity/api: requestor_state_api.py.rej
+Only in target/ya_activity: configuration.py.orig
+Only in target/ya_activity: configuration.py.rej
+Only in target/ya_activity: __init__.py.orig
+Only in target/ya_activity: __init__.py.rej
+Only in target/ya_activity/models: activity_usage.py.orig
+diff -r -c target/ya_activity/models/command_output_bin_all_of.py src/ya_activity/models/command_output_bin_all_of.py
+*** target/ya_activity/models/command_output_bin_all_of.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/command_output_bin_all_of.py	2020-12-14 16:22:50.681075507 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/command_output_bin.py src/ya_activity/models/command_output_bin.py
+*** target/ya_activity/models/command_output_bin.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/command_output_bin.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/command_output_str_all_of.py src/ya_activity/models/command_output_str_all_of.py
+*** target/ya_activity/models/command_output_str_all_of.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/command_output_str_all_of.py	2020-12-14 16:22:50.597076513 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/command_output_str.py src/ya_activity/models/command_output_str.py
+*** target/ya_activity/models/command_output_str.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/command_output_str.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+Only in target/ya_activity/models: create_activity_all_of.py.orig
+Only in target/ya_activity/models: create_activity_all_of.py.rej
+Only in target/ya_activity/models: create_activity.py.orig
+Only in target/ya_activity/models: create_activity.py.rej
+diff -r -c target/ya_activity/models/create_activity_request.py src/ya_activity/models/create_activity_request.py
+*** target/ya_activity/models/create_activity_request.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/create_activity_request.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 104,110 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 102,108 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/create_activity_result.py src/ya_activity/models/create_activity_result.py
+*** target/ya_activity/models/create_activity_result.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/create_activity_result.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 104,110 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 102,108 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/credentials.py src/ya_activity/models/credentials.py
+*** target/ya_activity/models/credentials.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/credentials.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/deploy_command_all_of.py src/ya_activity/models/deploy_command_all_of.py
+*** target/ya_activity/models/deploy_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/deploy_command_all_of.py	2020-12-14 16:22:50.493077757 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/deploy_command.py src/ya_activity/models/deploy_command.py
+*** target/ya_activity/models/deploy_command.py	2020-12-14 16:11:39.713000000 +0100
+--- src/ya_activity/models/deploy_command.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+Only in target/ya_activity/models: destroy_activity.py.orig
+Only in target/ya_activity/models: destroy_activity.py.rej
+Only in target/ya_activity/models: exe_script_command_result.py.orig
+Only in target/ya_activity/models: exe_script_command_result.py.rej
+Only in target/ya_activity/models: exe_script_command_state.py.orig
+Only in target/ya_activity/models: exe_script_command_state.py.rej
+diff -r -c target/ya_activity/models/file_set.py src/ya_activity/models/file_set.py
+*** target/ya_activity/models/file_set.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/file_set.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 129,135 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 127,133 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+Only in target/ya_activity/models: provider_event.py.orig
+Only in target/ya_activity/models: provider_event.py.rej
+Only in src/ya_activity/models: __pycache__
+diff -r -c target/ya_activity/models/run_command_all_of.py src/ya_activity/models/run_command_all_of.py
+*** target/ya_activity/models/run_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/run_command_all_of.py	2020-12-14 16:22:50.549077087 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/run_command_body.py src/ya_activity/models/run_command_body.py
+*** target/ya_activity/models/run_command_body.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/run_command_body.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 104,110 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 102,108 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/run_command.py src/ya_activity/models/run_command.py
+*** target/ya_activity/models/run_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/run_command.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_finished_all_of.py src/ya_activity/models/runtime_event_kind_finished_all_of.py
+*** target/ya_activity/models/runtime_event_kind_finished_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_finished_all_of.py	2020-12-14 16:22:50.565076896 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_finished_body.py src/ya_activity/models/runtime_event_kind_finished_body.py
+*** target/ya_activity/models/runtime_event_kind_finished_body.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_finished_body.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 104,110 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 102,108 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_finished.py src/ya_activity/models/runtime_event_kind_finished.py
+*** target/ya_activity/models/runtime_event_kind_finished.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_finished.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_started_all_of.py src/ya_activity/models/runtime_event_kind_started_all_of.py
+*** target/ya_activity/models/runtime_event_kind_started_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_started_all_of.py	2020-12-14 16:22:50.689075413 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 80,86 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 78,84 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_started.py src/ya_activity/models/runtime_event_kind_started.py
+*** target/ya_activity/models/runtime_event_kind_started.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_started.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 80,86 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 78,84 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_std_err_all_of.py src/ya_activity/models/runtime_event_kind_std_err_all_of.py
+*** target/ya_activity/models/runtime_event_kind_std_err_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_std_err_all_of.py	2020-12-14 16:22:50.625076179 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_std_err.py src/ya_activity/models/runtime_event_kind_std_err.py
+*** target/ya_activity/models/runtime_event_kind_std_err.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_std_err.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_std_out_all_of.py src/ya_activity/models/runtime_event_kind_std_out_all_of.py
+*** target/ya_activity/models/runtime_event_kind_std_out_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_std_out_all_of.py	2020-12-14 16:22:50.457078188 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event_kind_std_out.py src/ya_activity/models/runtime_event_kind_std_out.py
+*** target/ya_activity/models/runtime_event_kind_std_out.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event_kind_std_out.py	2020-12-14 16:19:53.807000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/runtime_event.py src/ya_activity/models/runtime_event.py
+*** target/ya_activity/models/runtime_event.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/runtime_event.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 159,165 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 157,163 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/sgx_credentials.py src/ya_activity/models/sgx_credentials.py
+*** target/ya_activity/models/sgx_credentials.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/sgx_credentials.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 186,192 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 184,190 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/sign_command_all_of.py src/ya_activity/models/sign_command_all_of.py
+*** target/ya_activity/models/sign_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/sign_command_all_of.py	2020-12-14 16:22:50.701075269 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/sign_command.py src/ya_activity/models/sign_command.py
+*** target/ya_activity/models/sign_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/sign_command.py	2020-12-14 16:22:50.649075891 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/start_command_all_of.py src/ya_activity/models/start_command_all_of.py
+*** target/ya_activity/models/start_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/start_command_all_of.py	2020-12-14 16:22:50.733074885 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 77,83 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 75,81 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/start_command_body.py src/ya_activity/models/start_command_body.py
+*** target/ya_activity/models/start_command_body.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/start_command_body.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 77,83 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 75,81 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/start_command.py src/ya_activity/models/start_command.py
+*** target/ya_activity/models/start_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/start_command.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 77,83 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 75,81 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/terminate_command_all_of.py src/ya_activity/models/terminate_command_all_of.py
+*** target/ya_activity/models/terminate_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/terminate_command_all_of.py	2020-12-14 16:22:50.445078331 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/terminate_command.py src/ya_activity/models/terminate_command.py
+*** target/ya_activity/models/terminate_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/terminate_command.py	2020-12-14 16:22:50.629076130 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/transfer_command_all_of.py src/ya_activity/models/transfer_command_all_of.py
+*** target/ya_activity/models/transfer_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/transfer_command_all_of.py	2020-12-14 16:22:50.725074981 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/transfer_command_body.py src/ya_activity/models/transfer_command_body.py
+*** target/ya_activity/models/transfer_command_body.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/transfer_command_body.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 183,189 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 181,187 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+diff -r -c target/ya_activity/models/transfer_command.py src/ya_activity/models/transfer_command.py
+*** target/ya_activity/models/transfer_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/models/transfer_command.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 13,20 ****
+  import pprint
+  import re  # noqa: F401
+  
+- import six
+- 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,18 ----
+***************
+*** 78,84 ****
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr, _ in six.iteritems(self.openapi_types):
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+--- 76,82 ----
+          """Returns the model properties as a dict"""
+          result = {}
+  
+!         for attr in self.openapi_types:
+              value = getattr(self, attr)
+              if isinstance(value, list):
+                  result[attr] = list(map(
+Only in src/ya_activity: __pycache__
+Only in target/ya_activity: rest.py.orig
+Only in src/ya_activity/test: __pycache__
+Only in target/ya_activity/test: test_activity_usage.py.orig
+Only in target/ya_activity/test: test_activity_usage.py.rej
+Only in target/ya_activity/test: test_create_activity_all_of.py.orig
+Only in target/ya_activity/test: test_create_activity_all_of.py.rej
+Only in target/ya_activity/test: test_create_activity.py.orig
+Only in target/ya_activity/test: test_create_activity.py.rej
+diff -r -c target/ya_activity/test/test_deploy_command_all_of.py src/ya_activity/test/test_deploy_command_all_of.py
+*** target/ya_activity/test/test_deploy_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_deploy_command_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.deploy_command_all_of.DeployCommandAllOf()  # noqa: E501
+          if include_optional :
+              return DeployCommandAllOf(
+!                 deploy = None
+              )
+          else :
+              return DeployCommandAllOf(
+!                 deploy = None,
+          )
+  
+      def testDeployCommandAllOf(self):
+--- 36,46 ----
+          # model = ya_activity.models.deploy_command_all_of.DeployCommandAllOf()  # noqa: E501
+          if include_optional :
+              return DeployCommandAllOf(
+!                 deploy = dict()
+              )
+          else :
+              return DeployCommandAllOf(
+!                 deploy = dict(),
+          )
+  
+      def testDeployCommandAllOf(self):
+diff -r -c target/ya_activity/test/test_deploy_command.py src/ya_activity/test/test_deploy_command.py
+*** target/ya_activity/test/test_deploy_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_deploy_command.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.deploy_command.DeployCommand()  # noqa: E501
+          if include_optional :
+              return DeployCommand(
+!                 deploy = None
+              )
+          else :
+              return DeployCommand(
+!                 deploy = None,
+          )
+  
+      def testDeployCommand(self):
+--- 36,46 ----
+          # model = ya_activity.models.deploy_command.DeployCommand()  # noqa: E501
+          if include_optional :
+              return DeployCommand(
+!                 deploy = dict()
+              )
+          else :
+              return DeployCommand(
+!                 deploy = dict(),
+          )
+  
+      def testDeployCommand(self):
+Only in target/ya_activity/test: test_destroy_activity.py.orig
+Only in target/ya_activity/test: test_destroy_activity.py.rej
+Only in target/ya_activity/test: test_exe_script_command_result.py.orig
+Only in target/ya_activity/test: test_exe_script_command_result.py.rej
+Only in target/ya_activity/test: test_exe_script_command_state.py.orig
+Only in target/ya_activity/test: test_exe_script_command_state.py.rej
+Only in target/ya_activity/test: test_provider_event.py.orig
+Only in target/ya_activity/test: test_provider_event.py.rej
+Only in target/ya_activity/test: test_requestor_control_api.py.orig
+diff -r -c target/ya_activity/test/test_runtime_event_kind_started_all_of.py src/ya_activity/test/test_runtime_event_kind_started_all_of.py
+*** target/ya_activity/test/test_runtime_event_kind_started_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_started_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_started_all_of.RuntimeEventKindStartedAllOf()  # noqa: E501
+          if include_optional :
+              return RuntimeEventKindStartedAllOf(
+!                 started = None
+              )
+          else :
+              return RuntimeEventKindStartedAllOf(
+!                 started = None,
+          )
+  
+      def testRuntimeEventKindStartedAllOf(self):
+--- 34,47 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_started_all_of.RuntimeEventKindStartedAllOf()  # noqa: E501
++         command = ya_activity.models.DeployCommand(deploy=dict())
+          if include_optional :
+              return RuntimeEventKindStartedAllOf(
+!                 started = command
+              )
+          else :
+              return RuntimeEventKindStartedAllOf(
+!                 started = command,
+          )
+  
+      def testRuntimeEventKindStartedAllOf(self):
+diff -r -c target/ya_activity/test/test_runtime_event_kind_started.py src/ya_activity/test/test_runtime_event_kind_started.py
+*** target/ya_activity/test/test_runtime_event_kind_started.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_started.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_started.RuntimeEventKindStarted()  # noqa: E501
+          if include_optional :
+              return RuntimeEventKindStarted(
+!                 started = None
+              )
+          else :
+              return RuntimeEventKindStarted(
+!                 started = None,
+          )
+  
+      def testRuntimeEventKindStarted(self):
+--- 34,47 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_started.RuntimeEventKindStarted()  # noqa: E501
++         command = ya_activity.models.DeployCommand(deploy=dict())
+          if include_optional :
+              return RuntimeEventKindStarted(
+!                 started = command
+              )
+          else :
+              return RuntimeEventKindStarted(
+!                 started = command,
+          )
+  
+      def testRuntimeEventKindStarted(self):
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_err_all_of.py src/ya_activity/test/test_runtime_event_kind_std_err_all_of.py
+*** target/ya_activity/test/test_runtime_event_kind_std_err_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_err_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err_all_of.RuntimeEventKindStdErrAllOf()  # noqa: E501
+          if include_optional :
+              return RuntimeEventKindStdErrAllOf(
+!                 stderr = None
+              )
+          else :
+              return RuntimeEventKindStdErrAllOf(
+!                 stderr = None,
+          )
+  
+      def testRuntimeEventKindStdErrAllOf(self):
+--- 34,47 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err_all_of.RuntimeEventKindStdErrAllOf()  # noqa: E501
++         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdErrAllOf(
+!                 stderr = out
+              )
+          else :
+              return RuntimeEventKindStdErrAllOf(
+!                 stderr = out,
+          )
+  
+      def testRuntimeEventKindStdErrAllOf(self):
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_err.py src/ya_activity/test/test_runtime_event_kind_std_err.py
+*** target/ya_activity/test/test_runtime_event_kind_std_err.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_err.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err.RuntimeEventKindStdErr()  # noqa: E501
+          if include_optional :
+              return RuntimeEventKindStdErr(
+!                 stderr = None
+              )
+          else :
+              return RuntimeEventKindStdErr(
+!                 stderr = None,
+          )
+  
+      def testRuntimeEventKindStdErr(self):
+--- 34,47 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err.RuntimeEventKindStdErr()  # noqa: E501
++         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdErr(
+!                 stderr = out,
+              )
+          else :
+              return RuntimeEventKindStdErr(
+!                 stderr = out,
+          )
+  
+      def testRuntimeEventKindStdErr(self):
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_out_all_of.py src/ya_activity/test/test_runtime_event_kind_std_out_all_of.py
+*** target/ya_activity/test/test_runtime_event_kind_std_out_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_out_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out_all_of.RuntimeEventKindStdOutAllOf()  # noqa: E501
+          if include_optional :
+              return RuntimeEventKindStdOutAllOf(
+!                 stdout = None
+              )
+          else :
+              return RuntimeEventKindStdOutAllOf(
+!                 stdout = None,
+          )
+  
+      def testRuntimeEventKindStdOutAllOf(self):
+--- 34,47 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out_all_of.RuntimeEventKindStdOutAllOf()  # noqa: E501
++         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdOutAllOf(
+!                 stdout = out
+              )
+          else :
+              return RuntimeEventKindStdOutAllOf(
+!                 stdout = out,
+          )
+  
+      def testRuntimeEventKindStdOutAllOf(self):
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_out.py src/ya_activity/test/test_runtime_event_kind_std_out.py
+*** target/ya_activity/test/test_runtime_event_kind_std_out.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_out.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out.RuntimeEventKindStdOut()  # noqa: E501
+          if include_optional :
+              return RuntimeEventKindStdOut(
+!                 stdout = None
+              )
+          else :
+              return RuntimeEventKindStdOut(
+!                 stdout = None,
+          )
+  
+      def testRuntimeEventKindStdOut(self):
+--- 34,47 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out.RuntimeEventKindStdOut()  # noqa: E501
++         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdOut(
+!                 stdout = out
+              )
+          else :
+              return RuntimeEventKindStdOut(
+!                 stdout = out,
+          )
+  
+      def testRuntimeEventKindStdOut(self):
+diff -r -c target/ya_activity/test/test_runtime_event.py src/ya_activity/test/test_runtime_event.py
+*** target/ya_activity/test/test_runtime_event.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_runtime_event.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 34,52 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event.RuntimeEvent()  # noqa: E501
+          if include_optional :
+              return RuntimeEvent(
+!                 batch_id = '0', 
+!                 index = 56, 
+!                 timestamp = '0', 
+!                 kind = None
+              )
+          else :
+              return RuntimeEvent(
+                  batch_id = '0',
+                  index = 56,
+                  timestamp = '0',
+!                 kind = None,
+          )
+  
+      def testRuntimeEvent(self):
+--- 34,53 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event.RuntimeEvent()  # noqa: E501
++         started = ya_activity.models.RuntimeEventKindStarted(started=dict())
+          if include_optional :
+              return RuntimeEvent(
+!                 batch_id = '0',
+!                 index = 56,
+!                 timestamp = '0',
+!                 kind = started
+              )
+          else :
+              return RuntimeEvent(
+                  batch_id = '0',
+                  index = 56,
+                  timestamp = '0',
+!                 kind = started,
+          )
+  
+      def testRuntimeEvent(self):
+diff -r -c target/ya_activity/test/test_sign_command_all_of.py src/ya_activity/test/test_sign_command_all_of.py
+*** target/ya_activity/test/test_sign_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_sign_command_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.sign_command_all_of.SignCommandAllOf()  # noqa: E501
+          if include_optional :
+              return SignCommandAllOf(
+!                 sign = None
+              )
+          else :
+              return SignCommandAllOf(
+!                 sign = None,
+          )
+  
+      def testSignCommandAllOf(self):
+--- 36,46 ----
+          # model = ya_activity.models.sign_command_all_of.SignCommandAllOf()  # noqa: E501
+          if include_optional :
+              return SignCommandAllOf(
+!                 sign = dict()
+              )
+          else :
+              return SignCommandAllOf(
+!                 sign = dict(),
+          )
+  
+      def testSignCommandAllOf(self):
+diff -r -c target/ya_activity/test/test_sign_command.py src/ya_activity/test/test_sign_command.py
+*** target/ya_activity/test/test_sign_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_sign_command.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.sign_command.SignCommand()  # noqa: E501
+          if include_optional :
+              return SignCommand(
+!                 sign = None
+              )
+          else :
+              return SignCommand(
+!                 sign = None,
+          )
+  
+      def testSignCommand(self):
+--- 36,46 ----
+          # model = ya_activity.models.sign_command.SignCommand()  # noqa: E501
+          if include_optional :
+              return SignCommand(
+!                 sign = dict()
+              )
+          else :
+              return SignCommand(
+!                 sign = dict(),
+          )
+  
+      def testSignCommand(self):
+diff -r -c target/ya_activity/test/test_terminate_command_all_of.py src/ya_activity/test/test_terminate_command_all_of.py
+*** target/ya_activity/test/test_terminate_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_terminate_command_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.terminate_command_all_of.TerminateCommandAllOf()  # noqa: E501
+          if include_optional :
+              return TerminateCommandAllOf(
+!                 terminate = None
+              )
+          else :
+              return TerminateCommandAllOf(
+!                 terminate = None,
+          )
+  
+      def testTerminateCommandAllOf(self):
+--- 36,46 ----
+          # model = ya_activity.models.terminate_command_all_of.TerminateCommandAllOf()  # noqa: E501
+          if include_optional :
+              return TerminateCommandAllOf(
+!                 terminate = dict()
+              )
+          else :
+              return TerminateCommandAllOf(
+!                 terminate = dict(),
+          )
+  
+      def testTerminateCommandAllOf(self):
+diff -r -c target/ya_activity/test/test_terminate_command.py src/ya_activity/test/test_terminate_command.py
+*** target/ya_activity/test/test_terminate_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_terminate_command.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.terminate_command.TerminateCommand()  # noqa: E501
+          if include_optional :
+              return TerminateCommand(
+!                 terminate = None
+              )
+          else :
+              return TerminateCommand(
+!                 terminate = None,
+          )
+  
+      def testTerminateCommand(self):
+--- 36,46 ----
+          # model = ya_activity.models.terminate_command.TerminateCommand()  # noqa: E501
+          if include_optional :
+              return TerminateCommand(
+!                 terminate = dict()
+              )
+          else :
+              return TerminateCommand(
+!                 terminate = dict(),
+          )
+  
+      def testTerminateCommand(self):
+diff -r -c target/ya_activity/test/test_transfer_command_all_of.py src/ya_activity/test/test_transfer_command_all_of.py
+*** target/ya_activity/test/test_transfer_command_all_of.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_transfer_command_all_of.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 37,43 ****
+          if include_optional :
+              return TransferCommandAllOf(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     from = '0', 
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+--- 37,43 ----
+          if include_optional :
+              return TransferCommandAllOf(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     _from = '0',
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+***************
+*** 55,61 ****
+          else :
+              return TransferCommandAllOf(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     from = '0', 
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+--- 55,61 ----
+          else :
+              return TransferCommandAllOf(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     _from = '0',
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+diff -r -c target/ya_activity/test/test_transfer_command.py src/ya_activity/test/test_transfer_command.py
+*** target/ya_activity/test/test_transfer_command.py	2020-12-14 16:11:39.717000000 +0100
+--- src/ya_activity/test/test_transfer_command.py	2020-12-14 16:19:53.811000000 +0100
+***************
+*** 37,43 ****
+          if include_optional :
+              return TransferCommand(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     from = '0', 
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+--- 37,43 ----
+          if include_optional :
+              return TransferCommand(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     _from = '0',
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+***************
+*** 55,61 ****
+          else :
+              return TransferCommand(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     from = '0', 
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
+--- 55,61 ----
+          else :
+              return TransferCommand(
+                  transfer = ya_activity.models.transfer_command_body.TransferCommandBody(
+!                     _from = '0',
+                      to = '0', 
+                      format = '0', 
+                      depth = 1.337, 
