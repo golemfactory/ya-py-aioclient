@@ -1132,3 +1132,85 @@ Only in target/ya_payment/test: test_invoice.py.orig
 Only in target/ya_payment/test: test_invoice.py.rej
 Only in target/ya_payment/test: test_provider_api.py.orig
 Only in target/ya_payment/test: test_requestor_api.py.orig
+diff -r -c target/ya_payment/models/invoice_status.py src/ya_payment/models/invoice_status.py
+*** target/ya_payment/models/invoice_status.py	2021-01-05 16:47:22.143000000 +0100
+--- src/ya_payment/models/invoice_status.py	2021-01-05 16:56:44.601117703 +0100
+***************
+*** 13,19 ****
+  import pprint
+  import re  # noqa: F401
+  
+! 
+  from ya_payment.configuration import Configuration
+  
+  
+--- 13,19 ----
+  import pprint
+  import re  # noqa: F401
+  
+! from typing import Dict
+  from ya_payment.configuration import Configuration
+  
+  
+***************
+*** 52,60 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {}
+  
+!     attribute_map = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """InvoiceStatus - a model defined in OpenAPI"""  # noqa: E501
+--- 52,60 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types: Dict[str, str] = {}
+  
+!     attribute_map: Dict[str, str] = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """InvoiceStatus - a model defined in OpenAPI"""  # noqa: E501
+diff -r -c target/ya_payment/models/rejection_reason.py src/ya_payment/models/rejection_reason.py
+*** target/ya_payment/models/rejection_reason.py	2021-01-05 16:47:22.147000000 +0100
+--- src/ya_payment/models/rejection_reason.py	2021-01-05 16:55:29.357921090 +0100
+***************
+*** 13,19 ****
+  import pprint
+  import re  # noqa: F401
+  
+! 
+  from ya_payment.configuration import Configuration
+  
+  
+--- 13,19 ----
+  import pprint
+  import re  # noqa: F401
+  
+! from typing import Dict
+  from ya_payment.configuration import Configuration
+  
+  
+***************
+*** 44,52 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {}
+  
+!     attribute_map = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """RejectionReason - a model defined in OpenAPI"""  # noqa: E501
+--- 44,52 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types: Dict[str, str] = {}
+  
+!     attribute_map: Dict[str, str] = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """RejectionReason - a model defined in OpenAPI"""  # noqa: E501

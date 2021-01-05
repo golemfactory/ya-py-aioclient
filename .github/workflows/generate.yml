@@ -35,8 +35,11 @@ jobs:
       - name: Stub
         run: make m.pre-stub
 
-      - name: Check lint errors
+      - name: Run pylint
         run: poetry run pylint -E src
+
+      - name: Run mypy
+        run: poetry run mypy src
       
       - name: Run pytest
         run: poetry run pytest src

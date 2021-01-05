@@ -1600,3 +1600,509 @@ diff -r -c target/ya_activity/test/test_transfer_command.py src/ya_activity/test
                       to = '0', 
                       format = '0', 
                       depth = 1.337, 
+diff -r -c target/ya_activity/models/destroy_activity.py src/ya_activity/models/destroy_activity.py
+*** target/ya_activity/models/destroy_activity.py	2021-01-05 16:47:22.159000000 +0100
+--- src/ya_activity/models/destroy_activity.py	2021-01-05 16:56:32.257249650 +0100
+***************
+*** 13,19 ****
+  import pprint
+  import re  # noqa: F401
+  
+! 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,19 ----
+  import pprint
+  import re  # noqa: F401
+  
+! from typing import Dict
+  from ya_activity.configuration import Configuration
+  
+  
+***************
+*** 31,40 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {
+      }
+  
+!     attribute_map = {
+      }
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+--- 31,40 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types: Dict[str, str] = {
+      }
+  
+!     attribute_map: Dict[str, str] = {
+      }
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+diff -r -c target/ya_activity/models/get_activity_state.py src/ya_activity/models/get_activity_state.py
+*** target/ya_activity/models/get_activity_state.py	2021-01-05 16:47:22.159000000 +0100
+--- src/ya_activity/models/get_activity_state.py	2021-01-05 16:56:18.417397521 +0100
+***************
+*** 13,19 ****
+  import pprint
+  import re  # noqa: F401
+  
+! 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,19 ----
+  import pprint
+  import re  # noqa: F401
+  
+! from typing import Dict
+  from ya_activity.configuration import Configuration
+  
+  
+***************
+*** 31,39 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {}
+  
+!     attribute_map = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """GetActivityState - a model defined in OpenAPI"""  # noqa: E501
+--- 31,39 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types: Dict[str, str] = {}
+  
+!     attribute_map: Dict[str, str] = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """GetActivityState - a model defined in OpenAPI"""  # noqa: E501
+diff -r -c target/ya_activity/models/get_activity_usage.py src/ya_activity/models/get_activity_usage.py
+*** target/ya_activity/models/get_activity_usage.py	2021-01-05 16:47:22.159000000 +0100
+--- src/ya_activity/models/get_activity_usage.py	2021-01-05 16:56:04.653544507 +0100
+***************
+*** 13,19 ****
+  import pprint
+  import re  # noqa: F401
+  
+! 
+  from ya_activity.configuration import Configuration
+  
+  
+--- 13,19 ----
+  import pprint
+  import re  # noqa: F401
+  
+! from typing import Dict
+  from ya_activity.configuration import Configuration
+  
+  
+***************
+*** 31,39 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {}
+  
+!     attribute_map = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """GetActivityUsage - a model defined in OpenAPI"""  # noqa: E501
+--- 31,39 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types: Dict[str, str] = {}
+  
+!     attribute_map: Dict[str, str] = {}
+  
+      def __init__(self, local_vars_configuration=None):  # noqa: E501
+          """GetActivityUsage - a model defined in OpenAPI"""  # noqa: E501
+diff -r -c target/ya_activity/models/command_output_bin_all_of.py src/ya_activity/models/command_output_bin_all_of.py
+*** target/ya_activity/models/command_output_bin_all_of.py	2021-01-05 17:09:45.397000000 +0100
+--- src/ya_activity/models/command_output_bin_all_of.py	2021-01-05 17:15:26.737396210 +0100
+***************
+*** 31,44 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'bin': 'list[file]'
+      }
+  
+      attribute_map = {
+!         'bin': 'bin'
+      }
+  
+!     def __init__(self, bin=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputBinAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,44 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         '_bin': 'list[file]'
+      }
+  
+      attribute_map = {
+!         '_bin': 'bin'
+      }
+  
+!     def __init__(self, _bin=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputBinAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 47,76 ****
+          self._bin = None
+          self.discriminator = None
+  
+!         self.bin = bin
+  
+      @property
+      def bin(self):
+!         """Gets the bin of this CommandOutputBinAllOf.  # noqa: E501
+  
+  
+!         :return: The bin of this CommandOutputBinAllOf.  # noqa: E501
+          :rtype: list[file]
+          """
+          return self._bin
+  
+      @bin.setter
+!     def bin(self, bin):
+!         """Sets the bin of this CommandOutputBinAllOf.
+  
+  
+!         :param bin: The bin of this CommandOutputBinAllOf.  # noqa: E501
+          :type: list[file]
+          """
+!         if self.local_vars_configuration.client_side_validation and bin is None:  # noqa: E501
+              raise ValueError("Invalid value for `bin`, must not be `None`")  # noqa: E501
+  
+!         self._bin = bin
+  
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+--- 47,76 ----
+          self._bin = None
+          self.discriminator = None
+  
+!         self._bin = _bin
+  
+      @property
+      def bin(self):
+!         """Gets the _bin of this CommandOutputBinAllOf.  # noqa: E501
+  
+  
+!         :return: The _bin of this CommandOutputBinAllOf.  # noqa: E501
+          :rtype: list[file]
+          """
+          return self._bin
+  
+      @bin.setter
+!     def bin(self, _bin):
+!         """Sets the _bin of this CommandOutputBinAllOf.
+  
+  
+!         :param _bin: The _bin of this CommandOutputBinAllOf.  # noqa: E501
+          :type: list[file]
+          """
+!         if self.local_vars_configuration.client_side_validation and _bin is None:  # noqa: E501
+              raise ValueError("Invalid value for `bin`, must not be `None`")  # noqa: E501
+  
+!         self._bin = _bin
+  
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+diff -r -c target/ya_activity/models/command_output_bin.py src/ya_activity/models/command_output_bin.py
+*** target/ya_activity/models/command_output_bin.py	2021-01-05 17:09:45.397000000 +0100
+--- src/ya_activity/models/command_output_bin.py	2021-01-05 17:15:26.745396125 +0100
+***************
+*** 31,44 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'bin': 'list[file]'
+      }
+  
+      attribute_map = {
+!         'bin': 'bin'
+      }
+  
+!     def __init__(self, bin=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputBin - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,44 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         '_bin': 'list[file]'
+      }
+  
+      attribute_map = {
+!         '_bin': 'bin'
+      }
+  
+!     def __init__(self, _bin=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputBin - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 47,76 ****
+          self._bin = None
+          self.discriminator = None
+  
+!         self.bin = bin
+  
+      @property
+      def bin(self):
+!         """Gets the bin of this CommandOutputBin.  # noqa: E501
+  
+  
+!         :return: The bin of this CommandOutputBin.  # noqa: E501
+          :rtype: list[file]
+          """
+          return self._bin
+  
+      @bin.setter
+!     def bin(self, bin):
+!         """Sets the bin of this CommandOutputBin.
+  
+  
+!         :param bin: The bin of this CommandOutputBin.  # noqa: E501
+          :type: list[file]
+          """
+!         if self.local_vars_configuration.client_side_validation and bin is None:  # noqa: E501
+              raise ValueError("Invalid value for `bin`, must not be `None`")  # noqa: E501
+  
+!         self._bin = bin
+  
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+--- 47,76 ----
+          self._bin = None
+          self.discriminator = None
+  
+!         self._bin = _bin
+  
+      @property
+      def bin(self):
+!         """Gets the _bin of this CommandOutputBin.  # noqa: E501
+  
+  
+!         :return: The _bin of this CommandOutputBin.  # noqa: E501
+          :rtype: list[file]
+          """
+          return self._bin
+  
+      @bin.setter
+!     def bin(self, _bin):
+!         """Sets the _bin of this CommandOutputBin.
+  
+  
+!         :param _bin: The bin of this CommandOutputBin.  # noqa: E501
+          :type: list[file]
+          """
+!         if self.local_vars_configuration.client_side_validation and _bin is None:  # noqa: E501
+              raise ValueError("Invalid value for `bin`, must not be `None`")  # noqa: E501
+  
+!         self._bin = _bin
+  
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+diff -r -c target/ya_activity/models/command_output_str_all_of.py src/ya_activity/models/command_output_str_all_of.py
+*** target/ya_activity/models/command_output_str_all_of.py	2021-01-05 17:09:45.397000000 +0100
+--- src/ya_activity/models/command_output_str_all_of.py	2021-01-05 17:15:26.733396252 +0100
+***************
+*** 31,44 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'str': 'str'
+      }
+  
+      attribute_map = {
+!         'str': 'str'
+      }
+  
+!     def __init__(self, str=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputStrAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,44 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         '_str': 'str'
+      }
+  
+      attribute_map = {
+!         '_str': 'str'
+      }
+  
+!     def __init__(self, _str=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputStrAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 47,76 ****
+          self._str = None
+          self.discriminator = None
+  
+!         self.str = str
+  
+      @property
+      def str(self):
+!         """Gets the str of this CommandOutputStrAllOf.  # noqa: E501
+  
+  
+!         :return: The str of this CommandOutputStrAllOf.  # noqa: E501
+          :rtype: str
+          """
+          return self._str
+  
+      @str.setter
+!     def str(self, str):
+!         """Sets the str of this CommandOutputStrAllOf.
+  
+  
+!         :param str: The str of this CommandOutputStrAllOf.  # noqa: E501
+          :type: str
+          """
+!         if self.local_vars_configuration.client_side_validation and str is None:  # noqa: E501
+              raise ValueError("Invalid value for `str`, must not be `None`")  # noqa: E501
+  
+!         self._str = str
+  
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+--- 47,76 ----
+          self._str = None
+          self.discriminator = None
+  
+!         self._str = _str
+  
+      @property
+      def str(self):
+!         """Gets the _str of this CommandOutputStrAllOf.  # noqa: E501
+  
+  
+!         :return: The _str of this CommandOutputStrAllOf.  # noqa: E501
+          :rtype: str
+          """
+          return self._str
+  
+      @str.setter
+!     def str(self, _str):
+!         """Sets the _str of this CommandOutputStrAllOf.
+  
+  
+!         :param _str: The _str of this CommandOutputStrAllOf.  # noqa: E501
+          :type: str
+          """
+!         if self.local_vars_configuration.client_side_validation and _str is None:  # noqa: E501
+              raise ValueError("Invalid value for `str`, must not be `None`")  # noqa: E501
+  
+!         self._str = _str
+  
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+diff -r -c target/ya_activity/models/command_output_str.py src/ya_activity/models/command_output_str.py
+*** target/ya_activity/models/command_output_str.py	2021-01-05 17:09:45.397000000 +0100
+--- src/ya_activity/models/command_output_str.py	2021-01-05 17:15:26.721396380 +0100
+***************
+*** 31,44 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'str': 'str'
+      }
+  
+      attribute_map = {
+!         'str': 'str'
+      }
+  
+!     def __init__(self, str=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputStr - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,44 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         '_str': 'str'
+      }
+  
+      attribute_map = {
+!         '_str': 'str'
+      }
+  
+!     def __init__(self, _str=None, local_vars_configuration=None):  # noqa: E501
+          """CommandOutputStr - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 47,57 ****
+          self._str = None
+          self.discriminator = None
+  
+!         self.str = str
+  
+      @property
+      def str(self):
+!         """Gets the str of this CommandOutputStr.  # noqa: E501
+  
+  
+          :return: The str of this CommandOutputStr.  # noqa: E501
+--- 47,57 ----
+          self._str = None
+          self.discriminator = None
+  
+!         self._str = _str
+  
+      @property
+      def str(self):
+!         """Gets the _str of this CommandOutputStr.  # noqa: E501
+  
+  
+          :return: The str of this CommandOutputStr.  # noqa: E501
+***************
+*** 60,73 ****
+          return self._str
+  
+      @str.setter
+!     def str(self, str):
+          """Sets the str of this CommandOutputStr.
+  
+  
+!         :param str: The str of this CommandOutputStr.  # noqa: E501
+          :type: str
+          """
+!         if self.local_vars_configuration.client_side_validation and str is None:  # noqa: E501
+              raise ValueError("Invalid value for `str`, must not be `None`")  # noqa: E501
+  
+          self._str = str
+--- 60,73 ----
+          return self._str
+  
+      @str.setter
+!     def str(self, _str):
+          """Sets the str of this CommandOutputStr.
+  
+  
+!         :param _str: The _str of this CommandOutputStr.  # noqa: E501
+          :type: str
+          """
+!         if self.local_vars_configuration.client_side_validation and _str is None:  # noqa: E501
+              raise ValueError("Invalid value for `str`, must not be `None`")  # noqa: E501
+  
+          self._str = str
