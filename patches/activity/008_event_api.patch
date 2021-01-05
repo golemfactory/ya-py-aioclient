@@ -2106,3 +2106,203 @@ diff -r -c target/ya_activity/models/command_output_str.py src/ya_activity/model
               raise ValueError("Invalid value for `str`, must not be `None`")  # noqa: E501
   
           self._str = str
+diff -r -c target/ya_activity/test/test_command_output_bin_all_of.py src/ya_activity/test/test_command_output_bin_all_of.py
+*** target/ya_activity/test/test_command_output_bin_all_of.py	2021-01-05 17:23:12.092000000 +0100
+--- src/ya_activity/test/test_command_output_bin_all_of.py	2021-01-05 17:24:26.775625649 +0100
+***************
+*** 36,48 ****
+          # model = ya_activity.models.command_output_bin_all_of.CommandOutputBinAllOf()  # noqa: E501
+          if include_optional :
+              return CommandOutputBinAllOf(
+!                 bin = [
+                      bytes(b'blah')
+                      ]
+              )
+          else :
+              return CommandOutputBinAllOf(
+!                 bin = [
+                      bytes(b'blah')
+                      ],
+          )
+--- 36,48 ----
+          # model = ya_activity.models.command_output_bin_all_of.CommandOutputBinAllOf()  # noqa: E501
+          if include_optional :
+              return CommandOutputBinAllOf(
+!                 _bin = [
+                      bytes(b'blah')
+                      ]
+              )
+          else :
+              return CommandOutputBinAllOf(
+!                 _bin = [
+                      bytes(b'blah')
+                      ],
+          )
+diff -r -c target/ya_activity/test/test_command_output_bin.py src/ya_activity/test/test_command_output_bin.py
+*** target/ya_activity/test/test_command_output_bin.py	2021-01-05 17:23:12.092000000 +0100
+--- src/ya_activity/test/test_command_output_bin.py	2021-01-05 17:24:41.507467669 +0100
+***************
+*** 36,48 ****
+          # model = ya_activity.models.command_output_bin.CommandOutputBin()  # noqa: E501
+          if include_optional :
+              return CommandOutputBin(
+!                 bin = [
+                      bytes(b'blah')
+                      ]
+              )
+          else :
+              return CommandOutputBin(
+!                 bin = [
+                      bytes(b'blah')
+                      ],
+          )
+--- 36,48 ----
+          # model = ya_activity.models.command_output_bin.CommandOutputBin()  # noqa: E501
+          if include_optional :
+              return CommandOutputBin(
+!                 _bin = [
+                      bytes(b'blah')
+                      ]
+              )
+          else :
+              return CommandOutputBin(
+!                 _bin = [
+                      bytes(b'blah')
+                      ],
+          )
+diff -r -c target/ya_activity/test/test_command_output_str_all_of.py src/ya_activity/test/test_command_output_str_all_of.py
+*** target/ya_activity/test/test_command_output_str_all_of.py	2021-01-05 17:23:12.092000000 +0100
+--- src/ya_activity/test/test_command_output_str_all_of.py	2021-01-05 17:24:02.543885460 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.command_output_str_all_of.CommandOutputStrAllOf()  # noqa: E501
+          if include_optional :
+              return CommandOutputStrAllOf(
+!                 str = '0'
+              )
+          else :
+              return CommandOutputStrAllOf(
+!                 str = '0',
+          )
+  
+      def testCommandOutputStrAllOf(self):
+--- 36,46 ----
+          # model = ya_activity.models.command_output_str_all_of.CommandOutputStrAllOf()  # noqa: E501
+          if include_optional :
+              return CommandOutputStrAllOf(
+!                 _str = '0'
+              )
+          else :
+              return CommandOutputStrAllOf(
+!                 _str = '0',
+          )
+  
+      def testCommandOutputStrAllOf(self):
+diff -r -c target/ya_activity/test/test_command_output_str.py src/ya_activity/test/test_command_output_str.py
+*** target/ya_activity/test/test_command_output_str.py	2021-01-05 17:23:12.092000000 +0100
+--- src/ya_activity/test/test_command_output_str.py	2021-01-05 17:24:37.119514726 +0100
+***************
+*** 36,46 ****
+          # model = ya_activity.models.command_output_str.CommandOutputStr()  # noqa: E501
+          if include_optional :
+              return CommandOutputStr(
+!                 str = '0'
+              )
+          else :
+              return CommandOutputStr(
+!                 str = '0',
+          )
+  
+      def testCommandOutputStr(self):
+--- 36,46 ----
+          # model = ya_activity.models.command_output_str.CommandOutputStr()  # noqa: E501
+          if include_optional :
+              return CommandOutputStr(
+!                 _str = '0'
+              )
+          else :
+              return CommandOutputStr(
+!                 _str = '0',
+          )
+  
+      def testCommandOutputStr(self):
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_err_all_of.py src/ya_activity/test/test_runtime_event_kind_std_err_all_of.py
+*** target/ya_activity/test/test_runtime_event_kind_std_err_all_of.py	2021-01-05 17:23:12.172000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_err_all_of.py	2021-01-05 17:24:15.871742566 +0100
+***************
+*** 34,40 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err_all_of.RuntimeEventKindStdErrAllOf()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdErrAllOf(
+                  stderr = out
+--- 34,40 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err_all_of.RuntimeEventKindStdErrAllOf()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(_str="0")
+          if include_optional :
+              return RuntimeEventKindStdErrAllOf(
+                  stderr = out
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_err.py src/ya_activity/test/test_runtime_event_kind_std_err.py
+*** target/ya_activity/test/test_runtime_event_kind_std_err.py	2021-01-05 17:23:12.172000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_err.py	2021-01-05 17:24:08.935816932 +0100
+***************
+*** 34,40 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err.RuntimeEventKindStdErr()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdErr(
+                  stderr = out,
+--- 34,40 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_err.RuntimeEventKindStdErr()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(_str="0")
+          if include_optional :
+              return RuntimeEventKindStdErr(
+                  stderr = out,
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_out_all_of.py src/ya_activity/test/test_runtime_event_kind_std_out_all_of.py
+*** target/ya_activity/test/test_runtime_event_kind_std_out_all_of.py	2021-01-05 17:23:12.172000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_out_all_of.py	2021-01-05 17:24:31.143578811 +0100
+***************
+*** 34,40 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out_all_of.RuntimeEventKindStdOutAllOf()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdOutAllOf(
+                  stdout = out
+--- 34,40 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out_all_of.RuntimeEventKindStdOutAllOf()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(_str="0")
+          if include_optional :
+              return RuntimeEventKindStdOutAllOf(
+                  stdout = out
+diff -r -c target/ya_activity/test/test_runtime_event_kind_std_out.py src/ya_activity/test/test_runtime_event_kind_std_out.py
+*** target/ya_activity/test/test_runtime_event_kind_std_out.py	2021-01-05 17:23:12.172000000 +0100
+--- src/ya_activity/test/test_runtime_event_kind_std_out.py	2021-01-05 17:24:12.255781336 +0100
+***************
+*** 34,40 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out.RuntimeEventKindStdOut()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(str="0")
+          if include_optional :
+              return RuntimeEventKindStdOut(
+                  stdout = out
+--- 34,40 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.runtime_event_kind_std_out.RuntimeEventKindStdOut()  # noqa: E501
+!         out = ya_activity.models.CommandOutputStr(_str="0")
+          if include_optional :
+              return RuntimeEventKindStdOut(
+                  stdout = out
