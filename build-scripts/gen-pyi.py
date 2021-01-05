@@ -4,10 +4,12 @@ from typing_extensions import Final
 from collections import OrderedDict
 from dataclasses import dataclass, field
 from any_case import to_snake_case  # type: ignore
+import keyword
 import yaml
 
 REF_PREFIX = "#/components/schemas/"
 GENERATED_INDENT: Final = " " * 4
+is_builtin = frozenset(dir(__builtins__)).__contains__
 
 
 class JsonObject(Dict[str, Union[str, float, int, bool, "JsonObject"]]):
@@ -129,11 +131,12 @@ class ModelInfo:
         optional = [k for (k, p) in props.items() if not p.required]
         for name in required + optional:
             prop = props[name]
+            prop_name = prefix_reserved(to_snake_case(name))
             _type = prop.base_name()
             if prop.required:
-                yield f"{GENERATED_INDENT}{GENERATED_INDENT}{to_snake_case(name)}: {_type}"
+                yield f"{GENERATED_INDENT}{GENERATED_INDENT}{prop_name}: {_type}"
             else:
-                yield f"{GENERATED_INDENT}{GENERATED_INDENT}{to_snake_case(name)}: {_type} = None"
+                yield f"{GENERATED_INDENT}{GENERATED_INDENT}{prop_name}: {_type} = None"
 
     def gen_enum(self) -> Iterator[str]:
         assert self.enum is not None
@@ -155,7 +158,8 @@ class ModelInfo:
         yield f"class {self.name}({bases}):"
         for name in self.props:
             prop = self.props[name]
-            yield f"{GENERATED_INDENT}{to_snake_case(name)}: {prop.base_name()}  # readonly: {prop.read_only}"
+            prop_name = prefix_reserved(to_snake_case(name))
+            yield f"{GENERATED_INDENT}{prop_name}: {prop.base_name()}  # readonly: {prop.read_only}"
         yield ""
         init_args = ",\n".join(self.init_args())
         if init_args:
@@ -167,6 +171,12 @@ class ModelInfo:
         yield f"{GENERATED_INDENT}def to_dict(self) -> dict: ..."
         yield ""
         yield ""
+
+
+def prefix_reserved(name: str):
+    if keyword.iskeyword(name) or is_builtin(name):
+        return f"_{name}"
+    return name
 
 
 def resolve_type(
@@ -288,7 +298,7 @@ def gen_model(module: Any, *specs: Dict[str, Any]) -> Iterator[str]:
             ordered_names.append(name)
             unordered_names.remove(name)
 
-    yield """from typing import Optional, List
+    yield """from typing import Optional, List, Union
 from datetime import datetime
 from typing_extensions import Literal, Final
 """
