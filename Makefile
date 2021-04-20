@@ -19,8 +19,9 @@ m.pre-stub: m.patch
 	cp stubs/common/* src/ya_market/
 	cp stubs/common/* src/ya_payment/
 	cp stubs/common/* src/ya_activity/
+	cp stubs/common/* src/ya_net/
 	poetry install
-	poetry run python ./build-scripts/gen-pyi.py market activity payment
+	poetry run python ./build-scripts/gen-pyi.py market activity payment net
 
 clean:
 	rm -rf m.* target
