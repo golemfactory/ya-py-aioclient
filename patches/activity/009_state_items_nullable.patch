@@ -1,0 +1,14 @@
+Poe => ./build-scripts/diff-module.sh activity
+diff -r -c target/ya_activity/models/activity_state.py src/ya_activity/models/activity_state.py
+*** target/ya_activity/models/activity_state.py	Thu Jun 24 17:22:02 2021
+--- src/ya_activity/models/activity_state.py	Thu Jun 24 17:29:52 2021
+***************
+*** 91,96 ****
+--- 91,97 ----
+              "Ready",
+              "Unresponsive",
+              "Terminated",
++             None,  # nullable=True should be respected but is not
+          ]  # noqa: E501
+          if self.local_vars_configuration.client_side_validation and not set(
+              state
