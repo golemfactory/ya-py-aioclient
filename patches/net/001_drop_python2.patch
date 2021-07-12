@@ -699,3 +699,108 @@ diff -r -c target/ya_net/test/test_requestor_api.py src/ya_net/test/test_request
   
   import ya_net
 --- 10,15 ----
+diff -r -c target/ya_net/api/requestor_api.py src/ya_net/api/requestor_api.py
+*** target/ya_net/api/requestor_api.py	2021-07-12 13:06:16.848000000 +0200
+--- src/ya_net/api/requestor_api.py	2021-07-12 13:11:42.761189596 +0200
+***************
+*** 573,579 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 573,579 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+***************
+*** 685,691 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 685,691 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+***************
+*** 794,800 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 794,800 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+***************
+*** 900,906 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 900,906 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+***************
+*** 1012,1018 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 1012,1018 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+***************
+*** 1127,1133 ****
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+--- 1127,1133 ----
+              ]
+          )
+  
+!         for key, val in local_var_params['kwargs'].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
