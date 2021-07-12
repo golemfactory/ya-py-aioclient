@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ya-aioclient"
-version = "0.5.2"
+version = "0.6.3"
 description = ""
 authors = ["Przemysław K. Rekucki <prekucki@rcl.pl>"]
 license = "LGPL-3.0-or-later"
