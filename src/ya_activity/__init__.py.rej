@@ -1,0 +1,12 @@
+*** __init__.py	2020-07-21 19:59:05.000000000 +0200
+--- __init__.py	2020-07-21 16:04:45.000000000 +0200
+***************
+*** 40,43 ****
+  from ya_activity.models.get_activity_state import GetActivityState
+  from ya_activity.models.get_activity_usage import GetActivityUsage
+  from ya_activity.models.provider_event import ProviderEvent
+- 
+--- 38,40 ----
+  from ya_activity.models.get_activity_state import GetActivityState
+  from ya_activity.models.get_activity_usage import GetActivityUsage
+  from ya_activity.models.provider_event import ProviderEvent

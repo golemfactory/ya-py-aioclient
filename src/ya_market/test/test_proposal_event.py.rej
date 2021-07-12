@@ -1,0 +1,28 @@
+*** test/test_proposal_event.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_proposal_event.py	2020-07-21 16:04:51.000000000 +0200
+***************
+*** 33,45 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.proposal_event.ProposalEvent()  # noqa: E501
+!         if include_optional :
+!             return ProposalEvent(
+!                 proposal = null
+!             )
+!         else :
+!             return ProposalEvent(
+!         )
+  
+      def testProposalEvent(self):
+          """Test ProposalEvent"""
+--- 32,41 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.proposal_event.ProposalEvent()  # noqa: E501
+!         if include_optional:
+!             return ProposalEvent(proposal=None)
+!         else:
+!             return ProposalEvent()
+  
+      def testProposalEvent(self):
+          """Test ProposalEvent"""

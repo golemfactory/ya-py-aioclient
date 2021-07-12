@@ -1,0 +1,81 @@
+*** test/test_invoice.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_invoice.py	2020-07-21 16:04:55.000000000 +0200
+***************
+*** 33,67 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.invoice.Invoice()  # noqa: E501
+!         if include_optional :
+              return Invoice(
+!                 invoice_id = '0', 
+!                 issuer_id = '0', 
+!                 recipient_id = '0', 
+!                 payee_addr = '0', 
+!                 payer_addr = '0', 
+!                 payment_platform = '0', 
+!                 last_debit_note_id = '0', 
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+!                 agreement_id = '0', 
+!                 activity_ids = [
+!                     '0'
+!                     ], 
+!                 amount = '0', 
+!                 payment_due_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+!                 status = 'ISSUED'
+              )
+!         else :
+              return Invoice(
+!                 invoice_id = '0',
+!                 issuer_id = '0',
+!                 recipient_id = '0',
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 agreement_id = '0',
+!                 amount = '0',
+!                 payment_due_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 status = 'ISSUED',
+!         )
+  
+      def testInvoice(self):
+          """Test Invoice"""
+--- 32,72 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.invoice.Invoice()  # noqa: E501
+!         if include_optional:
+              return Invoice(
+!                 invoice_id="0",
+!                 issuer_id="0",
+!                 recipient_id="0",
+!                 payee_addr="0",
+!                 payer_addr="0",
+!                 payment_platform="0",
+!                 last_debit_note_id="0",
+!                 timestamp=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 agreement_id="0",
+!                 activity_ids=["0"],
+!                 amount="0",
+!                 payment_due_date=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 status="ISSUED",
+              )
+!         else:
+              return Invoice(
+!                 invoice_id="0",
+!                 issuer_id="0",
+!                 recipient_id="0",
+!                 timestamp=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 agreement_id="0",
+!                 amount="0",
+!                 payment_due_date=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 status="ISSUED",
+!             )
+  
+      def testInvoice(self):
+          """Test Invoice"""

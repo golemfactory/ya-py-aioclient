@@ -1,0 +1,72 @@
+*** models/allocation.py	2020-07-21 19:59:05.000000000 +0200
+--- models/allocation.py	2020-07-21 16:04:53.000000000 +0200
+***************
+*** 32,59 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'allocation_id': 'str',
+!         'address': 'str',
+!         'payment_platform': 'str',
+!         'total_amount': 'str',
+!         'spent_amount': 'str',
+!         'remaining_amount': 'str',
+!         'timeout': 'datetime',
+!         'make_deposit': 'bool'
+      }
+  
+      attribute_map = {
+!         'allocation_id': 'allocationId',
+!         'address': 'address',
+!         'payment_platform': 'paymentPlatform',
+!         'total_amount': 'totalAmount',
+!         'spent_amount': 'spentAmount',
+!         'remaining_amount': 'remainingAmount',
+!         'timeout': 'timeout',
+!         'make_deposit': 'makeDeposit'
+      }
+  
+!     def __init__(self, allocation_id=None, address=None, payment_platform=None, total_amount=None, spent_amount=None, remaining_amount=None, timeout=None, make_deposit=None, local_vars_configuration=None):  # noqa: E501
+          """Allocation - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,69 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "allocation_id": "str",
+!         "address": "str",
+!         "payment_platform": "str",
+!         "total_amount": "str",
+!         "spent_amount": "str",
+!         "remaining_amount": "str",
+!         "timeout": "datetime",
+!         "make_deposit": "bool",
+      }
+  
+      attribute_map = {
+!         "allocation_id": "allocationId",
+!         "address": "address",
+!         "payment_platform": "paymentPlatform",
+!         "total_amount": "totalAmount",
+!         "spent_amount": "spentAmount",
+!         "remaining_amount": "remainingAmount",
+!         "timeout": "timeout",
+!         "make_deposit": "makeDeposit",
+      }
+  
+!     def __init__(
+!         self,
+!         allocation_id=None,
+!         address=None,
+!         payment_platform=None,
+!         total_amount=None,
+!         spent_amount=None,
+!         remaining_amount=None,
+!         timeout=None,
+!         make_deposit=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """Allocation - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()

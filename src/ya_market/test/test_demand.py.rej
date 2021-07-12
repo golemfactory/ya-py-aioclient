@@ -1,0 +1,25 @@
+*** test/test_demand.py	2020-07-21 19:38:43.000000000 +0200
+--- test/test_demand.py	2020-07-21 18:47:34.000000000 +0200
+***************
+*** 35,44 ****
+          # model = ya_market.models.demand.Demand()  # noqa: E501
+          if include_optional:
+              return Demand(
+!                 properties=None, constraints="0", demand_id="0", requestor_id="0"
+              )
+          else:
+!             return Demand(properties=None, constraints="0",)
+  
+      def testDemand(self):
+          """Test Demand"""
+--- 35,44 ----
+          # model = ya_market.models.demand.Demand()  # noqa: E501
+          if include_optional:
+              return Demand(
+!                 properties={}, constraints="0", demand_id="0", requestor_id="0"
+              )
+          else:
+!             return Demand(properties={}, constraints="0",)
+  
+      def testDemand(self):
+          """Test Demand"""

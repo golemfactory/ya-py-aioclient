@@ -1,0 +1,77 @@
+*** models/agreement.py	2020-07-21 19:59:05.000000000 +0200
+--- models/agreement.py	2020-07-21 16:04:49.000000000 +0200
+***************
+*** 32,61 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'agreement_id': 'str',
+!         'demand': 'Demand',
+!         'offer': 'Offer',
+!         'valid_to': 'datetime',
+!         'approved_date': 'datetime',
+!         'state': 'str',
+!         'proposed_signature': 'str',
+!         'approved_signature': 'str',
+!         'committed_signature': 'str'
+      }
+  
+      attribute_map = {
+!         'agreement_id': 'agreementId',
+!         'demand': 'demand',
+!         'offer': 'offer',
+!         'valid_to': 'validTo',
+!         'approved_date': 'approvedDate',
+!         'state': 'state',
+!         'proposed_signature': 'proposedSignature',
+!         'approved_signature': 'approvedSignature',
+!         'committed_signature': 'committedSignature'
+      }
+  
+!     def __init__(self, agreement_id=None, demand=None, offer=None, valid_to=None, approved_date=None, state=None, proposed_signature=None, approved_signature=None, committed_signature=None, local_vars_configuration=None):  # noqa: E501
+          """Agreement - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,72 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "agreement_id": "str",
+!         "demand": "Demand",
+!         "offer": "Offer",
+!         "valid_to": "datetime",
+!         "approved_date": "datetime",
+!         "state": "str",
+!         "proposed_signature": "str",
+!         "approved_signature": "str",
+!         "committed_signature": "str",
+      }
+  
+      attribute_map = {
+!         "agreement_id": "agreementId",
+!         "demand": "demand",
+!         "offer": "offer",
+!         "valid_to": "validTo",
+!         "approved_date": "approvedDate",
+!         "state": "state",
+!         "proposed_signature": "proposedSignature",
+!         "approved_signature": "approvedSignature",
+!         "committed_signature": "committedSignature",
+      }
+  
+!     def __init__(
+!         self,
+!         agreement_id=None,
+!         demand=None,
+!         offer=None,
+!         valid_to=None,
+!         approved_date=None,
+!         state=None,
+!         proposed_signature=None,
+!         approved_signature=None,
+!         committed_signature=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """Agreement - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()

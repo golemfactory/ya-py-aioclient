@@ -1,0 +1,52 @@
+*** models/offer.py	2020-07-21 19:59:05.000000000 +0200
+--- models/offer.py	2020-07-21 16:04:50.000000000 +0200
+***************
+*** 32,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'properties': 'object',
+!         'constraints': 'str',
+!         'offer_id': 'str',
+!         'provider_id': 'str'
+      }
+  
+      attribute_map = {
+!         'properties': 'properties',
+!         'constraints': 'constraints',
+!         'offer_id': 'offerId',
+!         'provider_id': 'providerId'
+      }
+  
+!     def __init__(self, properties=None, constraints=None, offer_id=None, provider_id=None, local_vars_configuration=None):  # noqa: E501
+          """Offer - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,57 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "properties": "object",
+!         "constraints": "str",
+!         "offer_id": "str",
+!         "provider_id": "str",
+      }
+  
+      attribute_map = {
+!         "properties": "properties",
+!         "constraints": "constraints",
+!         "offer_id": "offerId",
+!         "provider_id": "providerId",
+      }
+  
+!     def __init__(
+!         self,
+!         properties=None,
+!         constraints=None,
+!         offer_id=None,
+!         provider_id=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """Offer - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()

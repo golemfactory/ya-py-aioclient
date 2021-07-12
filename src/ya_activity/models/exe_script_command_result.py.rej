@@ -1,0 +1,52 @@
+*** models/exe_script_command_result.py	2020-07-21 19:59:05.000000000 +0200
+--- models/exe_script_command_result.py	2020-07-21 16:04:47.000000000 +0200
+***************
+*** 32,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'index': 'int',
+!         'result': 'str',
+!         'message': 'str',
+!         'is_batch_finished': 'bool'
+      }
+  
+      attribute_map = {
+!         'index': 'index',
+!         'result': 'result',
+!         'message': 'message',
+!         'is_batch_finished': 'isBatchFinished'
+      }
+  
+!     def __init__(self, index=None, result=None, message=None, is_batch_finished=None, local_vars_configuration=None):  # noqa: E501
+          """ExeScriptCommandResult - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,57 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "index": "int",
+!         "result": "str",
+!         "message": "str",
+!         "is_batch_finished": "bool",
+      }
+  
+      attribute_map = {
+!         "index": "index",
+!         "result": "result",
+!         "message": "message",
+!         "is_batch_finished": "isBatchFinished",
+      }
+  
+!     def __init__(
+!         self,
+!         index=None,
+!         result=None,
+!         message=None,
+!         is_batch_finished=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """ExeScriptCommandResult - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
