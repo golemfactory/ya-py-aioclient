@@ -40,6 +40,6 @@ or (without poe)
 ```
 where;
 
-- COMPONENT_NAME: (activity | market | payment) depend on component you patch
+- COMPONENT_NAME: (activity | market | payment | net) depend on component you patch
 - PATCH_TITLE: give a descriptive title to your patch
 - 00X: order number of patch

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ya-aioclient"
-version = "0.6.2"
+version = "0.6.3"
 description = ""
 authors = ["Przemysław K. Rekucki <prekucki@rcl.pl>"]
 license = "LGPL-3.0-or-later"
@@ -8,7 +8,8 @@ license = "LGPL-3.0-or-later"
 packages = [
     { include = "ya_market", from="src" },
     { include = "ya_payment", from="src" },
-    { include = "ya_activity", from="src" }
+    { include = "ya_activity", from="src" },
+    { include = "ya_net", from="src" }
 ]
 include=["py.typed"]
 

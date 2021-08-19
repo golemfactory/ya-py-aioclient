@@ -37,3 +37,4 @@ gen() {
 gen activity 	0.1.0
 gen payment		0.1.0
 gen market		0.1.0
+gen net		0.1.0
