@@ -1,4 +1,4 @@
 [submodule "ya-client"]
 	path = ya-client
 	url = https://github.com/golemfactory/ya-client.git
-	branch = mf/vpn
+	branch = mf/vpn-create
