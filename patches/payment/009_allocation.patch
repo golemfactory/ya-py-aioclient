@@ -1,0 +1,33 @@
+diff -r -c target/ya_payment/models/allocation.py src/ya_payment/models/allocation.py
+*** target/ya_payment/models/allocation.py	2021-08-19 16:30:13.000000000 +0200
+--- src/ya_payment/models/allocation.py	2021-08-19 16:32:35.228863787 +0200
+***************
+*** 10,15 ****
+--- 10,16 ----
+  """
+  
+  
++ from datetime import datetime, timezone
+  import pprint
+  import re  # noqa: F401
+  
+***************
+*** 80,86 ****
+          self.total_amount = total_amount
+          self.spent_amount = spent_amount
+          self.remaining_amount = remaining_amount
+!         self.timestamp = timestamp
+          if timeout is not None:
+              self.timeout = timeout
+          self.make_deposit = make_deposit
+--- 81,90 ----
+          self.total_amount = total_amount
+          self.spent_amount = spent_amount
+          self.remaining_amount = remaining_amount
+!         if timestamp is not None:
+!             self.timestamp = timestamp
+!         else:
+!             self.timestamp = datetime.now(timezone.utc)
+          if timeout is not None:
+              self.timeout = timeout
+          self.make_deposit = make_deposit
