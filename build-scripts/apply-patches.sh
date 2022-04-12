@@ -45,6 +45,12 @@ apply_patches() {
     done
   done
 
+  echo script patches
+  FILES=$(ls ../src/ya_payment/models/*event*py | grep -v all_of | grep -v /event_type.py | grep -v /invoice_event.py | grep -v /debit_note_event.py)
+  for file in $FILES ; do
+    ./add_event_date_field.sh <$file >TMP_FILE
+    mv TMP_FILE $file
+  done
 }
 echo step 3 apply patches
 apply_patches "src" "$MODULES"
