@@ -1,0 +1,910 @@
+diff -r -c target/ya_payment/models/debit_note_accepted_event.py src/ya_payment/models/debit_note_accepted_event.py
+*** target/ya_payment/models/debit_note_accepted_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/debit_note_accepted_event.py	Wed Apr 13 12:45:03 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteAcceptedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
+          self.discriminator = None
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """DebitNoteAcceptedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._debit_note_id = debit_note_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/debit_note_cancelled_event.py src/ya_payment/models/debit_note_cancelled_event.py
+*** target/ya_payment/models/debit_note_cancelled_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/debit_note_cancelled_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteCancelledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
+          self.discriminator = None
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """DebitNoteCancelledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._debit_note_id = debit_note_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/debit_note_failed_event.py src/ya_payment/models/debit_note_failed_event.py
+*** target/ya_payment/models/debit_note_failed_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/debit_note_failed_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteFailedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
+          self.discriminator = None
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """DebitNoteFailedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._debit_note_id = debit_note_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/debit_note_received_event.py src/ya_payment/models/debit_note_received_event.py
+*** target/ya_payment/models/debit_note_received_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/debit_note_received_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteReceivedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
+          self.discriminator = None
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """DebitNoteReceivedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._debit_note_id = debit_note_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/debit_note_rejected_event.py src/ya_payment/models/debit_note_rejected_event.py
+*** target/ya_payment/models/debit_note_rejected_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/debit_note_rejected_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,46 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'debit_note_id': 'str',
+          'rejection': 'Rejection'
+      }
+  
+      attribute_map = {
+          'debit_note_id': 'debitNoteId',
+          'rejection': 'rejection'
+      }
+  
+!     def __init__(self, debit_note_id=None, rejection=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteRejectedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,48 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'debit_note_id': 'str',
+          'rejection': 'Rejection'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'debit_note_id': 'debitNoteId',
+          'rejection': 'rejection'
+      }
+  
+!     def __init__(self, debit_note_id=None, rejection=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """DebitNoteRejectedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 48,54 ****
+--- 50,59 ----
+  
+          self._debit_note_id = None
+          self._rejection = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+***************
+*** 97,102 ****
+--- 102,115 ----
+  
+          self._rejection = rejection
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/debit_note_settled_event.py src/ya_payment/models/debit_note_settled_event.py
+*** target/ya_payment/models/debit_note_settled_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/debit_note_settled_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteSettledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
+          self.discriminator = None
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'debit_note_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'debit_note_id': 'debitNoteId'
+      }
+  
+!     def __init__(self, debit_note_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """DebitNoteSettledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._debit_note_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if debit_note_id is not None:
+              self.debit_note_id = debit_note_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._debit_note_id = debit_note_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/invoice_accepted_event.py src/ya_payment/models/invoice_accepted_event.py
+*** target/ya_payment/models/invoice_accepted_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/invoice_accepted_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None):  # noqa: E501
+          """InvoiceAcceptedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
+          self.discriminator = None
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """InvoiceAcceptedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._invoice_id = invoice_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/invoice_cancelled_event.py src/ya_payment/models/invoice_cancelled_event.py
+*** target/ya_payment/models/invoice_cancelled_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/invoice_cancelled_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None):  # noqa: E501
+          """InvoiceCancelledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
+          self.discriminator = None
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """InvoiceCancelledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._invoice_id = invoice_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/invoice_failed_event.py src/ya_payment/models/invoice_failed_event.py
+*** target/ya_payment/models/invoice_failed_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/invoice_failed_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None):  # noqa: E501
+          """InvoiceFailedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
+          self.discriminator = None
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """InvoiceFailedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._invoice_id = invoice_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/invoice_received_event.py src/ya_payment/models/invoice_received_event.py
+*** target/ya_payment/models/invoice_received_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/invoice_received_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None):  # noqa: E501
+          """InvoiceReceivedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
+          self.discriminator = None
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """InvoiceReceivedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._invoice_id = invoice_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/invoice_rejected_event.py src/ya_payment/models/invoice_rejected_event.py
+*** target/ya_payment/models/invoice_rejected_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/invoice_rejected_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,46 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'invoice_id': 'str',
+          'rejection': 'Rejection'
+      }
+  
+      attribute_map = {
+          'invoice_id': 'invoiceId',
+          'rejection': 'rejection'
+      }
+  
+!     def __init__(self, invoice_id=None, rejection=None, local_vars_configuration=None):  # noqa: E501
+          """InvoiceRejectedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,48 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'invoice_id': 'str',
+          'rejection': 'Rejection'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'invoice_id': 'invoiceId',
+          'rejection': 'rejection'
+      }
+  
+!     def __init__(self, invoice_id=None, rejection=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """InvoiceRejectedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 48,54 ****
+--- 50,59 ----
+  
+          self._invoice_id = None
+          self._rejection = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+***************
+*** 97,102 ****
+--- 102,115 ----
+  
+          self._rejection = rejection
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/invoice_settled_event.py src/ya_payment/models/invoice_settled_event.py
+*** target/ya_payment/models/invoice_settled_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/invoice_settled_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None):  # noqa: E501
+          """InvoiceSettledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
+          self.discriminator = None
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'invoice_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'invoice_id': 'invoiceId'
+      }
+  
+!     def __init__(self, invoice_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """InvoiceSettledEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._invoice_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if invoice_id is not None:
+              self.invoice_id = invoice_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._invoice_id = invoice_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
+diff -r -c target/ya_payment/models/payment_received_event.py src/ya_payment/models/payment_received_event.py
+*** target/ya_payment/models/payment_received_event.py	Wed Apr 13 12:43:37 2022
+--- src/ya_payment/models/payment_received_event.py	Wed Apr 13 12:47:40 2022
+***************
+*** 31,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+          'payment_id': 'str'
+      }
+  
+      attribute_map = {
+          'payment_id': 'paymentId'
+      }
+  
+!     def __init__(self, payment_id=None, local_vars_configuration=None):  # noqa: E501
+          """PaymentReceivedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._payment_id = None
+          self.discriminator = None
+  
+          if payment_id is not None:
+              self.payment_id = payment_id
+--- 31,56 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
++         'event_date': 'datetime',
+          'payment_id': 'str'
+      }
+  
+      attribute_map = {
++         'event_date': 'eventDate',
+          'payment_id': 'paymentId'
+      }
+  
+!     def __init__(self, payment_id=None, local_vars_configuration=None, event_date=None):  # noqa: E501
+          """PaymentReceivedEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+          self.local_vars_configuration = local_vars_configuration
+  
+          self._payment_id = None
++         self._event_date = None
+          self.discriminator = None
++         if event_date is not None:
++             self.event_date = event_date
+  
+          if payment_id is not None:
+              self.payment_id = payment_id
+***************
+*** 71,76 ****
+--- 76,89 ----
+  
+          self._payment_id = payment_id
+  
++     @property
++     def event_date(self):
++         return self._event_date
++ 
++     @event_date.setter
++     def event_date(self, event_date):
++         self._event_date = event_date
++ 
+      def to_dict(self):
+          """Returns the model properties as a dict"""
+          result = {}
