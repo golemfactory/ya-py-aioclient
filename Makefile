@@ -12,7 +12,7 @@ m.setup: pyproject.toml
 	touch m.setup
 
 m.patch: m.setup
-	./build-scripts/apply-patches.sh
+	#./build-scripts/apply-patches.sh
 	touch m.patch
 
 m.pre-stub: m.patch

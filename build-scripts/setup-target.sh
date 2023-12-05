@@ -6,7 +6,7 @@ fail() {
 }
 
 BUILDDIR=target
-GENERATOR_VERSION=4.3.1
+GENERATOR_VERSION=7.0.0
 GENERATOR="$BUILDDIR/openapi-generator-cli.jar"
 
 mkdir -p "$BUILDDIR"
