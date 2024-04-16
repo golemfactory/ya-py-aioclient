@@ -22,7 +22,7 @@ certifi="^2020.6.20"
 [tool.poetry.dev-dependencies]
 pyyaml = "^6.0"
 dataclasses = { version = "^0.7", python = "~3.6"}
-mypy = "^1.0"
+mypy = "1.0.1"
 any_case = "^0.1.6"
 pylint = "^2.5.3"
 pytest = "^5.4.3"
