@@ -14,15 +14,15 @@ packages = [
 include=["py.typed"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 aiohttp = "^3.6.2"
 python-dateutil = "^2.8.1"
 certifi="^2020.6.20"
 
 [tool.poetry.dev-dependencies]
-pyyaml = "^6.0"
+pyyaml = "^5.3.1"
 dataclasses = { version = "^0.7", python = "~3.6"}
-mypy = "^1.9"
+mypy = "^1.0"
 any_case = "^0.1.6"
 pylint = "^2.5.3"
 pytest = "^5.4.3"
