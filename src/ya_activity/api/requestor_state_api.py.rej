@@ -1,0 +1,120 @@
+*** api/requestor_state_api.py	2020-07-21 19:59:05.000000000 +0200
+--- api/requestor_state_api.py	2020-07-21 16:04:46.000000000 +0200
+***************
+*** 243,269 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/activity/{activityId}/usage', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[float]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_running_command(self, activity_id, **kwargs):  # noqa: E501
+          """Get running command for a specified Activity.  # noqa: E501
+--- 248,279 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/activity/{activityId}/usage",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[float]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_running_command(self, activity_id, **kwargs):  # noqa: E501
+          """Get running command for a specified Activity.  # noqa: E501
+***************
+*** 361,384 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/activity/{activityId}/command', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='ExeScriptCommandState',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+--- 375,403 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/activity/{activityId}/command",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="ExeScriptCommandState",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )

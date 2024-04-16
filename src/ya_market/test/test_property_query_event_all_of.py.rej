@@ -1,0 +1,39 @@
+*** test/test_property_query_event_all_of.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_property_query_event_all_of.py	2020-07-21 16:04:51.000000000 +0200
+***************
+*** 35,52 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.property_query_event_all_of.PropertyQueryEventAllOf()  # noqa: E501
+!         if include_optional :
+              return PropertyQueryEventAllOf(
+!                 property_query = ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties = ya_market.models.issuer_properties.issuerProperties(), 
+!                     query_id = '0', 
+!                     queried_properties = [
+!                         '0'
+!                         ], )
+              )
+!         else :
+!             return PropertyQueryEventAllOf(
+!         )
+  
+      def testPropertyQueryEventAllOf(self):
+          """Test PropertyQueryEventAllOf"""
+--- 36,51 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.property_query_event_all_of.PropertyQueryEventAllOf()  # noqa: E501
+!         if include_optional:
+              return PropertyQueryEventAllOf(
+!                 property_query=ya_market.models.property_query.PropertyQuery(
+!                     issuer_properties=None,  # ya_market.models.issuer_properties.issuerProperties() is not in model # noqa: E501
+!                     query_id="0",
+!                     queried_properties=["0"],
+!                 )
+              )
+!         else:
+!             return PropertyQueryEventAllOf()
+  
+      def testPropertyQueryEventAllOf(self):
+          """Test PropertyQueryEventAllOf"""

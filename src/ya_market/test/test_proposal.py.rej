@@ -1,0 +1,36 @@
+*** test/test_proposal.py	2020-07-21 19:38:43.000000000 +0200
+--- test/test_proposal.py	2020-07-21 18:46:23.000000000 +0200
+***************
+*** 35,41 ****
+          # model = ya_market.models.proposal.Proposal()  # noqa: E501
+          if include_optional:
+              return Proposal(
+!                 properties=None,
+                  constraints="0",
+                  proposal_id="0",
+                  issuer_id="0",
+--- 35,41 ----
+          # model = ya_market.models.proposal.Proposal()  # noqa: E501
+          if include_optional:
+              return Proposal(
+!                 properties={},
+                  constraints="0",
+                  proposal_id="0",
+                  issuer_id="0",
+***************
+*** 43,49 ****
+                  prev_proposal_id="0",
+              )
+          else:
+!             return Proposal(properties=None, constraints="0",)
+  
+      def testProposal(self):
+          """Test Proposal"""
+--- 43,49 ----
+                  prev_proposal_id="0",
+              )
+          else:
+!             return Proposal(properties={}, constraints="0",)
+  
+      def testProposal(self):
+          """Test Proposal"""

@@ -1,0 +1,31 @@
+*** test/test_provider_event.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_provider_event.py	2020-07-21 16:04:47.000000000 +0200
+***************
+*** 32,47 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.provider_event.ProviderEvent()  # noqa: E501
+!         if include_optional :
+!             return ProviderEvent(
+!                 event_type = '0', 
+!                 activity_id = '0'
+!             )
+!         else :
+!             return ProviderEvent(
+!                 event_type = '0',
+!                 activity_id = '0',
+!         )
+  
+      def testProviderEvent(self):
+          """Test ProviderEvent"""
+--- 30,39 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.provider_event.ProviderEvent()  # noqa: E501
+!         if include_optional:
+!             return ProviderEvent(event_type="0", activity_id="0")
+!         else:
+!             return ProviderEvent(event_type="0", activity_id="0",)
+  
+      def testProviderEvent(self):
+          """Test ProviderEvent"""

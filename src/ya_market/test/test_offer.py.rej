@@ -1,0 +1,25 @@
+*** test/test_offer.py	2020-07-21 19:38:43.000000000 +0200
+--- test/test_offer.py	2020-07-21 18:46:54.000000000 +0200
+***************
+*** 35,44 ****
+          # model = ya_market.models.offer.Offer()  # noqa: E501
+          if include_optional:
+              return Offer(
+!                 properties=None, constraints="0", offer_id="0", provider_id="0"
+              )
+          else:
+!             return Offer(properties=None, constraints="0",)
+  
+      def testOffer(self):
+          """Test Offer"""
+--- 35,44 ----
+          # model = ya_market.models.offer.Offer()  # noqa: E501
+          if include_optional:
+              return Offer(
+!                 properties={}, constraints="0", offer_id="0", provider_id="0"
+              )
+          else:
+!             return Offer(properties={}, constraints="0",)
+  
+      def testOffer(self):
+          """Test Offer"""

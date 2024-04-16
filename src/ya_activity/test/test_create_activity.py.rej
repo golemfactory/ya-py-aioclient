@@ -1,0 +1,29 @@
+*** test/test_create_activity.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_create_activity.py	2020-07-21 16:04:47.000000000 +0200
+***************
+*** 32,45 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.create_activity.CreateActivity()  # noqa: E501
+!         if include_optional :
+!             return CreateActivity(
+!                 agreement_id = '0'
+!             )
+!         else :
+!             return CreateActivity(
+!                 agreement_id = '0',
+!         )
+  
+      def testCreateActivity(self):
+          """Test CreateActivity"""
+--- 30,39 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_activity.models.create_activity.CreateActivity()  # noqa: E501
+!         if include_optional:
+!             return CreateActivity(agreement_id="0")
+!         else:
+!             return CreateActivity(agreement_id="0",)
+  
+      def testCreateActivity(self):
+          """Test CreateActivity"""

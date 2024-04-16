@@ -1,0 +1,66 @@
+*** models/provider_event.py	2020-07-21 19:59:05.000000000 +0200
+--- models/provider_event.py	2020-07-21 16:04:47.000000000 +0200
+***************
+*** 31,54 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {
+!         'event_type': 'str',
+!         'activity_id': 'str'
+!     }
+  
+!     attribute_map = {
+!         'event_type': 'eventType',
+!         'activity_id': 'activityId'
+!     }
+  
+      discriminator_value_class_map = {
+!         'GetActivityState': 'GetActivityState',
+!         'GetActivityUsage': 'GetActivityUsage',
+!         'CreateActivity': 'CreateActivity',
+!         'DestroyActivity': 'DestroyActivity'
+      }
+  
+!     def __init__(self, event_type=None, activity_id=None, local_vars_configuration=None):  # noqa: E501
+          """ProviderEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 30,49 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {"event_type": "str", "activity_id": "str"}
+  
+!     attribute_map = {"event_type": "eventType", "activity_id": "activityId"}
+  
+      discriminator_value_class_map = {
+!         "GetActivityState": "GetActivityState",
+!         "GetActivityUsage": "GetActivityUsage",
+!         "CreateActivity": "CreateActivity",
+!         "DestroyActivity": "DestroyActivity",
+      }
+  
+!     def __init__(
+!         self, event_type=None, activity_id=None, local_vars_configuration=None
+!     ):  # noqa: E501
+          """ProviderEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 56,62 ****
+  
+          self._event_type = None
+          self._activity_id = None
+!         self.discriminator = 'event_type'
+  
+          self.event_type = event_type
+          self.activity_id = activity_id
+--- 51,57 ----
+  
+          self._event_type = None
+          self._activity_id = None
+!         self.discriminator = "event_type"
+  
+          self.event_type = event_type
+          self.activity_id = activity_id

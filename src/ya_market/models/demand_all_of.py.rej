@@ -1,0 +1,35 @@
+*** models/demand_all_of.py	2020-07-21 19:59:05.000000000 +0200
+--- models/demand_all_of.py	2020-07-21 16:04:49.000000000 +0200
+***************
+*** 31,47 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {
+!         'demand_id': 'str',
+!         'requestor_id': 'str'
+!     }
+! 
+!     attribute_map = {
+!         'demand_id': 'demandId',
+!         'requestor_id': 'requestorId'
+!     }
+  
+!     def __init__(self, demand_id=None, requestor_id=None, local_vars_configuration=None):  # noqa: E501
+          """DemandAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 30,42 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {"demand_id": "str", "requestor_id": "str"}
+  
+!     attribute_map = {"demand_id": "demandId", "requestor_id": "requestorId"}
+! 
+!     def __init__(
+!         self, demand_id=None, requestor_id=None, local_vars_configuration=None
+!     ):  # noqa: E501
+          """DemandAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()

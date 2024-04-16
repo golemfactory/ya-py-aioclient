@@ -1,0 +1,25 @@
+*** test/test_agreement_event.py	2020-07-21 19:38:43.000000000 +0200
+--- test/test_agreement_event.py	2020-07-21 18:56:23.000000000 +0200
+***************
+*** 38,45 ****
+              return AgreementEvent(
+                  agreement=ya_market.models.agreement.Agreement(
+                      agreement_id="0",
+!                     demand=None,
+!                     offer=None,
+                      valid_to=datetime.datetime.strptime(
+                          "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+                      ),
+--- 40,51 ----
+              return AgreementEvent(
+                  agreement=ya_market.models.agreement.Agreement(
+                      agreement_id="0",
+!                     demand=Demand(
+!                         properties={}, constraints="0", demand_id="0", requestor_id="0"
+!                     ),
+!                     offer=Offer(
+!                         properties={}, constraints="0", offer_id="0", provider_id="0"
+!                     ),
+                      valid_to=datetime.datetime.strptime(
+                          "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+                      ),

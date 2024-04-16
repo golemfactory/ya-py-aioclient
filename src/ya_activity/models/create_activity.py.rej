@@ -1,0 +1,51 @@
+*** models/create_activity.py	2020-07-21 19:59:05.000000000 +0200
+--- models/create_activity.py	2020-07-21 16:04:46.000000000 +0200
+***************
+*** 31,43 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {
+!         'agreement_id': 'str'
+!     }
+! 
+!     attribute_map = {
+!         'agreement_id': 'agreementId'
+!     }
+  
+      def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
+          """CreateActivity - a model defined in OpenAPI"""  # noqa: E501
+--- 30,38 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {"agreement_id": "str"}
+! 
+!     attribute_map = {"agreement_id": "agreementId"}
+  
+      def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
+          """CreateActivity - a model defined in OpenAPI"""  # noqa: E501
+***************
+*** 68,75 ****
+          :param agreement_id: The agreement_id of this CreateActivity.  # noqa: E501
+          :type: str
+          """
+!         if self.local_vars_configuration.client_side_validation and agreement_id is None:  # noqa: E501
+!             raise ValueError("Invalid value for `agreement_id`, must not be `None`")  # noqa: E501
+  
+          self._agreement_id = agreement_id
+  
+--- 63,75 ----
+          :param agreement_id: The agreement_id of this CreateActivity.  # noqa: E501
+          :type: str
+          """
+!         if (
+!             self.local_vars_configuration.client_side_validation
+!             and agreement_id is None
+!         ):  # noqa: E501
+!             raise ValueError(
+!                 "Invalid value for `agreement_id`, must not be `None`"
+!             )  # noqa: E501
+  
+          self._agreement_id = agreement_id
+  

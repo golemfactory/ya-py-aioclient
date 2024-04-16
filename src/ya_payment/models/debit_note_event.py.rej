@@ -1,0 +1,99 @@
+*** models/debit_note_event.py	2020-07-21 19:59:05.000000000 +0200
+--- models/debit_note_event.py	2020-07-21 16:04:53.000000000 +0200
+***************
+*** 32,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'debit_note_id': 'str',
+!         'timestamp': 'datetime',
+!         'details': 'object',
+!         'event_type': 'EventType'
+      }
+  
+      attribute_map = {
+!         'debit_note_id': 'debitNoteId',
+!         'timestamp': 'timestamp',
+!         'details': 'details',
+!         'event_type': 'eventType'
+      }
+  
+!     def __init__(self, debit_note_id=None, timestamp=None, details=None, event_type=None, local_vars_configuration=None):  # noqa: E501
+          """DebitNoteEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,57 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "debit_note_id": "str",
+!         "timestamp": "datetime",
+!         "details": "object",
+!         "event_type": "EventType",
+      }
+  
+      attribute_map = {
+!         "debit_note_id": "debitNoteId",
+!         "timestamp": "timestamp",
+!         "details": "details",
+!         "event_type": "eventType",
+      }
+  
+!     def __init__(
+!         self,
+!         debit_note_id=None,
+!         timestamp=None,
+!         details=None,
+!         event_type=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """DebitNoteEvent - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 81,88 ****
+          :param debit_note_id: The debit_note_id of this DebitNoteEvent.  # noqa: E501
+          :type: str
+          """
+!         if self.local_vars_configuration.client_side_validation and debit_note_id is None:  # noqa: E501
+!             raise ValueError("Invalid value for `debit_note_id`, must not be `None`")  # noqa: E501
+  
+          self._debit_note_id = debit_note_id
+  
+--- 87,99 ----
+          :param debit_note_id: The debit_note_id of this DebitNoteEvent.  # noqa: E501
+          :type: str
+          """
+!         if (
+!             self.local_vars_configuration.client_side_validation
+!             and debit_note_id is None
+!         ):  # noqa: E501
+!             raise ValueError(
+!                 "Invalid value for `debit_note_id`, must not be `None`"
+!             )  # noqa: E501
+  
+          self._debit_note_id = debit_note_id
+  
+***************
+*** 104,111 ****
+          :param timestamp: The timestamp of this DebitNoteEvent.  # noqa: E501
+          :type: datetime
+          """
+!         if self.local_vars_configuration.client_side_validation and timestamp is None:  # noqa: E501
+!             raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
+  
+          self._timestamp = timestamp
+  
+--- 115,126 ----
+          :param timestamp: The timestamp of this DebitNoteEvent.  # noqa: E501
+          :type: datetime
+          """
+!         if (
+!             self.local_vars_configuration.client_side_validation and timestamp is None
+!         ):  # noqa: E501
+!             raise ValueError(
+!                 "Invalid value for `timestamp`, must not be `None`"
+!             )  # noqa: E501
+  
+          self._timestamp = timestamp
+  

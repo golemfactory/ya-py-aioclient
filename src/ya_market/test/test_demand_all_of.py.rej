@@ -1,0 +1,29 @@
+*** test/test_demand_all_of.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_demand_all_of.py	2020-07-21 16:04:51.000000000 +0200
+***************
+*** 32,45 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.demand_all_of.DemandAllOf()  # noqa: E501
+!         if include_optional :
+!             return DemandAllOf(
+!                 demand_id = '0', 
+!                 requestor_id = '0'
+!             )
+!         else :
+!             return DemandAllOf(
+!         )
+  
+      def testDemandAllOf(self):
+          """Test DemandAllOf"""
+--- 30,39 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.demand_all_of.DemandAllOf()  # noqa: E501
+!         if include_optional:
+!             return DemandAllOf(demand_id="0", requestor_id="0")
+!         else:
+!             return DemandAllOf()
+  
+      def testDemandAllOf(self):
+          """Test DemandAllOf"""
