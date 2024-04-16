@@ -20,7 +20,7 @@ python-dateutil = "^2.8.1"
 certifi="^2020.6.20"
 
 [tool.poetry.dev-dependencies]
-pyyaml = "^5.3.1"
+pyyaml = "^6.0"
 dataclasses = { version = "^0.7", python = "~3.6"}
 mypy = "^1.0"
 any_case = "^0.1.6"
