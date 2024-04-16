@@ -1,0 +1,2320 @@
+*** api/provider_api.py	2020-07-21 19:59:05.000000000 +0200
+--- api/provider_api.py	2020-07-21 16:04:54.000000000 +0200
+***************
+*** 54,61 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.cancel_debit_note_with_http_info(debit_node_id, **kwargs)  # noqa: E501
+  
+      def cancel_debit_note_with_http_info(self, debit_node_id, **kwargs):  # noqa: E501
+          """Cancel Debit Note.  # noqa: E501
+--- 49,58 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.cancel_debit_note_with_http_info(
+!             debit_node_id, **kwargs
+!         )  # noqa: E501
+  
+      def cancel_debit_note_with_http_info(self, debit_node_id, **kwargs):  # noqa: E501
+          """Cancel Debit Note.  # noqa: E501
+***************
+*** 85,127 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'debit_node_id',
+!             'timeout'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method cancel_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and ('debit_node_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['debit_node_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `debit_node_id` when calling `cancel_debit_note`")  # noqa: E501
+! 
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `cancel_debit_note`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'debit_node_id' in local_var_params:
+!             path_params['debitNodeId'] = local_var_params['debit_node_id']  # noqa: E501
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 82,133 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["debit_node_id", "timeout"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method cancel_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and (
+!             "debit_node_id" not in local_var_params
+!             or local_var_params["debit_node_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `debit_node_id` when calling `cancel_debit_note`"
+!             )  # noqa: E501
+! 
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `cancel_debit_note`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if "debit_node_id" in local_var_params:
+!             path_params["debitNodeId"] = local_var_params["debit_node_id"]  # noqa: E501
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 130,143 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNotes/{debitNodeId}/cancel', 'POST',
+              path_params,
+              query_params,
+              header_params,
+--- 136,151 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNotes/{debitNodeId}/cancel",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,
+***************
+*** 209,251 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'invoice_id',
+!             'timeout'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method cancel_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and ('invoice_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['invoice_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `invoice_id` when calling `cancel_invoice`")  # noqa: E501
+! 
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `cancel_invoice`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'invoice_id' in local_var_params:
+!             path_params['invoiceId'] = local_var_params['invoice_id']  # noqa: E501
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 220,271 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["invoice_id", "timeout"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method cancel_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and (
+!             "invoice_id" not in local_var_params
+!             or local_var_params["invoice_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `invoice_id` when calling `cancel_invoice`"
+!             )  # noqa: E501
+! 
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `cancel_invoice`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if "invoice_id" in local_var_params:
+!             path_params["invoiceId"] = local_var_params["invoice_id"]  # noqa: E501
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 254,267 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoices/{invoiceId}/cancel', 'POST',
+              path_params,
+              query_params,
+              header_params,
+--- 274,289 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoices/{invoiceId}/cancel",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,
+***************
+*** 300,307 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.get_incoming_payment_with_http_info(payment_id, **kwargs)  # noqa: E501
+  
+      def get_incoming_payment_with_http_info(self, payment_id, **kwargs):  # noqa: E501
+          """Get incoming Payment.  # noqa: E501
+--- 325,334 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.get_incoming_payment_with_http_info(
+!             payment_id, **kwargs
+!         )  # noqa: E501
+  
+      def get_incoming_payment_with_http_info(self, payment_id, **kwargs):  # noqa: E501
+          """Get incoming Payment.  # noqa: E501
+***************
+*** 329,364 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'payment_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_incoming_payment" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'payment_id' is set
+!         if self.api_client.client_side_validation and ('payment_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['payment_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `payment_id` when calling `get_incoming_payment`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'payment_id' in local_var_params:
+!             path_params['paymentId'] = local_var_params['payment_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 356,393 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["payment_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_incoming_payment" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'payment_id' is set
+!         if self.api_client.client_side_validation and (
+!             "payment_id" not in local_var_params
+!             or local_var_params["payment_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `payment_id` when calling `get_incoming_payment`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "payment_id" in local_var_params:
+!             path_params["paymentId"] = local_var_params["payment_id"]  # noqa: E501
+  
+          query_params = []
+  
+***************
+*** 369,395 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/payments/{paymentId}', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='Allocation',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_incoming_payments(self, **kwargs):  # noqa: E501
+          """Get incoming Payments.  # noqa: E501
+--- 398,429 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/payments/{paymentId}",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="Allocation",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_incoming_payments(self, **kwargs):  # noqa: E501
+          """Get incoming Payments.  # noqa: E501
+***************
+*** 414,420 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+          return self.get_incoming_payments_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_incoming_payments_with_http_info(self, **kwargs):  # noqa: E501
+--- 448,454 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+          return self.get_incoming_payments_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_incoming_payments_with_http_info(self, **kwargs):  # noqa: E501
+***************
+*** 445,483 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'timeout',
+!             'later_than'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_incoming_payments" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+  
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `get_incoming_payments`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+!         if 'later_than' in local_var_params and local_var_params['later_than'] is not None:  # noqa: E501
+!             query_params.append(('laterThan', local_var_params['later_than']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 479,527 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["timeout", "later_than"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_incoming_payments" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+  
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `get_incoming_payments`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+!         if (
+!             "later_than" in local_var_params
+!             and local_var_params["later_than"] is not None
+!         ):  # noqa: E501
+!             query_params.append(
+!                 ("laterThan", local_var_params["later_than"])
+!             )  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 486,512 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/payments', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[Payment]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_issued_debit_note(self, debit_node_id, **kwargs):  # noqa: E501
+          """Get Debit Note.  # noqa: E501
+--- 530,561 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/payments",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[Payment]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_issued_debit_note(self, debit_node_id, **kwargs):  # noqa: E501
+          """Get Debit Note.  # noqa: E501
+***************
+*** 529,538 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.get_issued_debit_note_with_http_info(debit_node_id, **kwargs)  # noqa: E501
+! 
+!     def get_issued_debit_note_with_http_info(self, debit_node_id, **kwargs):  # noqa: E501
+          """Get Debit Note.  # noqa: E501
+  
+          This method makes a synchronous HTTP request by default. To make an
+--- 578,591 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.get_issued_debit_note_with_http_info(
+!             debit_node_id, **kwargs
+!         )  # noqa: E501
+! 
+!     def get_issued_debit_note_with_http_info(
+!         self, debit_node_id, **kwargs
+!     ):  # noqa: E501
+          """Get Debit Note.  # noqa: E501
+  
+          This method makes a synchronous HTTP request by default. To make an
+***************
+*** 558,593 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'debit_node_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and ('debit_node_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['debit_node_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `debit_node_id` when calling `get_issued_debit_note`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'debit_node_id' in local_var_params:
+!             path_params['debitNodeId'] = local_var_params['debit_node_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 611,648 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["debit_node_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and (
+!             "debit_node_id" not in local_var_params
+!             or local_var_params["debit_node_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `debit_node_id` when calling `get_issued_debit_note`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "debit_node_id" in local_var_params:
+!             path_params["debitNodeId"] = local_var_params["debit_node_id"]  # noqa: E501
+  
+          query_params = []
+  
+***************
+*** 598,624 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNotes/{debitNodeId}', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='DebitNote',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_issued_debit_notes(self, **kwargs):  # noqa: E501
+          """Get Debit Notes issued by this Provider.  # noqa: E501
+--- 653,684 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNotes/{debitNodeId}",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="DebitNote",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_issued_debit_notes(self, **kwargs):  # noqa: E501
+          """Get Debit Notes issued by this Provider.  # noqa: E501
+***************
+*** 640,646 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+          return self.get_issued_debit_notes_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_issued_debit_notes_with_http_info(self, **kwargs):  # noqa: E501
+--- 700,706 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+          return self.get_issued_debit_notes_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_issued_debit_notes_with_http_info(self, **kwargs):  # noqa: E501
+***************
+*** 668,692 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_debit_notes" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+  
+          collection_formats = {}
+  
+--- 728,751 ----
+  
+          local_var_params = locals()
+  
+!         all_params = []
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_debit_notes" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+  
+          collection_formats = {}
+  
+***************
+*** 701,727 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNotes', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[DebitNote]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_issued_invoice(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Invoice.  # noqa: E501
+--- 760,791 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNotes",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[DebitNote]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_issued_invoice(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Invoice.  # noqa: E501
+***************
+*** 744,751 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.get_issued_invoice_with_http_info(invoice_id, **kwargs)  # noqa: E501
+  
+      def get_issued_invoice_with_http_info(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Invoice.  # noqa: E501
+--- 808,817 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.get_issued_invoice_with_http_info(
+!             invoice_id, **kwargs
+!         )  # noqa: E501
+  
+      def get_issued_invoice_with_http_info(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Invoice.  # noqa: E501
+***************
+*** 773,808 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'invoice_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and ('invoice_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['invoice_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `invoice_id` when calling `get_issued_invoice`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'invoice_id' in local_var_params:
+!             path_params['invoiceId'] = local_var_params['invoice_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 839,876 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["invoice_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and (
+!             "invoice_id" not in local_var_params
+!             or local_var_params["invoice_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `invoice_id` when calling `get_issued_invoice`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "invoice_id" in local_var_params:
+!             path_params["invoiceId"] = local_var_params["invoice_id"]  # noqa: E501
+  
+          query_params = []
+  
+***************
+*** 813,839 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoices/{invoiceId}', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='Invoice',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_issued_invoices(self, **kwargs):  # noqa: E501
+          """Get Invoices issued by this Provider.  # noqa: E501
+--- 881,912 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoices/{invoiceId}",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="Invoice",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_issued_invoices(self, **kwargs):  # noqa: E501
+          """Get Invoices issued by this Provider.  # noqa: E501
+***************
+*** 855,861 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+          return self.get_issued_invoices_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_issued_invoices_with_http_info(self, **kwargs):  # noqa: E501
+--- 928,934 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+          return self.get_issued_invoices_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_issued_invoices_with_http_info(self, **kwargs):  # noqa: E501
+***************
+*** 883,907 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_invoices" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+  
+          collection_formats = {}
+  
+--- 956,979 ----
+  
+          local_var_params = locals()
+  
+!         all_params = []
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_issued_invoices" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+  
+          collection_formats = {}
+  
+***************
+*** 916,942 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoices', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[Invoice]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_payments_for_issued_debit_note(self, debit_node_id, **kwargs):  # noqa: E501
+          """Get Payments for Debit Note.  # noqa: E501
+--- 988,1019 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoices",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[Invoice]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_payments_for_issued_debit_note(self, debit_node_id, **kwargs):  # noqa: E501
+          """Get Payments for Debit Note.  # noqa: E501
+***************
+*** 959,968 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.get_payments_for_issued_debit_note_with_http_info(debit_node_id, **kwargs)  # noqa: E501
+! 
+!     def get_payments_for_issued_debit_note_with_http_info(self, debit_node_id, **kwargs):  # noqa: E501
+          """Get Payments for Debit Note.  # noqa: E501
+  
+          This method makes a synchronous HTTP request by default. To make an
+--- 1036,1049 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.get_payments_for_issued_debit_note_with_http_info(
+!             debit_node_id, **kwargs
+!         )  # noqa: E501
+! 
+!     def get_payments_for_issued_debit_note_with_http_info(
+!         self, debit_node_id, **kwargs
+!     ):  # noqa: E501
+          """Get Payments for Debit Note.  # noqa: E501
+  
+          This method makes a synchronous HTTP request by default. To make an
+***************
+*** 988,1023 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'debit_node_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_payments_for_issued_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and ('debit_node_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['debit_node_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `debit_node_id` when calling `get_payments_for_issued_debit_note`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'debit_node_id' in local_var_params:
+!             path_params['debitNodeId'] = local_var_params['debit_node_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 1069,1106 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["debit_node_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_payments_for_issued_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and (
+!             "debit_node_id" not in local_var_params
+!             or local_var_params["debit_node_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `debit_node_id` when calling `get_payments_for_issued_debit_note`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "debit_node_id" in local_var_params:
+!             path_params["debitNodeId"] = local_var_params["debit_node_id"]  # noqa: E501
+  
+          query_params = []
+  
+***************
+*** 1028,1054 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNotes/{debitNodeId}/payments', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[Payment]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_payments_for_issued_invoice(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Payments for issued Invoice.  # noqa: E501
+--- 1111,1142 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNotes/{debitNodeId}/payments",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[Payment]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_payments_for_issued_invoice(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Payments for issued Invoice.  # noqa: E501
+***************
+*** 1071,1080 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.get_payments_for_issued_invoice_with_http_info(invoice_id, **kwargs)  # noqa: E501
+! 
+!     def get_payments_for_issued_invoice_with_http_info(self, invoice_id, **kwargs):  # noqa: E501
+          """Get Payments for issued Invoice.  # noqa: E501
+  
+          This method makes a synchronous HTTP request by default. To make an
+--- 1159,1172 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.get_payments_for_issued_invoice_with_http_info(
+!             invoice_id, **kwargs
+!         )  # noqa: E501
+! 
+!     def get_payments_for_issued_invoice_with_http_info(
+!         self, invoice_id, **kwargs
+!     ):  # noqa: E501
+          """Get Payments for issued Invoice.  # noqa: E501
+  
+          This method makes a synchronous HTTP request by default. To make an
+***************
+*** 1100,1135 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'invoice_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_payments_for_issued_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and ('invoice_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['invoice_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `invoice_id` when calling `get_payments_for_issued_invoice`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'invoice_id' in local_var_params:
+!             path_params['invoiceId'] = local_var_params['invoice_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 1192,1229 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["invoice_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_payments_for_issued_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and (
+!             "invoice_id" not in local_var_params
+!             or local_var_params["invoice_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `invoice_id` when calling `get_payments_for_issued_invoice`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "invoice_id" in local_var_params:
+!             path_params["invoiceId"] = local_var_params["invoice_id"]  # noqa: E501
+  
+          query_params = []
+  
+***************
+*** 1140,1166 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoices/{invoiceId}/payments', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[Payment]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_provider_debit_note_events(self, **kwargs):  # noqa: E501
+          """Get Debit Note events.  # noqa: E501
+--- 1234,1265 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoices/{invoiceId}/payments",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[Payment]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_provider_debit_note_events(self, **kwargs):  # noqa: E501
+          """Get Debit Note events.  # noqa: E501
+***************
+*** 1185,1192 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.get_provider_debit_note_events_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_provider_debit_note_events_with_http_info(self, **kwargs):  # noqa: E501
+          """Get Debit Note events.  # noqa: E501
+--- 1284,1293 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.get_provider_debit_note_events_with_http_info(
+!             **kwargs
+!         )  # noqa: E501
+  
+      def get_provider_debit_note_events_with_http_info(self, **kwargs):  # noqa: E501
+          """Get Debit Note events.  # noqa: E501
+***************
+*** 1216,1254 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'timeout',
+!             'later_than'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_provider_debit_note_events" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+  
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `get_provider_debit_note_events`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+!         if 'later_than' in local_var_params and local_var_params['later_than'] is not None:  # noqa: E501
+!             query_params.append(('laterThan', local_var_params['later_than']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 1317,1365 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["timeout", "later_than"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_provider_debit_note_events" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+  
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `get_provider_debit_note_events`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+!         if (
+!             "later_than" in local_var_params
+!             and local_var_params["later_than"] is not None
+!         ):  # noqa: E501
+!             query_params.append(
+!                 ("laterThan", local_var_params["later_than"])
+!             )  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 1257,1283 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNoteEvents', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[InvoiceEvent]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def get_provider_invoice_events(self, **kwargs):  # noqa: E501
+          """Get Invoice events.  # noqa: E501
+--- 1368,1399 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNoteEvents",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[InvoiceEvent]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def get_provider_invoice_events(self, **kwargs):  # noqa: E501
+          """Get Invoice events.  # noqa: E501
+***************
+*** 1302,1308 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+          return self.get_provider_invoice_events_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_provider_invoice_events_with_http_info(self, **kwargs):  # noqa: E501
+--- 1418,1424 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+          return self.get_provider_invoice_events_with_http_info(**kwargs)  # noqa: E501
+  
+      def get_provider_invoice_events_with_http_info(self, **kwargs):  # noqa: E501
+***************
+*** 1333,1371 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'timeout',
+!             'later_than'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_provider_invoice_events" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+  
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `get_provider_invoice_events`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+!         if 'later_than' in local_var_params and local_var_params['later_than'] is not None:  # noqa: E501
+!             query_params.append(('laterThan', local_var_params['later_than']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 1449,1497 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["timeout", "later_than"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method get_provider_invoice_events" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+  
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `get_provider_invoice_events`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+!         if (
+!             "later_than" in local_var_params
+!             and local_var_params["later_than"] is not None
+!         ):  # noqa: E501
+!             query_params.append(
+!                 ("laterThan", local_var_params["later_than"])
+!             )  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 1374,1400 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoiceEvents', 'GET',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='list[InvoiceEvent]',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def issue_debit_note(self, debit_note, **kwargs):  # noqa: E501
+          """Issue a Debit Note.  # noqa: E501
+--- 1500,1531 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoiceEvents",
+!             "GET",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="list[InvoiceEvent]",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def issue_debit_note(self, debit_note, **kwargs):  # noqa: E501
+          """Issue a Debit Note.  # noqa: E501
+***************
+*** 1485,1518 ****
+          local_var_files = {}
+  
+          body_params = None
+!         if 'debit_note' in local_var_params:
+!             body_params = local_var_params['debit_note']
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # HTTP header `Content-Type`
+!         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNotes', 'POST',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='DebitNote',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def issue_invoice(self, invoice, **kwargs):  # noqa: E501
+          """Issue an Invoice.  # noqa: E501
+--- 1618,1659 ----
+          local_var_files = {}
+  
+          body_params = None
+!         if "debit_note" in local_var_params:
+!             body_params = local_var_params["debit_note"]
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # HTTP header `Content-Type`
+!         header_params[
+!             "Content-Type"
+!         ] = self.api_client.select_header_content_type(  # noqa: E501
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNotes",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="DebitNote",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def issue_invoice(self, invoice, **kwargs):  # noqa: E501
+          """Issue an Invoice.  # noqa: E501
+***************
+*** 1603,1636 ****
+          local_var_files = {}
+  
+          body_params = None
+!         if 'invoice' in local_var_params:
+!             body_params = local_var_params['invoice']
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # HTTP header `Content-Type`
+!         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoices', 'POST',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='Invoice',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def send_debit_note(self, debit_node_id, **kwargs):  # noqa: E501
+          """Send Debit Note to Requestor.  # noqa: E501
+--- 1746,1787 ----
+          local_var_files = {}
+  
+          body_params = None
+!         if "invoice" in local_var_params:
+!             body_params = local_var_params["invoice"]
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # HTTP header `Content-Type`
+!         header_params[
+!             "Content-Type"
+!         ] = self.api_client.select_header_content_type(  # noqa: E501
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoices",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="Invoice",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def send_debit_note(self, debit_node_id, **kwargs):  # noqa: E501
+          """Send Debit Note to Requestor.  # noqa: E501
+***************
+*** 1655,1662 ****
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs['_return_http_data_only'] = True
+!         return self.send_debit_note_with_http_info(debit_node_id, **kwargs)  # noqa: E501
+  
+      def send_debit_note_with_http_info(self, debit_node_id, **kwargs):  # noqa: E501
+          """Send Debit Note to Requestor.  # noqa: E501
+--- 1806,1815 ----
+                   If the method is called asynchronously,
+                   returns the request thread.
+          """
+!         kwargs["_return_http_data_only"] = True
+!         return self.send_debit_note_with_http_info(
+!             debit_node_id, **kwargs
+!         )  # noqa: E501
+  
+      def send_debit_note_with_http_info(self, debit_node_id, **kwargs):  # noqa: E501
+          """Send Debit Note to Requestor.  # noqa: E501
+***************
+*** 1686,1728 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'debit_node_id',
+!             'timeout'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method send_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and ('debit_node_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['debit_node_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `debit_node_id` when calling `send_debit_note`")  # noqa: E501
+! 
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `send_debit_note`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'debit_node_id' in local_var_params:
+!             path_params['debitNodeId'] = local_var_params['debit_node_id']  # noqa: E501
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 1839,1890 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["debit_node_id", "timeout"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method send_debit_note" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'debit_node_id' is set
+!         if self.api_client.client_side_validation and (
+!             "debit_node_id" not in local_var_params
+!             or local_var_params["debit_node_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `debit_node_id` when calling `send_debit_note`"
+!             )  # noqa: E501
+! 
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `send_debit_note`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if "debit_node_id" in local_var_params:
+!             path_params["debitNodeId"] = local_var_params["debit_node_id"]  # noqa: E501
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 1731,1744 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/debitNotes/{debitNodeId}/send', 'POST',
+              path_params,
+              query_params,
+              header_params,
+--- 1893,1908 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/debitNotes/{debitNodeId}/send",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,
+***************
+*** 1810,1852 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'invoice_id',
+!             'timeout'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method send_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and ('invoice_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['invoice_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `invoice_id` when calling `send_invoice`")  # noqa: E501
+! 
+!         if self.api_client.client_side_validation and 'timeout' in local_var_params and local_var_params['timeout'] < 0:  # noqa: E501
+!             raise ApiValueError("Invalid value for parameter `timeout` when calling `send_invoice`, must be a value greater than or equal to `0`")  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'invoice_id' in local_var_params:
+!             path_params['invoiceId'] = local_var_params['invoice_id']  # noqa: E501
+  
+          query_params = []
+!         if 'timeout' in local_var_params and local_var_params['timeout'] is not None:  # noqa: E501
+!             query_params.append(('timeout', local_var_params['timeout']))  # noqa: E501
+  
+          header_params = {}
+  
+--- 1977,2028 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["invoice_id", "timeout"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method send_invoice" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'invoice_id' is set
+!         if self.api_client.client_side_validation and (
+!             "invoice_id" not in local_var_params
+!             or local_var_params["invoice_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `invoice_id` when calling `send_invoice`"
+!             )  # noqa: E501
+! 
+!         if (
+!             self.api_client.client_side_validation
+!             and "timeout" in local_var_params
+!             and local_var_params["timeout"] < 0
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Invalid value for parameter `timeout` when calling `send_invoice`, must be a value greater than or equal to `0`"
+!             )  # noqa: E501
+          collection_formats = {}
+  
+          path_params = {}
+!         if "invoice_id" in local_var_params:
+!             path_params["invoiceId"] = local_var_params["invoice_id"]  # noqa: E501
+  
+          query_params = []
+!         if (
+!             "timeout" in local_var_params and local_var_params["timeout"] is not None
+!         ):  # noqa: E501
+!             query_params.append(("timeout", local_var_params["timeout"]))  # noqa: E501
+  
+          header_params = {}
+  
+***************
+*** 1855,1868 ****
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/provider/invoices/{invoiceId}/send', 'POST',
+              path_params,
+              query_params,
+              header_params,
+--- 2031,2046 ----
+  
+          body_params = None
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/provider/invoices/{invoiceId}/send",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,

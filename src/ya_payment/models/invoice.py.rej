@@ -1,0 +1,97 @@
+*** models/invoice.py	2020-07-21 19:59:05.000000000 +0200
+--- models/invoice.py	2020-07-21 16:04:54.000000000 +0200
+***************
+*** 32,69 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'invoice_id': 'str',
+!         'issuer_id': 'str',
+!         'recipient_id': 'str',
+!         'payee_addr': 'str',
+!         'payer_addr': 'str',
+!         'payment_platform': 'str',
+!         'last_debit_note_id': 'str',
+!         'timestamp': 'datetime',
+!         'agreement_id': 'str',
+!         'activity_ids': 'list[str]',
+!         'amount': 'str',
+!         'payment_due_date': 'datetime',
+!         'status': 'InvoiceStatus'
+      }
+  
+      attribute_map = {
+!         'invoice_id': 'invoiceId',
+!         'issuer_id': 'issuerId',
+!         'recipient_id': 'recipientId',
+!         'payee_addr': 'payeeAddr',
+!         'payer_addr': 'payerAddr',
+!         'payment_platform': 'paymentPlatform',
+!         'last_debit_note_id': 'lastDebitNoteId',
+!         'timestamp': 'timestamp',
+!         'agreement_id': 'agreementId',
+!         'activity_ids': 'activityIds',
+!         'amount': 'amount',
+!         'payment_due_date': 'paymentDueDate',
+!         'status': 'status'
+      }
+  
+!     def __init__(self, invoice_id=None, issuer_id=None, recipient_id=None, payee_addr=None, payer_addr=None, payment_platform=None, last_debit_note_id=None, timestamp=None, agreement_id=None, activity_ids=None, amount=None, payment_due_date=None, status=None, local_vars_configuration=None):  # noqa: E501
+          """Invoice - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,84 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "invoice_id": "str",
+!         "issuer_id": "str",
+!         "recipient_id": "str",
+!         "payee_addr": "str",
+!         "payer_addr": "str",
+!         "payment_platform": "str",
+!         "last_debit_note_id": "str",
+!         "timestamp": "datetime",
+!         "agreement_id": "str",
+!         "activity_ids": "list[str]",
+!         "amount": "str",
+!         "payment_due_date": "datetime",
+!         "status": "InvoiceStatus",
+      }
+  
+      attribute_map = {
+!         "invoice_id": "invoiceId",
+!         "issuer_id": "issuerId",
+!         "recipient_id": "recipientId",
+!         "payee_addr": "payeeAddr",
+!         "payer_addr": "payerAddr",
+!         "payment_platform": "paymentPlatform",
+!         "last_debit_note_id": "lastDebitNoteId",
+!         "timestamp": "timestamp",
+!         "agreement_id": "agreementId",
+!         "activity_ids": "activityIds",
+!         "amount": "amount",
+!         "payment_due_date": "paymentDueDate",
+!         "status": "status",
+      }
+  
+!     def __init__(
+!         self,
+!         invoice_id=None,
+!         issuer_id=None,
+!         recipient_id=None,
+!         payee_addr=None,
+!         payer_addr=None,
+!         payment_platform=None,
+!         last_debit_note_id=None,
+!         timestamp=None,
+!         agreement_id=None,
+!         activity_ids=None,
+!         amount=None,
+!         payment_due_date=None,
+!         status=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """Invoice - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()

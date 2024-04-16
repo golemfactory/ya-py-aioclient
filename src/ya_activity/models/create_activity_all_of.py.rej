@@ -1,0 +1,27 @@
+*** models/create_activity_all_of.py	2020-07-21 19:59:05.000000000 +0200
+--- models/create_activity_all_of.py	2020-07-21 16:04:46.000000000 +0200
+***************
+*** 31,43 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {
+!         'agreement_id': 'str'
+!     }
+! 
+!     attribute_map = {
+!         'agreement_id': 'agreementId'
+!     }
+  
+      def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
+          """CreateActivityAllOf - a model defined in OpenAPI"""  # noqa: E501
+--- 30,38 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {"agreement_id": "str"}
+! 
+!     attribute_map = {"agreement_id": "agreementId"}
+  
+      def __init__(self, agreement_id=None, local_vars_configuration=None):  # noqa: E501
+          """CreateActivityAllOf - a model defined in OpenAPI"""  # noqa: E501

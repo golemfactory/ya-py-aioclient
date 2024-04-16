@@ -1,0 +1,47 @@
+*** test/test_invoice_event.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_invoice_event.py	2020-07-21 16:04:55.000000000 +0200
+***************
+*** 33,51 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.invoice_event.InvoiceEvent()  # noqa: E501
+!         if include_optional :
+              return InvoiceEvent(
+!                 invoice_id = '0', 
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+!                 details = None, 
+!                 event_type = 'RECEIVED'
+              )
+!         else :
+              return InvoiceEvent(
+!                 invoice_id = '0',
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 event_type = 'RECEIVED',
+!         )
+  
+      def testInvoiceEvent(self):
+          """Test InvoiceEvent"""
+--- 32,54 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.invoice_event.InvoiceEvent()  # noqa: E501
+!         if include_optional:
+              return InvoiceEvent(
+!                 invoice_id="0",
+!                 timestamp=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 details=None,
+!                 event_type="RECEIVED",
+              )
+!         else:
+              return InvoiceEvent(
+!                 invoice_id="0",
+!                 timestamp=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 event_type="RECEIVED",
+!             )
+  
+      def testInvoiceEvent(self):
+          """Test InvoiceEvent"""

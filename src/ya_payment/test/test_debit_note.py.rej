@@ -1,0 +1,79 @@
+*** test/test_debit_note.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_debit_note.py	2020-07-21 16:04:55.000000000 +0200
+***************
+*** 33,66 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.debit_note.DebitNote()  # noqa: E501
+!         if include_optional :
+              return DebitNote(
+!                 debit_note_id = '0', 
+!                 issuer_id = '0', 
+!                 recipient_id = '0', 
+!                 payee_addr = '0', 
+!                 payer_addr = '0', 
+!                 payment_platform = '0', 
+!                 previous_debit_note_id = '0', 
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+!                 agreement_id = '0', 
+!                 activity_id = '0', 
+!                 total_amount_due = '0', 
+!                 usage_counter_vector = None, 
+!                 payment_due_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+!                 status = 'ISSUED'
+              )
+!         else :
+              return DebitNote(
+!                 debit_note_id = '0',
+!                 issuer_id = '0',
+!                 recipient_id = '0',
+!                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+!                 agreement_id = '0',
+!                 activity_id = '0',
+!                 total_amount_due = '0',
+!                 status = 'ISSUED',
+!         )
+  
+      def testDebitNote(self):
+          """Test DebitNote"""
+--- 32,71 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.debit_note.DebitNote()  # noqa: E501
+!         if include_optional:
+              return DebitNote(
+!                 debit_note_id="0",
+!                 issuer_id="0",
+!                 recipient_id="0",
+!                 payee_addr="0",
+!                 payer_addr="0",
+!                 payment_platform="0",
+!                 previous_debit_note_id="0",
+!                 timestamp=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 agreement_id="0",
+!                 activity_id="0",
+!                 total_amount_due="0",
+!                 usage_counter_vector=None,
+!                 payment_due_date=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 status="ISSUED",
+              )
+!         else:
+              return DebitNote(
+!                 debit_note_id="0",
+!                 issuer_id="0",
+!                 recipient_id="0",
+!                 timestamp=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 agreement_id="0",
+!                 activity_id="0",
+!                 total_amount_due="0",
+!                 status="ISSUED",
+!             )
+  
+      def testDebitNote(self):
+          """Test DebitNote"""

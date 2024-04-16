@@ -1,0 +1,12 @@
+*** __init__.py	2020-07-21 19:59:05.000000000 +0200
+--- __init__.py	2020-07-21 16:04:47.000000000 +0200
+***************
+*** 45,48 ****
+  from ya_market.models.proposal_all_of import ProposalAllOf
+  from ya_market.models.proposal_event import ProposalEvent
+  from ya_market.models.proposal_event_all_of import ProposalEventAllOf
+- 
+--- 43,45 ----
+  from ya_market.models.proposal_all_of import ProposalAllOf
+  from ya_market.models.proposal_event import ProposalEvent
+  from ya_market.models.proposal_event_all_of import ProposalEventAllOf

@@ -1,0 +1,57 @@
+*** test/test_allocation.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_allocation.py	2020-07-21 16:04:55.000000000 +0200
+***************
+*** 33,57 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.allocation.Allocation()  # noqa: E501
+!         if include_optional :
+              return Allocation(
+!                 allocation_id = '0', 
+!                 address = '0', 
+!                 payment_platform = '0', 
+!                 total_amount = '0', 
+!                 spent_amount = '0', 
+!                 remaining_amount = '0', 
+!                 timeout = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+!                 make_deposit = True
+              )
+!         else :
+              return Allocation(
+!                 allocation_id = '0',
+!                 total_amount = '0',
+!                 spent_amount = '0',
+!                 remaining_amount = '0',
+!                 make_deposit = True,
+!         )
+  
+      def testAllocation(self):
+          """Test Allocation"""
+--- 32,58 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_payment.models.allocation.Allocation()  # noqa: E501
+!         if include_optional:
+              return Allocation(
+!                 allocation_id="0",
+!                 address="0",
+!                 payment_platform="0",
+!                 total_amount="0",
+!                 spent_amount="0",
+!                 remaining_amount="0",
+!                 timeout=datetime.datetime.strptime(
+!                     "2013-10-20 19:20:30.00", "%Y-%m-%d %H:%M:%S.%f"
+!                 ),
+!                 make_deposit=True,
+              )
+!         else:
+              return Allocation(
+!                 allocation_id="0",
+!                 total_amount="0",
+!                 spent_amount="0",
+!                 remaining_amount="0",
+!                 make_deposit=True,
+!             )
+  
+      def testAllocation(self):
+          """Test Allocation"""

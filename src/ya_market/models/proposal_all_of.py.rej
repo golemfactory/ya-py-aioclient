@@ -1,0 +1,87 @@
+*** models/proposal_all_of.py	2020-07-21 19:59:05.000000000 +0200
+--- models/proposal_all_of.py	2020-07-21 16:04:50.000000000 +0200
+***************
+*** 32,51 ****
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         'proposal_id': 'str',
+!         'issuer_id': 'str',
+!         'state': 'str',
+!         'prev_proposal_id': 'str'
+      }
+  
+      attribute_map = {
+!         'proposal_id': 'proposalId',
+!         'issuer_id': 'issuerId',
+!         'state': 'state',
+!         'prev_proposal_id': 'prevProposalId'
+      }
+  
+!     def __init__(self, proposal_id=None, issuer_id=None, state=None, prev_proposal_id=None, local_vars_configuration=None):  # noqa: E501
+          """ProposalAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 31,57 ----
+                              and the value is json key in definition.
+      """
+      openapi_types = {
+!         "proposal_id": "str",
+!         "issuer_id": "str",
+!         "state": "str",
+!         "prev_proposal_id": "str",
+      }
+  
+      attribute_map = {
+!         "proposal_id": "proposalId",
+!         "issuer_id": "issuerId",
+!         "state": "state",
+!         "prev_proposal_id": "prevProposalId",
+      }
+  
+!     def __init__(
+!         self,
+!         proposal_id=None,
+!         issuer_id=None,
+!         state=None,
+!         prev_proposal_id=None,
+!         local_vars_configuration=None,
+!     ):  # noqa: E501
+          """ProposalAllOf - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+***************
+*** 128,138 ****
+          :param state: The state of this ProposalAllOf.  # noqa: E501
+          :type: str
+          """
+!         allowed_values = ["Initial", "Draft", "Rejected", "Accepted", "Expired"]  # noqa: E501
+!         if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
+              raise ValueError(
+!                 "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+!                 .format(state, allowed_values)
+              )
+  
+          self._state = state
+--- 134,154 ----
+          :param state: The state of this ProposalAllOf.  # noqa: E501
+          :type: str
+          """
+!         allowed_values = [
+!             "Initial",
+!             "Draft",
+!             "Rejected",
+!             "Accepted",
+!             "Expired",
+!         ]  # noqa: E501
+!         if (
+!             self.local_vars_configuration.client_side_validation
+!             and state not in allowed_values
+!         ):  # noqa: E501
+              raise ValueError(
+!                 "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
+!                     state, allowed_values
+!                 )
+              )
+  
+          self._state = state

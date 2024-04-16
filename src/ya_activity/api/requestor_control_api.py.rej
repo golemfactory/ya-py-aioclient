@@ -1,0 +1,223 @@
+*** api/requestor_control_api.py	2020-07-21 19:59:05.000000000 +0200
+--- api/requestor_control_api.py	2020-07-21 16:04:46.000000000 +0200
+***************
+*** 222,251 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'agreement_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method create_activity" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'agreement_id' is set
+!         if self.api_client.client_side_validation and ('agreement_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['agreement_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `agreement_id` when calling `create_activity`")  # noqa: E501
+  
+          collection_formats = {}
+  
+--- 229,260 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["agreement_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method create_activity" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'agreement_id' is set
+!         if self.api_client.client_side_validation and (
+!             "agreement_id" not in local_var_params
+!             or local_var_params["agreement_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `agreement_id` when calling `create_activity`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+***************
+*** 259,292 ****
+          local_var_files = {}
+  
+          body_params = None
+!         if 'agreement_id' in local_var_params:
+!             body_params = local_var_params['agreement_id']
+          # HTTP header `Accept`
+!         header_params['Accept'] = self.api_client.select_header_accept(
+!             ['application/json'])  # noqa: E501
+  
+          # HTTP header `Content-Type`
+!         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+!             ['application/json'])  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ['app_key']  # noqa: E501
+  
+          return self.api_client.call_api(
+!             '/activity', 'POST',
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type='str',  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get('async_req'),
+!             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+!             _preload_content=local_var_params.get('_preload_content', True),
+!             _request_timeout=local_var_params.get('_request_timeout'),
+!             collection_formats=collection_formats)
+  
+      def destroy_activity(self, activity_id, **kwargs):  # noqa: E501
+          """Destroys given Activity.  # noqa: E501
+--- 268,309 ----
+          local_var_files = {}
+  
+          body_params = None
+!         if "agreement_id" in local_var_params:
+!             body_params = local_var_params["agreement_id"]
+          # HTTP header `Accept`
+!         header_params["Accept"] = self.api_client.select_header_accept(
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # HTTP header `Content-Type`
+!         header_params[
+!             "Content-Type"
+!         ] = self.api_client.select_header_content_type(  # noqa: E501
+!             ["application/json"]
+!         )  # noqa: E501
+  
+          # Authentication setting
+!         auth_settings = ["app_key"]  # noqa: E501
+  
+          return self.api_client.call_api(
+!             "/activity",
+!             "POST",
+              path_params,
+              query_params,
+              header_params,
+              body=body_params,
+              post_params=form_params,
+              files=local_var_files,
+!             response_type="str",  # noqa: E501
+              auth_settings=auth_settings,
+!             async_req=local_var_params.get("async_req"),
+!             _return_http_data_only=local_var_params.get(
+!                 "_return_http_data_only"
+!             ),  # noqa: E501
+!             _preload_content=local_var_params.get("_preload_content", True),
+!             _request_timeout=local_var_params.get("_request_timeout"),
+!             collection_formats=collection_formats,
+!         )
+  
+      def destroy_activity(self, activity_id, **kwargs):  # noqa: E501
+          """Destroys given Activity.  # noqa: E501
+***************
+*** 340,375 ****
+  
+          local_var_params = locals()
+  
+!         all_params = [
+!             'activity_id'
+!         ]
+          all_params.extend(
+              [
+!                 'async_req',
+!                 '_return_http_data_only',
+!                 '_preload_content',
+!                 '_request_timeout'
+              ]
+          )
+  
+!         for key, val in six.iteritems(local_var_params['kwargs']):
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method destroy_activity" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params['kwargs']
+          # verify the required parameter 'activity_id' is set
+!         if self.api_client.client_side_validation and ('activity_id' not in local_var_params or  # noqa: E501
+!                                                         local_var_params['activity_id'] is None):  # noqa: E501
+!             raise ApiValueError("Missing the required parameter `activity_id` when calling `destroy_activity`")  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if 'activity_id' in local_var_params:
+!             path_params['activityId'] = local_var_params['activity_id']  # noqa: E501
+  
+          query_params = []
+  
+--- 357,394 ----
+  
+          local_var_params = locals()
+  
+!         all_params = ["activity_id"]
+          all_params.extend(
+              [
+!                 "async_req",
+!                 "_return_http_data_only",
+!                 "_preload_content",
+!                 "_request_timeout",
+              ]
+          )
+  
+!         for key, val in local_var_params["kwargs"].items():
+              if key not in all_params:
+                  raise ApiTypeError(
+                      "Got an unexpected keyword argument '%s'"
+                      " to method destroy_activity" % key
+                  )
+              local_var_params[key] = val
+!         del local_var_params["kwargs"]
+          # verify the required parameter 'activity_id' is set
+!         if self.api_client.client_side_validation and (
+!             "activity_id" not in local_var_params
+!             or local_var_params["activity_id"] is None  # noqa: E501
+!         ):  # noqa: E501
+!             raise ApiValueError(
+!                 "Missing the required parameter `activity_id` when calling `destroy_activity`"
+!             )  # noqa: E501
+  
+          collection_formats = {}
+  
+          path_params = {}
+!         if "activity_id" in local_var_params:
+!             path_params["activityId"] = local_var_params["activity_id"]  # noqa: E501
+  
+          query_params = []
+  

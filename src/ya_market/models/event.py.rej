@@ -1,0 +1,47 @@
+*** models/event.py	2020-07-21 19:59:05.000000000 +0200
+--- models/event.py	2020-07-21 16:04:50.000000000 +0200
+***************
+*** 31,53 ****
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {
+!         'event_type': 'str',
+!         'event_date': 'datetime'
+!     }
+  
+!     attribute_map = {
+!         'event_type': 'eventType',
+!         'event_date': 'eventDate'
+!     }
+  
+      discriminator_value_class_map = {
+!         'AgreementEvent': 'AgreementEvent',
+!         'PropertyQueryEvent': 'PropertyQueryEvent',
+!         'ProposalEvent': 'ProposalEvent'
+      }
+  
+!     def __init__(self, event_type=None, event_date=None, local_vars_configuration=None):  # noqa: E501
+          """Event - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()
+--- 30,48 ----
+        attribute_map (dict): The key is attribute name
+                              and the value is json key in definition.
+      """
+!     openapi_types = {"event_type": "str", "event_date": "datetime"}
+  
+!     attribute_map = {"event_type": "eventType", "event_date": "eventDate"}
+  
+      discriminator_value_class_map = {
+!         "AgreementEvent": "AgreementEvent",
+!         "PropertyQueryEvent": "PropertyQueryEvent",
+!         "ProposalEvent": "ProposalEvent",
+      }
+  
+!     def __init__(
+!         self, event_type=None, event_date=None, local_vars_configuration=None
+!     ):  # noqa: E501
+          """Event - a model defined in OpenAPI"""  # noqa: E501
+          if local_vars_configuration is None:
+              local_vars_configuration = Configuration()

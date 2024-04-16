@@ -1,0 +1,29 @@
+*** test/test_offer_all_of.py	2020-07-21 19:59:05.000000000 +0200
+--- test/test_offer_all_of.py	2020-07-21 16:04:51.000000000 +0200
+***************
+*** 33,46 ****
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.offer_all_of.OfferAllOf()  # noqa: E501
+!         if include_optional :
+!             return OfferAllOf(
+!                 offer_id = '0', 
+!                 provider_id = '0'
+!             )
+!         else :
+!             return OfferAllOf(
+!         )
+  
+      def testOfferAllOf(self):
+          """Test OfferAllOf"""
+--- 32,41 ----
+              params are included, when True both required and
+              optional params are included """
+          # model = ya_market.models.offer_all_of.OfferAllOf()  # noqa: E501
+!         if include_optional:
+!             return OfferAllOf(offer_id="0", provider_id="0")
+!         else:
+!             return OfferAllOf()
+  
+      def testOfferAllOf(self):
+          """Test OfferAllOf"""
