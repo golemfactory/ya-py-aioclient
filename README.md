@@ -9,6 +9,7 @@ Python Rest binding of [Yapapi](https://github.com/golemfactory/yapapi), generat
 - Poetry
 - [Poe](https://github.com/nat-n/poethepoet/blob/e8451601c81a2dfd6066cd02116f07fd7172625b/README.rst) (Optional)
 
+
 ## How to generate
 
 Type and hit to `make setup` then `make m.pre-stub` on terminal, that's it.
