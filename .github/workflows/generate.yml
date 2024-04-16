@@ -27,7 +27,7 @@ jobs:
       - name: Install Poetry
         uses: Gr1N/setup-poetry@v4
         with:
-          poetry-version: 1.1.4
+          poetry-version: 1.6.1
       
       - name: Generate and patch
         run: make setup
