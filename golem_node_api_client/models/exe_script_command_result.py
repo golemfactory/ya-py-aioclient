@@ -1,17 +1,18 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.exe_script_command_result_result import ExeScriptCommandResultResult
-from ..types import UNSET, Unset
+from golem_node_api_client.models.exe_script_command_result_result import (
+    ExeScriptCommandResultResult,
+)
+from golem_node_api_client.types import UNSET, Unset
 
-T = TypeVar("T", bound="ExeScriptCommandResult")
+T = TypeVar('T', bound='ExeScriptCommandResult')
 
 
-@_attrs_define
+@dataclass
 class ExeScriptCommandResult:
     """
     Attributes:
@@ -31,7 +32,7 @@ class ExeScriptCommandResult:
     stderr: Union[Unset, str] = UNSET
     message: Union[Unset, str] = UNSET
     is_batch_finished: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         index = self.index
@@ -52,38 +53,38 @@ class ExeScriptCommandResult:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "index": index,
-                "eventDate": event_date,
-                "result": result,
+                'index': index,
+                'eventDate': event_date,
+                'result': result,
             }
         )
         if stdout is not UNSET:
-            field_dict["stdout"] = stdout
+            field_dict['stdout'] = stdout
         if stderr is not UNSET:
-            field_dict["stderr"] = stderr
+            field_dict['stderr'] = stderr
         if message is not UNSET:
-            field_dict["message"] = message
+            field_dict['message'] = message
         if is_batch_finished is not UNSET:
-            field_dict["isBatchFinished"] = is_batch_finished
+            field_dict['isBatchFinished'] = is_batch_finished
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        index = d.pop("index")
+        index = d.pop('index')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        result = ExeScriptCommandResultResult(d.pop("result"))
+        result = ExeScriptCommandResultResult(d.pop('result'))
 
-        stdout = d.pop("stdout", UNSET)
+        stdout = d.pop('stdout', UNSET)
 
-        stderr = d.pop("stderr", UNSET)
+        stderr = d.pop('stderr', UNSET)
 
-        message = d.pop("message", UNSET)
+        message = d.pop('message', UNSET)
 
-        is_batch_finished = d.pop("isBatchFinished", UNSET)
+        is_batch_finished = d.pop('isBatchFinished', UNSET)
 
         exe_script_command_result = cls(
             index=index,

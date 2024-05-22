@@ -3,17 +3,17 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
     allocation_id: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
-        "method": "delete",
-        "url": "/payment-api/v1/allocations/{allocation_id}".format(
+        'method': 'delete',
+        'url': '/payment-api/v1/allocations/{allocation_id}'.format(
             allocation_id=allocation_id,
         ),
     }

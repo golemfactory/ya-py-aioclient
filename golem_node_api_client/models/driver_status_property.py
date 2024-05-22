@@ -1,15 +1,13 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.models.driver_status_property_kind import DriverStatusPropertyKind
+from golem_node_api_client.types import UNSET, Unset
 
-from ..models.driver_status_property_kind import DriverStatusPropertyKind
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="DriverStatusProperty")
+T = TypeVar('T', bound='DriverStatusProperty')
 
 
-@_attrs_define
+@dataclass
 class DriverStatusProperty:
     """Individual actionable property of the payment driver status
 
@@ -45,7 +43,7 @@ class DriverStatusProperty:
     needed_token_est: Union[Unset, str] = UNSET
     address: Union[Unset, str] = UNSET
     chain_id: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         kind = self.kind.value
@@ -66,39 +64,39 @@ class DriverStatusProperty:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "kind": kind,
-                "driver": driver,
+                'kind': kind,
+                'driver': driver,
             }
         )
         if network is not UNSET:
-            field_dict["network"] = network
+            field_dict['network'] = network
         if needed_gas_est is not UNSET:
-            field_dict["neededGasEst"] = needed_gas_est
+            field_dict['neededGasEst'] = needed_gas_est
         if needed_token_est is not UNSET:
-            field_dict["neededTokenEst"] = needed_token_est
+            field_dict['neededTokenEst'] = needed_token_est
         if address is not UNSET:
-            field_dict["address"] = address
+            field_dict['address'] = address
         if chain_id is not UNSET:
-            field_dict["chainId"] = chain_id
+            field_dict['chainId'] = chain_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        kind = DriverStatusPropertyKind(d.pop("kind"))
+        kind = DriverStatusPropertyKind(d.pop('kind'))
 
-        driver = d.pop("driver")
+        driver = d.pop('driver')
 
-        network = d.pop("network", UNSET)
+        network = d.pop('network', UNSET)
 
-        needed_gas_est = d.pop("neededGasEst", UNSET)
+        needed_gas_est = d.pop('neededGasEst', UNSET)
 
-        needed_token_est = d.pop("neededTokenEst", UNSET)
+        needed_token_est = d.pop('neededTokenEst', UNSET)
 
-        address = d.pop("address", UNSET)
+        address = d.pop('address', UNSET)
 
-        chain_id = d.pop("chainId", UNSET)
+        chain_id = d.pop('chainId', UNSET)
 
         driver_status_property = cls(
             kind=kind,

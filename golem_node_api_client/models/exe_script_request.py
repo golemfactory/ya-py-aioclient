@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="ExeScriptRequest")
+T = TypeVar('T', bound='ExeScriptRequest')
 
 
-@_attrs_define
+@dataclass
 class ExeScriptRequest:
     """
     Attributes:
@@ -14,7 +12,7 @@ class ExeScriptRequest:
     """
 
     text: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         text = self.text
@@ -23,7 +21,7 @@ class ExeScriptRequest:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "text": text,
+                'text': text,
             }
         )
 
@@ -32,7 +30,7 @@ class ExeScriptRequest:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        text = d.pop("text")
+        text = d.pop('text')
 
         exe_script_request = cls(
             text=text,

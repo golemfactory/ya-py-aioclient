@@ -3,19 +3,14 @@ import os
 from pathlib import Path
 from typing import Dict
 
-ROOT_DIR = Path(__file__).parent / ".."
-BUILD_DIR = ROOT_DIR / "build"
-TEMPLATE_DIR = ROOT_DIR / "templates"
-SPEC_DIR = ROOT_DIR / "ya-client" / "specs"
-SPEC_ROOT_FILE_PATH = TEMPLATE_DIR / "spec-root.json"
-SPEC_NAMES = (
-    "activity-api",
-    "market-api",
-    "net-api-v2",
-    "payment-api",
+from scripts.common import (
+    BUILD_DIR,
+    SPEC_DIR,
+    SPEC_ROOT_FILE_PATH,
+    SPEC_NAMES,
+    HTTP_METHODS,
+    SPEC_FINAL_FILE_PATH,
 )
-SPEC_NAME_FINAL = "golem-node-api"
-HTTP_METHODS = ["get", "put", "post", "delete", "options", "head", "patch", "trace"]
 
 
 def get_spec_file_path(dir: Path, spec_name: str, suffix: str) -> Path:
@@ -23,44 +18,49 @@ def get_spec_file_path(dir: Path, spec_name: str, suffix: str) -> Path:
 
 
 def prepare_source_specs():
-    os.system("npx @redocly/cli bundle {spec_files} --output {output} --ext json".format(
-        spec_files=" ".join(str(get_spec_file_path(SPEC_DIR, spec_name, '.yaml')) for spec_name in SPEC_NAMES),
-        output=BUILD_DIR.resolve(),
-    ))
+    os.system(
+        'npx @redocly/cli bundle {spec_files} --output {output} --ext json'.format(
+            spec_files=' '.join(
+                str(get_spec_file_path(SPEC_DIR, spec_name, '.yaml')) for spec_name in SPEC_NAMES
+            ),
+            output=BUILD_DIR.resolve(),
+        )
+    )
 
 
 def transform_tags(spec_dict: Dict, spec_name: str) -> None:
     tag_name = spec_name
     spec_dict['tags'] = [
-        {
-            "name": tag_name,
-            "description": spec_dict["info"]["description"].strip()
-        }
+        {'name': tag_name, 'description': spec_dict['info']['description'].strip()}
     ]
 
-    for path in spec_dict["paths"].values():
+    for path in spec_dict['paths'].values():
         for method_name, method in path.items():
             if method_name.lower() not in HTTP_METHODS:
                 continue
 
-            method["tags"] = [tag_name]
+            method['tags'] = [tag_name]
 
 
 def transform_paths(spec_dict: Dict) -> None:
     base_url = spec_dict['servers'].pop()['url']
-    spec_paths = spec_dict["paths"]
+    spec_paths = spec_dict['paths']
     original_paths = list(spec_paths.keys())
 
     for original_path in original_paths:
-        spec_paths[f"{base_url}{original_path}"] = spec_paths.pop(original_path)
+        spec_paths[f'{base_url}{original_path}'] = spec_paths.pop(original_path)
 
 
 def join_build_specs():
-    os.system("npx @redocly/cli join {root_spec_file} {spec_files} --output {output}.json".format(
-        root_spec_file=SPEC_ROOT_FILE_PATH.resolve(),
-        spec_files=" ".join(str(get_spec_file_path(BUILD_DIR, spec_name, '.json')) for spec_name in SPEC_NAMES),
-        output=BUILD_DIR / SPEC_NAME_FINAL,
-    ))
+    os.system(
+        'npx @redocly/cli join {root_spec_file} {spec_files} --output {output}.json'.format(
+            root_spec_file=SPEC_ROOT_FILE_PATH.resolve(),
+            spec_files=' '.join(
+                str(get_spec_file_path(BUILD_DIR, spec_name, '.json')) for spec_name in SPEC_NAMES
+            ),
+            output=SPEC_FINAL_FILE_PATH.with_suffix(''),
+        )
+    )
 
 
 def load_spec_dict(spec_file_path: Path) -> Dict:
@@ -69,7 +69,7 @@ def load_spec_dict(spec_file_path: Path) -> Dict:
 
 
 def save_spec_dict(spec_file_path: Path, spec_dict: Dict) -> None:
-    with spec_file_path.open("w") as spec_file:
+    with spec_file_path.open('w') as spec_file:
         json.dump(spec_dict, spec_file, indent=4)
 
 
@@ -88,5 +88,5 @@ def main():
     join_build_specs()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

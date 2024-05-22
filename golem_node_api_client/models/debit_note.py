@@ -1,21 +1,22 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.invoice_status import InvoiceStatus
-from ..types import UNSET, Unset
+from golem_node_api_client.models.invoice_status import InvoiceStatus
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.debit_note_usage_counter_vector import DebitNoteUsageCounterVector
+    from golem_node_api_client.models.debit_note_usage_counter_vector import (
+        DebitNoteUsageCounterVector,
+    )
 
 
-T = TypeVar("T", bound="DebitNote")
+T = TypeVar('T', bound='DebitNote')
 
 
-@_attrs_define
+@dataclass
 class DebitNote:
     """A Debit Note is an artifact issued by the Provider to the Requestor, in the context of a specific Activity. It is a
     notification of Total Amount Due incurred by the Activity until the moment the Debit Note is issued. This is
@@ -70,9 +71,9 @@ class DebitNote:
     total_amount_due: str
     status: InvoiceStatus
     previous_debit_note_id: Union[Unset, str] = UNSET
-    usage_counter_vector: Union[Unset, "DebitNoteUsageCounterVector"] = UNSET
+    usage_counter_vector: Union[Unset, 'DebitNoteUsageCounterVector'] = UNSET
     payment_due_date: Union[Unset, datetime.datetime] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         debit_note_id = self.debit_note_id
@@ -111,67 +112,67 @@ class DebitNote:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "debitNoteId": debit_note_id,
-                "issuerId": issuer_id,
-                "recipientId": recipient_id,
-                "payeeAddr": payee_addr,
-                "payerAddr": payer_addr,
-                "paymentPlatform": payment_platform,
-                "timestamp": timestamp,
-                "agreementId": agreement_id,
-                "activityId": activity_id,
-                "totalAmountDue": total_amount_due,
-                "status": status,
+                'debitNoteId': debit_note_id,
+                'issuerId': issuer_id,
+                'recipientId': recipient_id,
+                'payeeAddr': payee_addr,
+                'payerAddr': payer_addr,
+                'paymentPlatform': payment_platform,
+                'timestamp': timestamp,
+                'agreementId': agreement_id,
+                'activityId': activity_id,
+                'totalAmountDue': total_amount_due,
+                'status': status,
             }
         )
         if previous_debit_note_id is not UNSET:
-            field_dict["previousDebitNoteId"] = previous_debit_note_id
+            field_dict['previousDebitNoteId'] = previous_debit_note_id
         if usage_counter_vector is not UNSET:
-            field_dict["usageCounterVector"] = usage_counter_vector
+            field_dict['usageCounterVector'] = usage_counter_vector
         if payment_due_date is not UNSET:
-            field_dict["paymentDueDate"] = payment_due_date
+            field_dict['paymentDueDate'] = payment_due_date
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.debit_note_usage_counter_vector import DebitNoteUsageCounterVector
+        from golem_node_api_client.models.debit_note_usage_counter_vector import (
+            DebitNoteUsageCounterVector,
+        )
 
         d = src_dict.copy()
-        debit_note_id = d.pop("debitNoteId")
+        debit_note_id = d.pop('debitNoteId')
 
-        issuer_id = d.pop("issuerId")
+        issuer_id = d.pop('issuerId')
 
-        recipient_id = d.pop("recipientId")
+        recipient_id = d.pop('recipientId')
 
-        payee_addr = d.pop("payeeAddr")
+        payee_addr = d.pop('payeeAddr')
 
-        payer_addr = d.pop("payerAddr")
+        payer_addr = d.pop('payerAddr')
 
-        payment_platform = d.pop("paymentPlatform")
+        payment_platform = d.pop('paymentPlatform')
 
-        timestamp = isoparse(d.pop("timestamp"))
+        timestamp = isoparse(d.pop('timestamp'))
 
-        agreement_id = d.pop("agreementId")
+        agreement_id = d.pop('agreementId')
 
-        activity_id = d.pop("activityId")
+        activity_id = d.pop('activityId')
 
-        total_amount_due = d.pop("totalAmountDue")
+        total_amount_due = d.pop('totalAmountDue')
 
-        status = InvoiceStatus(d.pop("status"))
+        status = InvoiceStatus(d.pop('status'))
 
-        previous_debit_note_id = d.pop("previousDebitNoteId", UNSET)
+        previous_debit_note_id = d.pop('previousDebitNoteId', UNSET)
 
-        _usage_counter_vector = d.pop("usageCounterVector", UNSET)
+        _usage_counter_vector = d.pop('usageCounterVector', UNSET)
         usage_counter_vector: Union[Unset, DebitNoteUsageCounterVector]
         if isinstance(_usage_counter_vector, Unset):
             usage_counter_vector = UNSET
         else:
-            usage_counter_vector = DebitNoteUsageCounterVector.from_dict(
-                _usage_counter_vector
-            )
+            usage_counter_vector = DebitNoteUsageCounterVector.from_dict(_usage_counter_vector)
 
-        _payment_due_date = d.pop("paymentDueDate", UNSET)
+        _payment_due_date = d.pop('paymentDueDate', UNSET)
         payment_due_date: Union[Unset, datetime.datetime]
         if isinstance(_payment_due_date, Unset):
             payment_due_date = UNSET

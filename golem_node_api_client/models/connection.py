@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="Connection")
+T = TypeVar('T', bound='Connection')
 
 
-@_attrs_define
+@dataclass
 class Connection:
     """
     Attributes:
@@ -22,7 +20,7 @@ class Connection:
     local_port: int
     remote_ip: str
     remote_port: int
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         protocol = self.protocol
@@ -39,11 +37,11 @@ class Connection:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "protocol": protocol,
-                "localIp": local_ip,
-                "localPort": local_port,
-                "remoteIp": remote_ip,
-                "remotePort": remote_port,
+                'protocol': protocol,
+                'localIp': local_ip,
+                'localPort': local_port,
+                'remoteIp': remote_ip,
+                'remotePort': remote_port,
             }
         )
 
@@ -52,15 +50,15 @@ class Connection:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        protocol = d.pop("protocol")
+        protocol = d.pop('protocol')
 
-        local_ip = d.pop("localIp")
+        local_ip = d.pop('localIp')
 
-        local_port = d.pop("localPort")
+        local_port = d.pop('localPort')
 
-        remote_ip = d.pop("remoteIp")
+        remote_ip = d.pop('remoteIp')
 
-        remote_port = d.pop("remotePort")
+        remote_port = d.pop('remotePort')
 
         connection = cls(
             protocol=protocol,

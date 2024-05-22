@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="RuntimeEventKindFinishedBody")
+T = TypeVar('T', bound='RuntimeEventKindFinishedBody')
 
 
-@_attrs_define
+@dataclass
 class RuntimeEventKindFinishedBody:
     """
     Attributes:
@@ -18,7 +16,7 @@ class RuntimeEventKindFinishedBody:
 
     return_code: int
     message: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return_code = self.return_code
@@ -29,20 +27,20 @@ class RuntimeEventKindFinishedBody:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "returnCode": return_code,
+                'returnCode': return_code,
             }
         )
         if message is not UNSET:
-            field_dict["message"] = message
+            field_dict['message'] = message
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        return_code = d.pop("returnCode")
+        return_code = d.pop('returnCode')
 
-        message = d.pop("message", UNSET)
+        message = d.pop('message', UNSET)
 
         runtime_event_kind_finished_body = cls(
             return_code=return_code,

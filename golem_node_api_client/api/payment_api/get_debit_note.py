@@ -3,17 +3,17 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
     debit_note_id: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/payment-api/v1/debitNotes/{debit_note_id}".format(
+        'method': 'get',
+        'url': '/payment-api/v1/debitNotes/{debit_note_id}'.format(
             debit_note_id=debit_note_id,
         ),
     }

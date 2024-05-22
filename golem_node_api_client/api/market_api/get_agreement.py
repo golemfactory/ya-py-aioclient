@@ -3,18 +3,18 @@ from typing import Any, Dict, Optional, Union, cast
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...models.agreement import Agreement
-from ...types import Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.agreement import Agreement
+from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
     agreement_id: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/market-api/v1/agreements/{agreement_id}".format(
+        'method': 'get',
+        'url': '/market-api/v1/agreements/{agreement_id}'.format(
             agreement_id=agreement_id,
         ),
     }

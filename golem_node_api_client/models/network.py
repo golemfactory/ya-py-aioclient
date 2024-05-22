@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="Network")
+T = TypeVar('T', bound='Network')
 
 
-@_attrs_define
+@dataclass
 class Network:
     """
     Attributes:
@@ -22,7 +20,7 @@ class Network:
     id: Union[Unset, str] = UNSET
     mask: Union[Unset, str] = UNSET
     gateway: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         ip = self.ip
@@ -37,28 +35,28 @@ class Network:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "ip": ip,
+                'ip': ip,
             }
         )
         if id is not UNSET:
-            field_dict["id"] = id
+            field_dict['id'] = id
         if mask is not UNSET:
-            field_dict["mask"] = mask
+            field_dict['mask'] = mask
         if gateway is not UNSET:
-            field_dict["gateway"] = gateway
+            field_dict['gateway'] = gateway
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ip = d.pop("ip")
+        ip = d.pop('ip')
 
-        id = d.pop("id", UNSET)
+        id = d.pop('id', UNSET)
 
-        mask = d.pop("mask", UNSET)
+        mask = d.pop('mask', UNSET)
 
-        gateway = d.pop("gateway", UNSET)
+        gateway = d.pop('gateway', UNSET)
 
         network = cls(
             ip=ip,

@@ -1,20 +1,18 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.deploy_command_body_hosts import DeployCommandBodyHosts
-    from ..models.deploy_command_body_nodes import DeployCommandBodyNodes
-    from ..models.deploy_network import DeployNetwork
+    from golem_node_api_client.models.deploy_command_body_hosts import DeployCommandBodyHosts
+    from golem_node_api_client.models.deploy_command_body_nodes import DeployCommandBodyNodes
+    from golem_node_api_client.models.deploy_network import DeployNetwork
 
 
-T = TypeVar("T", bound="DeployCommandBody")
+T = TypeVar('T', bound='DeployCommandBody')
 
 
-@_attrs_define
+@dataclass
 class DeployCommandBody:
     """
     Attributes:
@@ -23,10 +21,10 @@ class DeployCommandBody:
         nodes (Union[Unset, DeployCommandBodyNodes]):
     """
 
-    net: Union[Unset, List["DeployNetwork"]] = UNSET
-    hosts: Union[Unset, "DeployCommandBodyHosts"] = UNSET
-    nodes: Union[Unset, "DeployCommandBodyNodes"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    net: Union[Unset, List['DeployNetwork']] = UNSET
+    hosts: Union[Unset, 'DeployCommandBodyHosts'] = UNSET
+    nodes: Union[Unset, 'DeployCommandBodyNodes'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         net: Union[Unset, List[Dict[str, Any]]] = UNSET
@@ -48,36 +46,36 @@ class DeployCommandBody:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if net is not UNSET:
-            field_dict["net"] = net
+            field_dict['net'] = net
         if hosts is not UNSET:
-            field_dict["hosts"] = hosts
+            field_dict['hosts'] = hosts
         if nodes is not UNSET:
-            field_dict["nodes"] = nodes
+            field_dict['nodes'] = nodes
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.deploy_command_body_hosts import DeployCommandBodyHosts
-        from ..models.deploy_command_body_nodes import DeployCommandBodyNodes
-        from ..models.deploy_network import DeployNetwork
+        from golem_node_api_client.models.deploy_command_body_hosts import DeployCommandBodyHosts
+        from golem_node_api_client.models.deploy_command_body_nodes import DeployCommandBodyNodes
+        from golem_node_api_client.models.deploy_network import DeployNetwork
 
         d = src_dict.copy()
         net = []
-        _net = d.pop("net", UNSET)
+        _net = d.pop('net', UNSET)
         for net_item_data in _net or []:
             net_item = DeployNetwork.from_dict(net_item_data)
 
             net.append(net_item)
 
-        _hosts = d.pop("hosts", UNSET)
+        _hosts = d.pop('hosts', UNSET)
         hosts: Union[Unset, DeployCommandBodyHosts]
         if isinstance(_hosts, Unset):
             hosts = UNSET
         else:
             hosts = DeployCommandBodyHosts.from_dict(_hosts)
 
-        _nodes = d.pop("nodes", UNSET)
+        _nodes = d.pop('nodes', UNSET)
         nodes: Union[Unset, DeployCommandBodyNodes]
         if isinstance(_nodes, Unset):
             nodes = UNSET

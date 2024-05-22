@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="ActivityPayment")
+T = TypeVar('T', bound='ActivityPayment')
 
 
-@_attrs_define
+@dataclass
 class ActivityPayment:
     """Share of a Payment assigned to a particular Activity.
 
@@ -21,7 +19,7 @@ class ActivityPayment:
     activity_id: str
     amount: str
     allocation_id: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         activity_id = self.activity_id
@@ -34,23 +32,23 @@ class ActivityPayment:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "activityId": activity_id,
-                "amount": amount,
+                'activityId': activity_id,
+                'amount': amount,
             }
         )
         if allocation_id is not UNSET:
-            field_dict["allocationId"] = allocation_id
+            field_dict['allocationId'] = allocation_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        activity_id = d.pop("activityId")
+        activity_id = d.pop('activityId')
 
-        amount = d.pop("amount")
+        amount = d.pop('amount')
 
-        allocation_id = d.pop("allocationId", UNSET)
+        allocation_id = d.pop('allocationId', UNSET)
 
         activity_payment = cls(
             activity_id=activity_id,

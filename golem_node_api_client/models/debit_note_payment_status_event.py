@@ -1,20 +1,19 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.driver_status_property import DriverStatusProperty
+    from golem_node_api_client.models.driver_status_property import DriverStatusProperty
 
 
-T = TypeVar("T", bound="DebitNotePaymentStatusEvent")
+T = TypeVar('T', bound='DebitNotePaymentStatusEvent')
 
 
-@_attrs_define
+@dataclass
 class DebitNotePaymentStatusEvent:
     """
     Attributes:
@@ -27,8 +26,8 @@ class DebitNotePaymentStatusEvent:
     event_type: str
     event_date: datetime.datetime
     debit_note_id: Union[Unset, str] = UNSET
-    property_: Union[Unset, "DriverStatusProperty"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    property_: Union[Unset, 'DriverStatusProperty'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -45,29 +44,29 @@ class DebitNotePaymentStatusEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
+                'eventType': event_type,
+                'eventDate': event_date,
             }
         )
         if debit_note_id is not UNSET:
-            field_dict["debitNoteId"] = debit_note_id
+            field_dict['debitNoteId'] = debit_note_id
         if property_ is not UNSET:
-            field_dict["property"] = property_
+            field_dict['property'] = property_
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.driver_status_property import DriverStatusProperty
+        from golem_node_api_client.models.driver_status_property import DriverStatusProperty
 
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        debit_note_id = d.pop("debitNoteId", UNSET)
+        debit_note_id = d.pop('debitNoteId', UNSET)
 
-        _property_ = d.pop("property", UNSET)
+        _property_ = d.pop('property', UNSET)
         property_: Union[Unset, DriverStatusProperty]
         if isinstance(_property_, Unset):
             property_ = UNSET

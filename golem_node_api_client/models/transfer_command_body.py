@@ -1,18 +1,16 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.file_set import FileSet
+    from golem_node_api_client.models.file_set import FileSet
 
 
-T = TypeVar("T", bound="TransferCommandBody")
+T = TypeVar('T', bound='TransferCommandBody')
 
 
-@_attrs_define
+@dataclass
 class TransferCommandBody:
     """
     Attributes:
@@ -27,8 +25,8 @@ class TransferCommandBody:
     to: str
     format_: Union[Unset, str] = UNSET
     depth: Union[Unset, float] = UNSET
-    fileset: Union[Unset, List["FileSet"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    fileset: Union[Unset, List['FileSet']] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         from_ = self.from_
@@ -50,34 +48,34 @@ class TransferCommandBody:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "from": from_,
-                "to": to,
+                'from': from_,
+                'to': to,
             }
         )
         if format_ is not UNSET:
-            field_dict["format"] = format_
+            field_dict['format'] = format_
         if depth is not UNSET:
-            field_dict["depth"] = depth
+            field_dict['depth'] = depth
         if fileset is not UNSET:
-            field_dict["fileset"] = fileset
+            field_dict['fileset'] = fileset
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.file_set import FileSet
+        from golem_node_api_client.models.file_set import FileSet
 
         d = src_dict.copy()
-        from_ = d.pop("from")
+        from_ = d.pop('from')
 
-        to = d.pop("to")
+        to = d.pop('to')
 
-        format_ = d.pop("format", UNSET)
+        format_ = d.pop('format', UNSET)
 
-        depth = d.pop("depth", UNSET)
+        depth = d.pop('depth', UNSET)
 
         fileset = []
-        _fileset = d.pop("fileset", UNSET)
+        _fileset = d.pop('fileset', UNSET)
         for fileset_item_data in _fileset or []:
             fileset_item = FileSet.from_dict(fileset_item_data)
 

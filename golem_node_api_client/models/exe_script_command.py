@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="ExeScriptCommand")
+T = TypeVar('T', bound='ExeScriptCommand')
 
 
-@_attrs_define
+@dataclass
 class ExeScriptCommand:
     """The specification of ExeScript commands format as per Activity API specification. Including TRANSFER command syntax
     extension described in [this specification](https://github.com/golemfactory/golem-architecture/blob/master/GIPS/GIP-
@@ -26,7 +24,7 @@ class ExeScriptCommand:
 
     """
 
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         field_dict: Dict[str, Any] = {}

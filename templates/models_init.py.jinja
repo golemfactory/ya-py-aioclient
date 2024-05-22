@@ -1,0 +1,14 @@
+{% from "utils.jinja" import to_absolute %}
+""" Contains all the data models used in inputs/outputs """
+
+{% for import in imports | sort %}
+{{ to_absolute(import | replace("from .", "from .models.")) }}
+{% endfor %}
+
+{% if imports %}
+__all__ = (
+    {% for all in alls | sort %}
+    "{{ all }}",
+    {% endfor %}
+)
+{% endif %}

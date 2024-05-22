@@ -1,26 +1,24 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.start_command_body import StartCommandBody
+    from golem_node_api_client.models.start_command_body import StartCommandBody
 
 
-T = TypeVar("T", bound="StartCommand")
+T = TypeVar('T', bound='StartCommand')
 
 
-@_attrs_define
+@dataclass
 class StartCommand:
     """
     Attributes:
         start (Union[Unset, StartCommandBody]):
     """
 
-    start: Union[Unset, "StartCommandBody"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    start: Union[Unset, 'StartCommandBody'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         start: Union[Unset, Dict[str, Any]] = UNSET
@@ -31,16 +29,16 @@ class StartCommand:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if start is not UNSET:
-            field_dict["start"] = start
+            field_dict['start'] = start
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.start_command_body import StartCommandBody
+        from golem_node_api_client.models.start_command_body import StartCommandBody
 
         d = src_dict.copy()
-        _start = d.pop("start", UNSET)
+        _start = d.pop('start', UNSET)
         start: Union[Unset, StartCommandBody]
         if isinstance(_start, Unset):
             start = UNSET

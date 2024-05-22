@@ -3,9 +3,9 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
@@ -13,8 +13,8 @@ def _get_kwargs(
     proposal_id: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
-        "method": "post",
-        "url": "/market-api/v1/demands/{subscription_id}/proposals/{proposal_id}".format(
+        'method': 'post',
+        'url': '/market-api/v1/demands/{subscription_id}/proposals/{proposal_id}'.format(
             subscription_id=subscription_id,
             proposal_id=proposal_id,
         ),

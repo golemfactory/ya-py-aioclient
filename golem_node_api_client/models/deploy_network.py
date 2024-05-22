@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="DeployNetwork")
+T = TypeVar('T', bound='DeployNetwork')
 
 
-@_attrs_define
+@dataclass
 class DeployNetwork:
     """
     Attributes:
@@ -18,7 +16,7 @@ class DeployNetwork:
     id: str
     ip: str
     mask: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -31,9 +29,9 @@ class DeployNetwork:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "id": id,
-                "ip": ip,
-                "mask": mask,
+                'id': id,
+                'ip': ip,
+                'mask': mask,
             }
         )
 
@@ -42,11 +40,11 @@ class DeployNetwork:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id")
+        id = d.pop('id')
 
-        ip = d.pop("ip")
+        ip = d.pop('ip')
 
-        mask = d.pop("mask")
+        mask = d.pop('mask')
 
         deploy_network = cls(
             id=id,

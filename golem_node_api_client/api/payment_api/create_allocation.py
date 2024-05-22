@@ -4,9 +4,9 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import UNSET, Response, Unset
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import UNSET, Response, Unset
 
 
 def _get_kwargs(
@@ -19,16 +19,16 @@ def _get_kwargs(
     json_after_timestamp: Union[Unset, str] = UNSET
     if not isinstance(after_timestamp, Unset):
         json_after_timestamp = after_timestamp.isoformat()
-    params["afterTimestamp"] = json_after_timestamp
+    params['afterTimestamp'] = json_after_timestamp
 
-    params["maxItems"] = max_items
+    params['maxItems'] = max_items
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: Dict[str, Any] = {
-        "method": "post",
-        "url": "/payment-api/v1/allocations",
-        "params": params,
+        'method': 'post',
+        'url': '/payment-api/v1/allocations',
+        'params': params,
     }
 
     return _kwargs

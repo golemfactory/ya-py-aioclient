@@ -1,21 +1,20 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.proposal_state import ProposalState
-from ..types import UNSET, Unset
+from golem_node_api_client.models.proposal_state import ProposalState
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.demand_offer_base_properties import DemandOfferBaseProperties
+    from golem_node_api_client.models.demand_offer_base_properties import DemandOfferBaseProperties
 
 
-T = TypeVar("T", bound="Proposal")
+T = TypeVar('T', bound='Proposal')
 
 
-@_attrs_define
+@dataclass
 class Proposal:
     """
     Attributes:
@@ -55,14 +54,14 @@ class Proposal:
         prev_proposal_id (Union[Unset, str]): id of the proposal from other side which this proposal responds to
     """
 
-    properties: "DemandOfferBaseProperties"
+    properties: 'DemandOfferBaseProperties'
     constraints: str
     proposal_id: str
     issuer_id: str
     state: ProposalState
     timestamp: datetime.datetime
     prev_proposal_id: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         properties = self.properties.to_dict()
@@ -83,37 +82,39 @@ class Proposal:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "properties": properties,
-                "constraints": constraints,
-                "proposalId": proposal_id,
-                "issuerId": issuer_id,
-                "state": state,
-                "timestamp": timestamp,
+                'properties': properties,
+                'constraints': constraints,
+                'proposalId': proposal_id,
+                'issuerId': issuer_id,
+                'state': state,
+                'timestamp': timestamp,
             }
         )
         if prev_proposal_id is not UNSET:
-            field_dict["prevProposalId"] = prev_proposal_id
+            field_dict['prevProposalId'] = prev_proposal_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.demand_offer_base_properties import DemandOfferBaseProperties
+        from golem_node_api_client.models.demand_offer_base_properties import (
+            DemandOfferBaseProperties,
+        )
 
         d = src_dict.copy()
-        properties = DemandOfferBaseProperties.from_dict(d.pop("properties"))
+        properties = DemandOfferBaseProperties.from_dict(d.pop('properties'))
 
-        constraints = d.pop("constraints")
+        constraints = d.pop('constraints')
 
-        proposal_id = d.pop("proposalId")
+        proposal_id = d.pop('proposalId')
 
-        issuer_id = d.pop("issuerId")
+        issuer_id = d.pop('issuerId')
 
-        state = ProposalState(d.pop("state"))
+        state = ProposalState(d.pop('state'))
 
-        timestamp = isoparse(d.pop("timestamp"))
+        timestamp = isoparse(d.pop('timestamp'))
 
-        prev_proposal_id = d.pop("prevProposalId", UNSET)
+        prev_proposal_id = d.pop('prevProposalId', UNSET)
 
         proposal = cls(
             properties=properties,

@@ -1,18 +1,17 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 if TYPE_CHECKING:
-    from ..models.property_query import PropertyQuery
+    from golem_node_api_client.models.property_query import PropertyQuery
 
 
-T = TypeVar("T", bound="PropertyQueryEvent")
+T = TypeVar('T', bound='PropertyQueryEvent')
 
 
-@_attrs_define
+@dataclass
 class PropertyQueryEvent:
     """
     Attributes:
@@ -23,8 +22,8 @@ class PropertyQueryEvent:
 
     event_type: str
     event_date: datetime.datetime
-    property_query: "PropertyQuery"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    property_query: 'PropertyQuery'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -37,9 +36,9 @@ class PropertyQueryEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
-                "propertyQuery": property_query,
+                'eventType': event_type,
+                'eventDate': event_date,
+                'propertyQuery': property_query,
             }
         )
 
@@ -47,14 +46,14 @@ class PropertyQueryEvent:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.property_query import PropertyQuery
+        from golem_node_api_client.models.property_query import PropertyQuery
 
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        property_query = PropertyQuery.from_dict(d.pop("propertyQuery"))
+        property_query = PropertyQuery.from_dict(d.pop('propertyQuery'))
 
         property_query_event = cls(
             event_type=event_type,

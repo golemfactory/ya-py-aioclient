@@ -1,16 +1,15 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
-T = TypeVar("T", bound="AllocationUpdate")
+T = TypeVar('T', bound='AllocationUpdate')
 
 
-@_attrs_define
+@dataclass
 class AllocationUpdate:
     """AllocationUpdate represents the changes that can be made to an existing allocation.
 
@@ -21,7 +20,7 @@ class AllocationUpdate:
 
     total_amount: Union[Unset, str] = UNSET
     timeout: Union[Unset, datetime.datetime] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         total_amount = self.total_amount
@@ -34,18 +33,18 @@ class AllocationUpdate:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if total_amount is not UNSET:
-            field_dict["totalAmount"] = total_amount
+            field_dict['totalAmount'] = total_amount
         if timeout is not UNSET:
-            field_dict["timeout"] = timeout
+            field_dict['timeout'] = timeout
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        total_amount = d.pop("totalAmount", UNSET)
+        total_amount = d.pop('totalAmount', UNSET)
 
-        _timeout = d.pop("timeout", UNSET)
+        _timeout = d.pop('timeout', UNSET)
         timeout: Union[Unset, datetime.datetime]
         if isinstance(_timeout, Unset):
             timeout = UNSET

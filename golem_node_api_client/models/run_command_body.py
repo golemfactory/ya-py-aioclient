@@ -1,18 +1,16 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.capture import Capture
+    from golem_node_api_client.models.capture import Capture
 
 
-T = TypeVar("T", bound="RunCommandBody")
+T = TypeVar('T', bound='RunCommandBody')
 
 
-@_attrs_define
+@dataclass
 class RunCommandBody:
     """
     Attributes:
@@ -23,8 +21,8 @@ class RunCommandBody:
 
     entry_point: str
     args: Union[Unset, List[str]] = UNSET
-    capture: Union[Unset, "Capture"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    capture: Union[Unset, 'Capture'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         entry_point = self.entry_point
@@ -41,26 +39,26 @@ class RunCommandBody:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "entry_point": entry_point,
+                'entry_point': entry_point,
             }
         )
         if args is not UNSET:
-            field_dict["args"] = args
+            field_dict['args'] = args
         if capture is not UNSET:
-            field_dict["capture"] = capture
+            field_dict['capture'] = capture
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.capture import Capture
+        from golem_node_api_client.models.capture import Capture
 
         d = src_dict.copy()
-        entry_point = d.pop("entry_point")
+        entry_point = d.pop('entry_point')
 
-        args = cast(List[str], d.pop("args", UNSET))
+        args = cast(List[str], d.pop('args', UNSET))
 
-        _capture = d.pop("capture", UNSET)
+        _capture = d.pop('capture', UNSET)
         capture: Union[Unset, Capture]
         if isinstance(_capture, Unset):
             capture = UNSET

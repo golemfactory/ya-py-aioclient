@@ -1,18 +1,17 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 if TYPE_CHECKING:
-    from ..models.agreement import Agreement
+    from golem_node_api_client.models.agreement import Agreement
 
 
-T = TypeVar("T", bound="AgreementEvent")
+T = TypeVar('T', bound='AgreementEvent')
 
 
-@_attrs_define
+@dataclass
 class AgreementEvent:
     """
     Attributes:
@@ -23,8 +22,8 @@ class AgreementEvent:
 
     event_type: str
     event_date: datetime.datetime
-    agreement: "Agreement"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    agreement: 'Agreement'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -37,9 +36,9 @@ class AgreementEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
-                "agreement": agreement,
+                'eventType': event_type,
+                'eventDate': event_date,
+                'agreement': agreement,
             }
         )
 
@@ -47,14 +46,14 @@ class AgreementEvent:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.agreement import Agreement
+        from golem_node_api_client.models.agreement import Agreement
 
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        agreement = Agreement.from_dict(d.pop("agreement"))
+        agreement = Agreement.from_dict(d.pop('agreement'))
 
         agreement_event = cls(
             event_type=event_type,

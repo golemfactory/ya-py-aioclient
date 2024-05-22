@@ -1,18 +1,16 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.capture_mode import CaptureMode
+    from golem_node_api_client.models.capture_mode import CaptureMode
 
 
-T = TypeVar("T", bound="Capture")
+T = TypeVar('T', bound='Capture')
 
 
-@_attrs_define
+@dataclass
 class Capture:
     """
     Attributes:
@@ -20,9 +18,9 @@ class Capture:
         stderr (Union[Unset, CaptureMode]):
     """
 
-    stdout: Union[Unset, "CaptureMode"] = UNSET
-    stderr: Union[Unset, "CaptureMode"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    stdout: Union[Unset, 'CaptureMode'] = UNSET
+    stderr: Union[Unset, 'CaptureMode'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         stdout: Union[Unset, Dict[str, Any]] = UNSET
@@ -37,25 +35,25 @@ class Capture:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if stdout is not UNSET:
-            field_dict["stdout"] = stdout
+            field_dict['stdout'] = stdout
         if stderr is not UNSET:
-            field_dict["stderr"] = stderr
+            field_dict['stderr'] = stderr
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.capture_mode import CaptureMode
+        from golem_node_api_client.models.capture_mode import CaptureMode
 
         d = src_dict.copy()
-        _stdout = d.pop("stdout", UNSET)
+        _stdout = d.pop('stdout', UNSET)
         stdout: Union[Unset, CaptureMode]
         if isinstance(_stdout, Unset):
             stdout = UNSET
         else:
             stdout = CaptureMode.from_dict(_stdout)
 
-        _stderr = d.pop("stderr", UNSET)
+        _stderr = d.pop('stderr', UNSET)
         stderr: Union[Unset, CaptureMode]
         if isinstance(_stderr, Unset):
             stderr = UNSET

@@ -1,18 +1,16 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.credentials import Credentials
+    from golem_node_api_client.models.credentials import Credentials
 
 
-T = TypeVar("T", bound="CreateActivityResult")
+T = TypeVar('T', bound='CreateActivityResult')
 
 
-@_attrs_define
+@dataclass
 class CreateActivityResult:
     """
     Attributes:
@@ -21,8 +19,8 @@ class CreateActivityResult:
     """
 
     activity_id: str
-    credentials: Union[Unset, "Credentials"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    credentials: Union[Unset, 'Credentials'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         activity_id = self.activity_id
@@ -35,22 +33,22 @@ class CreateActivityResult:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "activityId": activity_id,
+                'activityId': activity_id,
             }
         )
         if credentials is not UNSET:
-            field_dict["credentials"] = credentials
+            field_dict['credentials'] = credentials
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.credentials import Credentials
+        from golem_node_api_client.models.credentials import Credentials
 
         d = src_dict.copy()
-        activity_id = d.pop("activityId")
+        activity_id = d.pop('activityId')
 
-        _credentials = d.pop("credentials", UNSET)
+        _credentials = d.pop('credentials', UNSET)
         credentials: Union[Unset, Credentials]
         if isinstance(_credentials, Unset):
             credentials = UNSET

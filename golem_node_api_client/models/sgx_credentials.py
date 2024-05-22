@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="SgxCredentials")
+T = TypeVar('T', bound='SgxCredentials')
 
 
-@_attrs_define
+@dataclass
 class SgxCredentials:
     """
     Attributes:
@@ -22,7 +20,7 @@ class SgxCredentials:
     payload_hash: str
     ias_report: str
     ias_sig: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         enclave_pub_key = self.enclave_pub_key
@@ -39,11 +37,11 @@ class SgxCredentials:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "enclavePubKey": enclave_pub_key,
-                "requestorPubKey": requestor_pub_key,
-                "payloadHash": payload_hash,
-                "iasReport": ias_report,
-                "iasSig": ias_sig,
+                'enclavePubKey': enclave_pub_key,
+                'requestorPubKey': requestor_pub_key,
+                'payloadHash': payload_hash,
+                'iasReport': ias_report,
+                'iasSig': ias_sig,
             }
         )
 
@@ -52,15 +50,15 @@ class SgxCredentials:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        enclave_pub_key = d.pop("enclavePubKey")
+        enclave_pub_key = d.pop('enclavePubKey')
 
-        requestor_pub_key = d.pop("requestorPubKey")
+        requestor_pub_key = d.pop('requestorPubKey')
 
-        payload_hash = d.pop("payloadHash")
+        payload_hash = d.pop('payloadHash')
 
-        ias_report = d.pop("iasReport")
+        ias_report = d.pop('iasReport')
 
-        ias_sig = d.pop("iasSig")
+        ias_sig = d.pop('iasSig')
 
         sgx_credentials = cls(
             enclave_pub_key=enclave_pub_key,

@@ -1,18 +1,18 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.property_query_issuer_properties import PropertyQueryIssuerProperties
+    from golem_node_api_client.models.property_query_issuer_properties import (
+        PropertyQueryIssuerProperties,
+    )
 
 
-T = TypeVar("T", bound="PropertyQuery")
+T = TypeVar('T', bound='PropertyQuery')
 
 
-@_attrs_define
+@dataclass
 class PropertyQuery:
     """
     Attributes:
@@ -22,9 +22,9 @@ class PropertyQuery:
     """
 
     queried_properties: List[str]
-    issuer_properties: Union[Unset, "PropertyQueryIssuerProperties"] = UNSET
+    issuer_properties: Union[Unset, 'PropertyQueryIssuerProperties'] = UNSET
     query_id: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         queried_properties = self.queried_properties
@@ -39,35 +39,33 @@ class PropertyQuery:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "queriedProperties": queried_properties,
+                'queriedProperties': queried_properties,
             }
         )
         if issuer_properties is not UNSET:
-            field_dict["issuerProperties"] = issuer_properties
+            field_dict['issuerProperties'] = issuer_properties
         if query_id is not UNSET:
-            field_dict["queryId"] = query_id
+            field_dict['queryId'] = query_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.property_query_issuer_properties import (
+        from golem_node_api_client.models.property_query_issuer_properties import (
             PropertyQueryIssuerProperties,
         )
 
         d = src_dict.copy()
-        queried_properties = cast(List[str], d.pop("queriedProperties"))
+        queried_properties = cast(List[str], d.pop('queriedProperties'))
 
-        _issuer_properties = d.pop("issuerProperties", UNSET)
+        _issuer_properties = d.pop('issuerProperties', UNSET)
         issuer_properties: Union[Unset, PropertyQueryIssuerProperties]
         if isinstance(_issuer_properties, Unset):
             issuer_properties = UNSET
         else:
-            issuer_properties = PropertyQueryIssuerProperties.from_dict(
-                _issuer_properties
-            )
+            issuer_properties = PropertyQueryIssuerProperties.from_dict(_issuer_properties)
 
-        query_id = d.pop("queryId", UNSET)
+        query_id = d.pop('queryId', UNSET)
 
         property_query = cls(
             queried_properties=queried_properties,

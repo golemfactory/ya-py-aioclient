@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="CommandOutputStr")
+T = TypeVar('T', bound='CommandOutputStr')
 
 
-@_attrs_define
+@dataclass
 class CommandOutputStr:
     """
     Attributes:
@@ -14,7 +12,7 @@ class CommandOutputStr:
     """
 
     str_: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         str_ = self.str_
@@ -23,7 +21,7 @@ class CommandOutputStr:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "str": str_,
+                'str': str_,
             }
         )
 
@@ -32,7 +30,7 @@ class CommandOutputStr:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        str_ = d.pop("str")
+        str_ = d.pop('str')
 
         command_output_str = cls(
             str_=str_,

@@ -1,24 +1,22 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.terminate_command_body import TerminateCommandBody
+    from golem_node_api_client.models.terminate_command_body import TerminateCommandBody
 
 
-T = TypeVar("T", bound="TerminateCommand")
+T = TypeVar('T', bound='TerminateCommand')
 
 
-@_attrs_define
+@dataclass
 class TerminateCommand:
     """
     Attributes:
         terminate (TerminateCommandBody):
     """
 
-    terminate: "TerminateCommandBody"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    terminate: 'TerminateCommandBody'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         terminate = self.terminate.to_dict()
@@ -27,7 +25,7 @@ class TerminateCommand:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "terminate": terminate,
+                'terminate': terminate,
             }
         )
 
@@ -35,10 +33,10 @@ class TerminateCommand:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.terminate_command_body import TerminateCommandBody
+        from golem_node_api_client.models.terminate_command_body import TerminateCommandBody
 
         d = src_dict.copy()
-        terminate = TerminateCommandBody.from_dict(d.pop("terminate"))
+        terminate = TerminateCommandBody.from_dict(d.pop('terminate'))
 
         terminate_command = cls(
             terminate=terminate,

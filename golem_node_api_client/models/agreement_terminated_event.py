@@ -1,23 +1,22 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.agreement_terminated_event_terminator import (
+from golem_node_api_client.models.agreement_terminated_event_terminator import (
     AgreementTerminatedEventTerminator,
 )
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.reason import Reason
+    from golem_node_api_client.models.reason import Reason
 
 
-T = TypeVar("T", bound="AgreementTerminatedEvent")
+T = TypeVar('T', bound='AgreementTerminatedEvent')
 
 
-@_attrs_define
+@dataclass
 class AgreementTerminatedEvent:
     """
     Attributes:
@@ -34,8 +33,8 @@ class AgreementTerminatedEvent:
     agreement_id: str
     terminator: AgreementTerminatedEventTerminator
     signature: str
-    reason: Union[Unset, "Reason"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    reason: Union[Unset, 'Reason'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -56,34 +55,34 @@ class AgreementTerminatedEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
-                "agreementId": agreement_id,
-                "terminator": terminator,
-                "signature": signature,
+                'eventType': event_type,
+                'eventDate': event_date,
+                'agreementId': agreement_id,
+                'terminator': terminator,
+                'signature': signature,
             }
         )
         if reason is not UNSET:
-            field_dict["reason"] = reason
+            field_dict['reason'] = reason
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.reason import Reason
+        from golem_node_api_client.models.reason import Reason
 
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        agreement_id = d.pop("agreementId")
+        agreement_id = d.pop('agreementId')
 
-        terminator = AgreementTerminatedEventTerminator(d.pop("terminator"))
+        terminator = AgreementTerminatedEventTerminator(d.pop('terminator'))
 
-        signature = d.pop("signature")
+        signature = d.pop('signature')
 
-        _reason = d.pop("reason", UNSET)
+        _reason = d.pop('reason', UNSET)
         reason: Union[Unset, Reason]
         if isinstance(_reason, Unset):
             reason = UNSET

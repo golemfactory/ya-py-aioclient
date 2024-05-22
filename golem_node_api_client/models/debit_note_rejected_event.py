@@ -1,20 +1,19 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.rejection import Rejection
+    from golem_node_api_client.models.rejection import Rejection
 
 
-T = TypeVar("T", bound="DebitNoteRejectedEvent")
+T = TypeVar('T', bound='DebitNoteRejectedEvent')
 
 
-@_attrs_define
+@dataclass
 class DebitNoteRejectedEvent:
     """
     Attributes:
@@ -27,8 +26,8 @@ class DebitNoteRejectedEvent:
     event_type: str
     event_date: datetime.datetime
     debit_note_id: Union[Unset, str] = UNSET
-    rejection: Union[Unset, "Rejection"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    rejection: Union[Unset, 'Rejection'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -45,29 +44,29 @@ class DebitNoteRejectedEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
+                'eventType': event_type,
+                'eventDate': event_date,
             }
         )
         if debit_note_id is not UNSET:
-            field_dict["debitNoteId"] = debit_note_id
+            field_dict['debitNoteId'] = debit_note_id
         if rejection is not UNSET:
-            field_dict["rejection"] = rejection
+            field_dict['rejection'] = rejection
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.rejection import Rejection
+        from golem_node_api_client.models.rejection import Rejection
 
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        debit_note_id = d.pop("debitNoteId", UNSET)
+        debit_note_id = d.pop('debitNoteId', UNSET)
 
-        _rejection = d.pop("rejection", UNSET)
+        _rejection = d.pop('rejection', UNSET)
         rejection: Union[Unset, Rejection]
         if isinstance(_rejection, Unset):
             rejection = UNSET

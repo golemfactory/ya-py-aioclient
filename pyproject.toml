@@ -5,12 +5,40 @@ description = "Golem Network (https://golem.network/) Node API for Python"
 authors = ["Golem Factory <contact@golem.network>"]
 license = "LGPL-3.0-or-later"
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry.dependencies]
 python = "^3.8.1"
 
 [tool.poetry.group.dev.dependencies]
 openapi-python-client = "^0.20.0"
+poethepoet = "^0.26.1"
+ruff = "^0.4.4"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.poe.tasks]
+prepare-spec-bundle.script = 'scripts.prepare-spec-bundle:main'
+run-code-gen.script = 'scripts.run-code-gen:main'
+
+checks = {sequence = ["checks_codestyle", "checks_license"], help = "Run all available code checks"}
+checks_codestyle = {sequence = ["_checks_lint", "_checks_format"], help = "Run only code style checks"}
+_checks_lint  = {cmd = "ruff check", help = "Run only code linting checks" }
+_checks_format  = {cmd = "ruff format --check", help = "Run only code format checks" }
+checks_license = {sequence = ["_checks_license_export", "_checks_license_verify"], help = "Run only license compatibility checks"}
+_checks_license_export = "poetry export -f requirements.txt -o .requirements.txt"
+_checks_license_verify = "liccheck -r .requirements.txt"
+
+format = {sequence = ["_format_lint", "_format_format"], help = "Run code auto formatting"}
+_format_lint = "ruff check --fix"
+_format_format = "ruff format"
+
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"

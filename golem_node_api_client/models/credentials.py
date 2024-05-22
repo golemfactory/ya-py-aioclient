@@ -1,24 +1,22 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.sgx_credentials import SgxCredentials
+    from golem_node_api_client.models.sgx_credentials import SgxCredentials
 
 
-T = TypeVar("T", bound="Credentials")
+T = TypeVar('T', bound='Credentials')
 
 
-@_attrs_define
+@dataclass
 class Credentials:
     """
     Attributes:
         sgx (SgxCredentials):
     """
 
-    sgx: "SgxCredentials"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    sgx: 'SgxCredentials'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         sgx = self.sgx.to_dict()
@@ -27,7 +25,7 @@ class Credentials:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "sgx": sgx,
+                'sgx': sgx,
             }
         )
 
@@ -35,10 +33,10 @@ class Credentials:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.sgx_credentials import SgxCredentials
+        from golem_node_api_client.models.sgx_credentials import SgxCredentials
 
         d = src_dict.copy()
-        sgx = SgxCredentials.from_dict(d.pop("sgx"))
+        sgx = SgxCredentials.from_dict(d.pop('sgx'))
 
         credentials = cls(
             sgx=sgx,

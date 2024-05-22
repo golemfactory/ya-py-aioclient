@@ -3,9 +3,9 @@ from typing import Any, Dict, List, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import UNSET, Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import UNSET, Response
 
 
 def _get_kwargs(
@@ -16,14 +16,14 @@ def _get_kwargs(
 
     json_allocation_ids = allocation_ids
 
-    params["allocationIds"] = json_allocation_ids
+    params['allocationIds'] = json_allocation_ids
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/payment-api/v1/demandDecorations",
-        "params": params,
+        'method': 'get',
+        'url': '/payment-api/v1/demandDecorations',
+        'params': params,
     }
 
     return _kwargs

@@ -1,16 +1,15 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
-T = TypeVar("T", bound="DebitNoteCancelledEvent")
+T = TypeVar('T', bound='DebitNoteCancelledEvent')
 
 
-@_attrs_define
+@dataclass
 class DebitNoteCancelledEvent:
     """
     Attributes:
@@ -22,7 +21,7 @@ class DebitNoteCancelledEvent:
     event_type: str
     event_date: datetime.datetime
     debit_note_id: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -35,23 +34,23 @@ class DebitNoteCancelledEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
+                'eventType': event_type,
+                'eventDate': event_date,
             }
         )
         if debit_note_id is not UNSET:
-            field_dict["debitNoteId"] = debit_note_id
+            field_dict['debitNoteId'] = debit_note_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        debit_note_id = d.pop("debitNoteId", UNSET)
+        debit_note_id = d.pop('debitNoteId', UNSET)
 
         debit_note_cancelled_event = cls(
             event_type=event_type,

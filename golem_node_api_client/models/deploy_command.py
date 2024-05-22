@@ -1,24 +1,22 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.deploy_command_body import DeployCommandBody
+    from golem_node_api_client.models.deploy_command_body import DeployCommandBody
 
 
-T = TypeVar("T", bound="DeployCommand")
+T = TypeVar('T', bound='DeployCommand')
 
 
-@_attrs_define
+@dataclass
 class DeployCommand:
     """
     Attributes:
         deploy (DeployCommandBody):
     """
 
-    deploy: "DeployCommandBody"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    deploy: 'DeployCommandBody'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         deploy = self.deploy.to_dict()
@@ -27,7 +25,7 @@ class DeployCommand:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "deploy": deploy,
+                'deploy': deploy,
             }
         )
 
@@ -35,10 +33,10 @@ class DeployCommand:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.deploy_command_body import DeployCommandBody
+        from golem_node_api_client.models.deploy_command_body import DeployCommandBody
 
         d = src_dict.copy()
-        deploy = DeployCommandBody.from_dict(d.pop("deploy"))
+        deploy = DeployCommandBody.from_dict(d.pop('deploy'))
 
         deploy_command = cls(
             deploy=deploy,

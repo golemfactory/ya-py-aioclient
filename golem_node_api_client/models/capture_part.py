@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="CapturePart")
+T = TypeVar('T', bound='CapturePart')
 
 
-@_attrs_define
+@dataclass
 class CapturePart:
     """
     Attributes:
@@ -20,7 +18,7 @@ class CapturePart:
     head: Union[Unset, float] = UNSET
     tail: Union[Unset, float] = UNSET
     head_tail: Union[Unset, float] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         head = self.head
@@ -33,22 +31,22 @@ class CapturePart:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if head is not UNSET:
-            field_dict["head"] = head
+            field_dict['head'] = head
         if tail is not UNSET:
-            field_dict["tail"] = tail
+            field_dict['tail'] = tail
         if head_tail is not UNSET:
-            field_dict["headTail"] = head_tail
+            field_dict['headTail'] = head_tail
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        head = d.pop("head", UNSET)
+        head = d.pop('head', UNSET)
 
-        tail = d.pop("tail", UNSET)
+        tail = d.pop('tail', UNSET)
 
-        head_tail = d.pop("headTail", UNSET)
+        head_tail = d.pop('headTail', UNSET)
 
         capture_part = cls(
             head=head,

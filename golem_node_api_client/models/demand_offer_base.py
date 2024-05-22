@@ -1,16 +1,14 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.demand_offer_base_properties import DemandOfferBaseProperties
+    from golem_node_api_client.models.demand_offer_base_properties import DemandOfferBaseProperties
 
 
-T = TypeVar("T", bound="DemandOfferBase")
+T = TypeVar('T', bound='DemandOfferBase')
 
 
-@_attrs_define
+@dataclass
 class DemandOfferBase:
     """
     Attributes:
@@ -41,9 +39,9 @@ class DemandOfferBase:
         constraints (str):
     """
 
-    properties: "DemandOfferBaseProperties"
+    properties: 'DemandOfferBaseProperties'
     constraints: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         properties = self.properties.to_dict()
@@ -54,8 +52,8 @@ class DemandOfferBase:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "properties": properties,
-                "constraints": constraints,
+                'properties': properties,
+                'constraints': constraints,
             }
         )
 
@@ -63,12 +61,14 @@ class DemandOfferBase:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.demand_offer_base_properties import DemandOfferBaseProperties
+        from golem_node_api_client.models.demand_offer_base_properties import (
+            DemandOfferBaseProperties,
+        )
 
         d = src_dict.copy()
-        properties = DemandOfferBaseProperties.from_dict(d.pop("properties"))
+        properties = DemandOfferBaseProperties.from_dict(d.pop('properties'))
 
-        constraints = d.pop("constraints")
+        constraints = d.pop('constraints')
 
         demand_offer_base = cls(
             properties=properties,

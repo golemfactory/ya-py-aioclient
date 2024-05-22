@@ -1,24 +1,24 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.runtime_event_kind_finished_body import RuntimeEventKindFinishedBody
+    from golem_node_api_client.models.runtime_event_kind_finished_body import (
+        RuntimeEventKindFinishedBody,
+    )
 
 
-T = TypeVar("T", bound="RuntimeEventKindFinished")
+T = TypeVar('T', bound='RuntimeEventKindFinished')
 
 
-@_attrs_define
+@dataclass
 class RuntimeEventKindFinished:
     """
     Attributes:
         finished (RuntimeEventKindFinishedBody):
     """
 
-    finished: "RuntimeEventKindFinishedBody"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    finished: 'RuntimeEventKindFinishedBody'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         finished = self.finished.to_dict()
@@ -27,7 +27,7 @@ class RuntimeEventKindFinished:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "finished": finished,
+                'finished': finished,
             }
         )
 
@@ -35,12 +35,12 @@ class RuntimeEventKindFinished:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.runtime_event_kind_finished_body import (
+        from golem_node_api_client.models.runtime_event_kind_finished_body import (
             RuntimeEventKindFinishedBody,
         )
 
         d = src_dict.copy()
-        finished = RuntimeEventKindFinishedBody.from_dict(d.pop("finished"))
+        finished = RuntimeEventKindFinishedBody.from_dict(d.pop('finished'))
 
         runtime_event_kind_finished = cls(
             finished=finished,

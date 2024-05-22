@@ -1,15 +1,13 @@
+from dataclasses import dataclass, field
 from io import BytesIO
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import File
 
-from ..types import File
-
-T = TypeVar("T", bound="CommandOutputBin")
+T = TypeVar('T', bound='CommandOutputBin')
 
 
-@_attrs_define
+@dataclass
 class CommandOutputBin:
     """
     Attributes:
@@ -17,7 +15,7 @@ class CommandOutputBin:
     """
 
     bin_: List[File]
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         bin_ = []
@@ -30,7 +28,7 @@ class CommandOutputBin:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "bin": bin_,
+                'bin': bin_,
             }
         )
 
@@ -40,7 +38,7 @@ class CommandOutputBin:
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
         bin_ = []
-        _bin_ = d.pop("bin")
+        _bin_ = d.pop('bin')
         for bin_item_data in _bin_:
             bin_item = File(payload=BytesIO(bin_item_data))
 

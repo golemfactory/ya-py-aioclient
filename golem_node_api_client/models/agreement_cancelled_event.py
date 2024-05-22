@@ -1,20 +1,19 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.reason import Reason
+    from golem_node_api_client.models.reason import Reason
 
 
-T = TypeVar("T", bound="AgreementCancelledEvent")
+T = TypeVar('T', bound='AgreementCancelledEvent')
 
 
-@_attrs_define
+@dataclass
 class AgreementCancelledEvent:
     """
     Attributes:
@@ -27,8 +26,8 @@ class AgreementCancelledEvent:
     event_type: str
     event_date: datetime.datetime
     agreement_id: str
-    reason: Union[Unset, "Reason"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    reason: Union[Unset, 'Reason'] = UNSET
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -45,28 +44,28 @@ class AgreementCancelledEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
-                "agreementId": agreement_id,
+                'eventType': event_type,
+                'eventDate': event_date,
+                'agreementId': agreement_id,
             }
         )
         if reason is not UNSET:
-            field_dict["reason"] = reason
+            field_dict['reason'] = reason
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.reason import Reason
+        from golem_node_api_client.models.reason import Reason
 
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        agreement_id = d.pop("agreementId")
+        agreement_id = d.pop('agreementId')
 
-        _reason = d.pop("reason", UNSET)
+        _reason = d.pop('reason', UNSET)
         reason: Union[Unset, Reason]
         if isinstance(_reason, Unset):
             reason = UNSET

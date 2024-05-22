@@ -1,24 +1,22 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.command_output import CommandOutput
+    from golem_node_api_client.models.command_output import CommandOutput
 
 
-T = TypeVar("T", bound="RuntimeEventKindStdErr")
+T = TypeVar('T', bound='RuntimeEventKindStdErr')
 
 
-@_attrs_define
+@dataclass
 class RuntimeEventKindStdErr:
     """
     Attributes:
         stderr (CommandOutput):
     """
 
-    stderr: "CommandOutput"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    stderr: 'CommandOutput'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         stderr = self.stderr.to_dict()
@@ -27,7 +25,7 @@ class RuntimeEventKindStdErr:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "stderr": stderr,
+                'stderr': stderr,
             }
         )
 
@@ -35,10 +33,10 @@ class RuntimeEventKindStdErr:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.command_output import CommandOutput
+        from golem_node_api_client.models.command_output import CommandOutput
 
         d = src_dict.copy()
-        stderr = CommandOutput.from_dict(d.pop("stderr"))
+        stderr = CommandOutput.from_dict(d.pop('stderr'))
 
         runtime_event_kind_std_err = cls(
             stderr=stderr,

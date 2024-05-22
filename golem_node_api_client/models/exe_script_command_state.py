@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="ExeScriptCommandState")
+T = TypeVar('T', bound='ExeScriptCommandState')
 
 
-@_attrs_define
+@dataclass
 class ExeScriptCommandState:
     """
     Attributes:
@@ -22,7 +20,7 @@ class ExeScriptCommandState:
     command: str
     progress: Union[Unset, str] = UNSET
     params: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         batch_id = self.batch_id
@@ -39,27 +37,27 @@ class ExeScriptCommandState:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "batchId": batch_id,
-                "command": command,
+                'batchId': batch_id,
+                'command': command,
             }
         )
         if progress is not UNSET:
-            field_dict["progress"] = progress
+            field_dict['progress'] = progress
         if params is not UNSET:
-            field_dict["params"] = params
+            field_dict['params'] = params
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        batch_id = d.pop("batchId")
+        batch_id = d.pop('batchId')
 
-        command = d.pop("command")
+        command = d.pop('command')
 
-        progress = d.pop("progress", UNSET)
+        progress = d.pop('progress', UNSET)
 
-        params = cast(List[str], d.pop("params", UNSET))
+        params = cast(List[str], d.pop('params', UNSET))
 
         exe_script_command_state = cls(
             batch_id=batch_id,

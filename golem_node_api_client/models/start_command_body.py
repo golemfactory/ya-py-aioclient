@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="StartCommandBody")
+T = TypeVar('T', bound='StartCommandBody')
 
 
-@_attrs_define
+@dataclass
 class StartCommandBody:
     """
     Attributes:
@@ -16,7 +14,7 @@ class StartCommandBody:
     """
 
     args: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         args: Union[Unset, List[str]] = UNSET
@@ -27,14 +25,14 @@ class StartCommandBody:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if args is not UNSET:
-            field_dict["args"] = args
+            field_dict['args'] = args
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        args = cast(List[str], d.pop("args", UNSET))
+        args = cast(List[str], d.pop('args', UNSET))
 
         start_command_body = cls(
             args=args,

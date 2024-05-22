@@ -1,16 +1,14 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.market_property import MarketProperty
+    from golem_node_api_client.models.market_property import MarketProperty
 
 
-T = TypeVar("T", bound="MarketDecoration")
+T = TypeVar('T', bound='MarketDecoration')
 
 
-@_attrs_define
+@dataclass
 class MarketDecoration:
     """Properties and constraints to be added to a market object (i.e. a demand or an offer).
 
@@ -19,9 +17,9 @@ class MarketDecoration:
         constraints (List[str]):
     """
 
-    properties: List["MarketProperty"]
+    properties: List['MarketProperty']
     constraints: List[str]
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         properties = []
@@ -35,8 +33,8 @@ class MarketDecoration:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "properties": properties,
-                "constraints": constraints,
+                'properties': properties,
+                'constraints': constraints,
             }
         )
 
@@ -44,17 +42,17 @@ class MarketDecoration:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.market_property import MarketProperty
+        from golem_node_api_client.models.market_property import MarketProperty
 
         d = src_dict.copy()
         properties = []
-        _properties = d.pop("properties")
+        _properties = d.pop('properties')
         for properties_item_data in _properties:
             properties_item = MarketProperty.from_dict(properties_item_data)
 
             properties.append(properties_item)
 
-        constraints = cast(List[str], d.pop("constraints"))
+        constraints = cast(List[str], d.pop('constraints'))
 
         market_decoration = cls(
             properties=properties,

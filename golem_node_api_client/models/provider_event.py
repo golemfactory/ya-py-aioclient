@@ -1,14 +1,13 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-T = TypeVar("T", bound="ProviderEvent")
+T = TypeVar('T', bound='ProviderEvent')
 
 
-@_attrs_define
+@dataclass
 class ProviderEvent:
     """
     Attributes:
@@ -22,7 +21,7 @@ class ProviderEvent:
     event_date: datetime.datetime
     activity_id: str
     agreement_id: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -37,10 +36,10 @@ class ProviderEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
-                "activityId": activity_id,
-                "agreementId": agreement_id,
+                'eventType': event_type,
+                'eventDate': event_date,
+                'activityId': activity_id,
+                'agreementId': agreement_id,
             }
         )
 
@@ -49,13 +48,13 @@ class ProviderEvent:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        activity_id = d.pop("activityId")
+        activity_id = d.pop('activityId')
 
-        agreement_id = d.pop("agreementId")
+        agreement_id = d.pop('agreementId')
 
         provider_event = cls(
             event_type=event_type,

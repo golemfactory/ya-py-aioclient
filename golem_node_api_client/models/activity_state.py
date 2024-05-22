@@ -1,15 +1,13 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.models.activity_state_state_item import ActivityStateStateItem
+from golem_node_api_client.types import UNSET, Unset
 
-from ..models.activity_state_state_item import ActivityStateStateItem
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="ActivityState")
+T = TypeVar('T', bound='ActivityState')
 
 
-@_attrs_define
+@dataclass
 class ActivityState:
     """
     Attributes:
@@ -22,7 +20,7 @@ class ActivityState:
     state: List[ActivityStateStateItem]
     reason: Union[Unset, str] = UNSET
     error_message: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         state = []
@@ -38,13 +36,13 @@ class ActivityState:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "state": state,
+                'state': state,
             }
         )
         if reason is not UNSET:
-            field_dict["reason"] = reason
+            field_dict['reason'] = reason
         if error_message is not UNSET:
-            field_dict["errorMessage"] = error_message
+            field_dict['errorMessage'] = error_message
 
         return field_dict
 
@@ -52,15 +50,15 @@ class ActivityState:
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
         state = []
-        _state = d.pop("state")
+        _state = d.pop('state')
         for state_item_data in _state:
             state_item = ActivityStateStateItem(state_item_data)
 
             state.append(state_item)
 
-        reason = d.pop("reason", UNSET)
+        reason = d.pop('reason', UNSET)
 
-        error_message = d.pop("errorMessage", UNSET)
+        error_message = d.pop('errorMessage', UNSET)
 
         activity_state = cls(
             state=state,

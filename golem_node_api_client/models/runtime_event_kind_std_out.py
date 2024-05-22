@@ -1,24 +1,22 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.command_output import CommandOutput
+    from golem_node_api_client.models.command_output import CommandOutput
 
 
-T = TypeVar("T", bound="RuntimeEventKindStdOut")
+T = TypeVar('T', bound='RuntimeEventKindStdOut')
 
 
-@_attrs_define
+@dataclass
 class RuntimeEventKindStdOut:
     """
     Attributes:
         stdout (CommandOutput):
     """
 
-    stdout: "CommandOutput"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    stdout: 'CommandOutput'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         stdout = self.stdout.to_dict()
@@ -27,7 +25,7 @@ class RuntimeEventKindStdOut:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "stdout": stdout,
+                'stdout': stdout,
             }
         )
 
@@ -35,10 +33,10 @@ class RuntimeEventKindStdOut:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.command_output import CommandOutput
+        from golem_node_api_client.models.command_output import CommandOutput
 
         d = src_dict.copy()
-        stdout = CommandOutput.from_dict(d.pop("stdout"))
+        stdout = CommandOutput.from_dict(d.pop('stdout'))
 
         runtime_event_kind_std_out = cls(
             stdout=stdout,

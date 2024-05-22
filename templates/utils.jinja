@@ -1,0 +1,3 @@
+{% macro to_absolute(relative_import) -%}
+	{{ relative_import | replace("from ...", "from golem_node_api_client.") | replace("from ..", "from golem_node_api_client.") | replace("from .", "from golem_node_api_client.") }}
+{% endmacro %}

@@ -1,18 +1,17 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 if TYPE_CHECKING:
-    from ..models.demand_offer_base_properties import DemandOfferBaseProperties
+    from golem_node_api_client.models.demand_offer_base_properties import DemandOfferBaseProperties
 
 
-T = TypeVar("T", bound="Offer")
+T = TypeVar('T', bound='Offer')
 
 
-@_attrs_define
+@dataclass
 class Offer:
     """
     Attributes:
@@ -46,12 +45,12 @@ class Offer:
         timestamp (datetime.datetime):
     """
 
-    properties: "DemandOfferBaseProperties"
+    properties: 'DemandOfferBaseProperties'
     constraints: str
     offer_id: str
     provider_id: str
     timestamp: datetime.datetime
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         properties = self.properties.to_dict()
@@ -68,11 +67,11 @@ class Offer:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "properties": properties,
-                "constraints": constraints,
-                "offerId": offer_id,
-                "providerId": provider_id,
-                "timestamp": timestamp,
+                'properties': properties,
+                'constraints': constraints,
+                'offerId': offer_id,
+                'providerId': provider_id,
+                'timestamp': timestamp,
             }
         )
 
@@ -80,18 +79,20 @@ class Offer:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.demand_offer_base_properties import DemandOfferBaseProperties
+        from golem_node_api_client.models.demand_offer_base_properties import (
+            DemandOfferBaseProperties,
+        )
 
         d = src_dict.copy()
-        properties = DemandOfferBaseProperties.from_dict(d.pop("properties"))
+        properties = DemandOfferBaseProperties.from_dict(d.pop('properties'))
 
-        constraints = d.pop("constraints")
+        constraints = d.pop('constraints')
 
-        offer_id = d.pop("offerId")
+        offer_id = d.pop('offerId')
 
-        provider_id = d.pop("providerId")
+        provider_id = d.pop('providerId')
 
-        timestamp = isoparse(d.pop("timestamp"))
+        timestamp = isoparse(d.pop('timestamp'))
 
         offer = cls(
             properties=properties,

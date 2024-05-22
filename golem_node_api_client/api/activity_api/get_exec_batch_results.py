@@ -3,10 +3,10 @@ from typing import Any, Dict, List, Optional, Union, cast
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...models.exe_script_command_result import ExeScriptCommandResult
-from ...types import UNSET, Response, Unset
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.exe_script_command_result import ExeScriptCommandResult
+from golem_node_api_client.types import UNSET, Response, Unset
 
 
 def _get_kwargs(
@@ -18,19 +18,19 @@ def _get_kwargs(
 ) -> Dict[str, Any]:
     params: Dict[str, Any] = {}
 
-    params["commandIndex"] = command_index
+    params['commandIndex'] = command_index
 
-    params["timeout"] = timeout
+    params['timeout'] = timeout
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/activity-api/v1/activity/{activity_id}/exec/{batch_id}".format(
+        'method': 'get',
+        'url': '/activity-api/v1/activity/{activity_id}/exec/{batch_id}'.format(
             activity_id=activity_id,
             batch_id=batch_id,
         ),
-        "params": params,
+        'params': params,
     }
 
     return _kwargs
@@ -38,7 +38,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, List["ExeScriptCommandResult"]]]:
+) -> Optional[Union[Any, List['ExeScriptCommandResult']]]:
     if response.status_code == HTTPStatus.OK:
         response_200 = []
         _response_200 = response.json()
@@ -68,7 +68,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, List["ExeScriptCommandResult"]]]:
+) -> Response[Union[Any, List['ExeScriptCommandResult']]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -84,7 +84,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, List["ExeScriptCommandResult"]]]:
+) -> Response[Union[Any, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -136,7 +136,7 @@ def sync(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, List["ExeScriptCommandResult"]]]:
+) -> Optional[Union[Any, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -183,7 +183,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, List["ExeScriptCommandResult"]]]:
+) -> Response[Union[Any, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -233,7 +233,7 @@ async def asyncio(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, List["ExeScriptCommandResult"]]]:
+) -> Optional[Union[Any, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the

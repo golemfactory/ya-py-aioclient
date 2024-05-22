@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="MarketProperty")
+T = TypeVar('T', bound='MarketProperty')
 
 
-@_attrs_define
+@dataclass
 class MarketProperty:
     """
     Attributes:
@@ -16,7 +14,7 @@ class MarketProperty:
 
     key: str
     value: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         key = self.key
@@ -27,8 +25,8 @@ class MarketProperty:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "key": key,
-                "value": value,
+                'key': key,
+                'value': value,
             }
         )
 
@@ -37,9 +35,9 @@ class MarketProperty:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        key = d.pop("key")
+        key = d.pop('key')
 
-        value = d.pop("value")
+        value = d.pop('value')
 
         market_property = cls(
             key=key,

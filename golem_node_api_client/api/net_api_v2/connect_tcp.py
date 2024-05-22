@@ -3,9 +3,9 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
@@ -14,8 +14,8 @@ def _get_kwargs(
     port: int,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/net-api/v2/vpn/net/{network_id}/tcp/{ip}/{port}".format(
+        'method': 'get',
+        'url': '/net-api/v2/vpn/net/{network_id}/tcp/{ip}/{port}'.format(
             network_id=network_id,
             ip=ip,
             port=port,

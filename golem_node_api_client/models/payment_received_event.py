@@ -1,16 +1,15 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
-T = TypeVar("T", bound="PaymentReceivedEvent")
+T = TypeVar('T', bound='PaymentReceivedEvent')
 
 
-@_attrs_define
+@dataclass
 class PaymentReceivedEvent:
     """
     Attributes:
@@ -22,7 +21,7 @@ class PaymentReceivedEvent:
     event_type: str
     event_date: datetime.datetime
     payment_id: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         event_type = self.event_type
@@ -35,23 +34,23 @@ class PaymentReceivedEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "eventType": event_type,
-                "eventDate": event_date,
+                'eventType': event_type,
+                'eventDate': event_date,
             }
         )
         if payment_id is not UNSET:
-            field_dict["paymentId"] = payment_id
+            field_dict['paymentId'] = payment_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        event_type = d.pop("eventType")
+        event_type = d.pop('eventType')
 
-        event_date = isoparse(d.pop("eventDate"))
+        event_date = isoparse(d.pop('eventDate'))
 
-        payment_id = d.pop("paymentId", UNSET)
+        payment_id = d.pop('paymentId', UNSET)
 
         payment_received_event = cls(
             event_type=event_type,

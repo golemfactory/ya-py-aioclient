@@ -1,17 +1,8 @@
 """Contains some shared types for properties"""
 
+from dataclasses import dataclass
 from http import HTTPStatus
-from typing import (
-    BinaryIO,
-    Generic,
-    Literal,
-    MutableMapping,
-    Optional,
-    Tuple,
-    TypeVar,
-)
-
-from attrs import define
+from typing import BinaryIO, Generic, Literal, MutableMapping, Optional, Tuple, TypeVar
 
 
 class Unset:
@@ -24,7 +15,7 @@ UNSET: Unset = Unset()
 FileJsonType = Tuple[Optional[str], BinaryIO, Optional[str]]
 
 
-@define
+@dataclass
 class File:
     """Contains information for file uploads"""
 
@@ -37,10 +28,10 @@ class File:
         return self.file_name, self.payload, self.mime_type
 
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 
-@define
+@dataclass
 class Response(Generic[T]):
     """A response from an endpoint"""
 
@@ -50,4 +41,4 @@ class Response(Generic[T]):
     parsed: Optional[T]
 
 
-__all__ = ["File", "Response", "FileJsonType", "Unset", "UNSET"]
+__all__ = ['File', 'Response', 'FileJsonType', 'Unset', 'UNSET']

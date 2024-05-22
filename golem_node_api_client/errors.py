@@ -13,4 +13,4 @@ class UnexpectedStatus(Exception):
         )
 
 
-__all__ = ["UnexpectedStatus"]
+__all__ = ['UnexpectedStatus']

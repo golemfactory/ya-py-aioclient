@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="ActivityUsage")
+T = TypeVar('T', bound='ActivityUsage')
 
 
-@_attrs_define
+@dataclass
 class ActivityUsage:
     """
     Attributes:
@@ -20,7 +18,7 @@ class ActivityUsage:
 
     timestamp: int
     current_usage: Union[Unset, List[float]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         timestamp = self.timestamp
@@ -33,20 +31,20 @@ class ActivityUsage:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "timestamp": timestamp,
+                'timestamp': timestamp,
             }
         )
         if current_usage is not UNSET:
-            field_dict["currentUsage"] = current_usage
+            field_dict['currentUsage'] = current_usage
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        timestamp = d.pop("timestamp")
+        timestamp = d.pop('timestamp')
 
-        current_usage = cast(List[float], d.pop("currentUsage", UNSET))
+        current_usage = cast(List[float], d.pop('currentUsage', UNSET))
 
         activity_usage = cls(
             timestamp=timestamp,

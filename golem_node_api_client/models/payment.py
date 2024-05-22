@@ -1,19 +1,18 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 if TYPE_CHECKING:
-    from ..models.activity_payment import ActivityPayment
-    from ..models.agreement_payment import AgreementPayment
+    from golem_node_api_client.models.activity_payment import ActivityPayment
+    from golem_node_api_client.models.agreement_payment import AgreementPayment
 
 
-T = TypeVar("T", bound="Payment")
+T = TypeVar('T', bound='Payment')
 
 
-@_attrs_define
+@dataclass
 class Payment:
     """A Payment is a single transaction sent from Requestor to Provider. A single payment can be made for multiple
     Agreements and Activities. `agreementPayments` and `activityPayments` specify what is the basis for payment.
@@ -40,10 +39,10 @@ class Payment:
     payment_platform: str
     amount: str
     timestamp: datetime.datetime
-    agreement_payments: List["AgreementPayment"]
-    activity_payments: List["ActivityPayment"]
+    agreement_payments: List['AgreementPayment']
+    activity_payments: List['ActivityPayment']
     details: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         payment_id = self.payment_id
@@ -78,17 +77,17 @@ class Payment:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "paymentId": payment_id,
-                "payerId": payer_id,
-                "payeeId": payee_id,
-                "payerAddr": payer_addr,
-                "payeeAddr": payee_addr,
-                "paymentPlatform": payment_platform,
-                "amount": amount,
-                "timestamp": timestamp,
-                "agreementPayments": agreement_payments,
-                "activityPayments": activity_payments,
-                "details": details,
+                'paymentId': payment_id,
+                'payerId': payer_id,
+                'payeeId': payee_id,
+                'payerAddr': payer_addr,
+                'payeeAddr': payee_addr,
+                'paymentPlatform': payment_platform,
+                'amount': amount,
+                'timestamp': timestamp,
+                'agreementPayments': agreement_payments,
+                'activityPayments': activity_payments,
+                'details': details,
             }
         )
 
@@ -96,45 +95,41 @@ class Payment:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.activity_payment import ActivityPayment
-        from ..models.agreement_payment import AgreementPayment
+        from golem_node_api_client.models.activity_payment import ActivityPayment
+        from golem_node_api_client.models.agreement_payment import AgreementPayment
 
         d = src_dict.copy()
-        payment_id = d.pop("paymentId")
+        payment_id = d.pop('paymentId')
 
-        payer_id = d.pop("payerId")
+        payer_id = d.pop('payerId')
 
-        payee_id = d.pop("payeeId")
+        payee_id = d.pop('payeeId')
 
-        payer_addr = d.pop("payerAddr")
+        payer_addr = d.pop('payerAddr')
 
-        payee_addr = d.pop("payeeAddr")
+        payee_addr = d.pop('payeeAddr')
 
-        payment_platform = d.pop("paymentPlatform")
+        payment_platform = d.pop('paymentPlatform')
 
-        amount = d.pop("amount")
+        amount = d.pop('amount')
 
-        timestamp = isoparse(d.pop("timestamp"))
+        timestamp = isoparse(d.pop('timestamp'))
 
         agreement_payments = []
-        _agreement_payments = d.pop("agreementPayments")
+        _agreement_payments = d.pop('agreementPayments')
         for agreement_payments_item_data in _agreement_payments:
-            agreement_payments_item = AgreementPayment.from_dict(
-                agreement_payments_item_data
-            )
+            agreement_payments_item = AgreementPayment.from_dict(agreement_payments_item_data)
 
             agreement_payments.append(agreement_payments_item)
 
         activity_payments = []
-        _activity_payments = d.pop("activityPayments")
+        _activity_payments = d.pop('activityPayments')
         for activity_payments_item_data in _activity_payments:
-            activity_payments_item = ActivityPayment.from_dict(
-                activity_payments_item_data
-            )
+            activity_payments_item = ActivityPayment.from_dict(activity_payments_item_data)
 
             activity_payments.append(activity_payments_item)
 
-        details = d.pop("details")
+        details = d.pop('details')
 
         payment = cls(
             payment_id=payment_id,

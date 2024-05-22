@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="Account")
+T = TypeVar('T', bound='Account')
 
 
-@_attrs_define
+@dataclass
 class Account:
     """Payment account (wallet)
 
@@ -27,7 +25,7 @@ class Account:
     token: str
     send: bool
     receive: bool
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         platform = self.platform
@@ -48,13 +46,13 @@ class Account:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "platform": platform,
-                "address": address,
-                "driver": driver,
-                "network": network,
-                "token": token,
-                "send": send,
-                "receive": receive,
+                'platform': platform,
+                'address': address,
+                'driver': driver,
+                'network': network,
+                'token': token,
+                'send': send,
+                'receive': receive,
             }
         )
 
@@ -63,19 +61,19 @@ class Account:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        platform = d.pop("platform")
+        platform = d.pop('platform')
 
-        address = d.pop("address")
+        address = d.pop('address')
 
-        driver = d.pop("driver")
+        driver = d.pop('driver')
 
-        network = d.pop("network")
+        network = d.pop('network')
 
-        token = d.pop("token")
+        token = d.pop('token')
 
-        send = d.pop("send")
+        send = d.pop('send')
 
-        receive = d.pop("receive")
+        receive = d.pop('receive')
 
         account = cls(
             platform=platform,

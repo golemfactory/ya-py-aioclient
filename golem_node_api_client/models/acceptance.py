@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="Acceptance")
+T = TypeVar('T', bound='Acceptance')
 
 
-@_attrs_define
+@dataclass
 class Acceptance:
     """Message sent when Requestor accepts a Debit Note or Invoice.
 
@@ -17,7 +15,7 @@ class Acceptance:
 
     total_amount_accepted: str
     allocation_id: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         total_amount_accepted = self.total_amount_accepted
@@ -28,8 +26,8 @@ class Acceptance:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "totalAmountAccepted": total_amount_accepted,
-                "allocationId": allocation_id,
+                'totalAmountAccepted': total_amount_accepted,
+                'allocationId': allocation_id,
             }
         )
 
@@ -38,9 +36,9 @@ class Acceptance:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        total_amount_accepted = d.pop("totalAmountAccepted")
+        total_amount_accepted = d.pop('totalAmountAccepted')
 
-        allocation_id = d.pop("allocationId")
+        allocation_id = d.pop('allocationId')
 
         acceptance = cls(
             total_amount_accepted=total_amount_accepted,

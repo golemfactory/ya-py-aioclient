@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="FileSet")
+T = TypeVar('T', bound='FileSet')
 
 
-@_attrs_define
+@dataclass
 class FileSet:
     """
     Attributes:
@@ -20,7 +18,7 @@ class FileSet:
     desc: Union[Unset, str] = UNSET
     includes: Union[Unset, List[str]] = UNSET
     excludes: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         desc = self.desc
@@ -37,22 +35,22 @@ class FileSet:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if desc is not UNSET:
-            field_dict["desc"] = desc
+            field_dict['desc'] = desc
         if includes is not UNSET:
-            field_dict["includes"] = includes
+            field_dict['includes'] = includes
         if excludes is not UNSET:
-            field_dict["excludes"] = excludes
+            field_dict['excludes'] = excludes
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        desc = d.pop("desc", UNSET)
+        desc = d.pop('desc', UNSET)
 
-        includes = cast(List[str], d.pop("includes", UNSET))
+        includes = cast(List[str], d.pop('includes', UNSET))
 
-        excludes = cast(List[str], d.pop("excludes", UNSET))
+        excludes = cast(List[str], d.pop('excludes', UNSET))
 
         file_set = cls(
             desc=desc,

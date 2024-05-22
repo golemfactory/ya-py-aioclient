@@ -1,17 +1,16 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.invoice_status import InvoiceStatus
-from ..types import UNSET, Unset
+from golem_node_api_client.models.invoice_status import InvoiceStatus
+from golem_node_api_client.types import UNSET, Unset
 
-T = TypeVar("T", bound="Invoice")
+T = TypeVar('T', bound='Invoice')
 
 
-@_attrs_define
+@dataclass
 class Invoice:
     """An Invoice is an artifact issued by the Provider to the Requestor, in the context of a specific Agreement. It
     indicates the total Amount owed by the Requestor in this Agreement. No further Debit Notes shall be issued after the
@@ -62,7 +61,7 @@ class Invoice:
     payment_due_date: datetime.datetime
     status: InvoiceStatus
     activity_ids: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         invoice_id = self.invoice_id
@@ -95,50 +94,50 @@ class Invoice:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "invoiceId": invoice_id,
-                "issuerId": issuer_id,
-                "recipientId": recipient_id,
-                "payeeAddr": payee_addr,
-                "payerAddr": payer_addr,
-                "paymentPlatform": payment_platform,
-                "timestamp": timestamp,
-                "agreementId": agreement_id,
-                "amount": amount,
-                "paymentDueDate": payment_due_date,
-                "status": status,
+                'invoiceId': invoice_id,
+                'issuerId': issuer_id,
+                'recipientId': recipient_id,
+                'payeeAddr': payee_addr,
+                'payerAddr': payer_addr,
+                'paymentPlatform': payment_platform,
+                'timestamp': timestamp,
+                'agreementId': agreement_id,
+                'amount': amount,
+                'paymentDueDate': payment_due_date,
+                'status': status,
             }
         )
         if activity_ids is not UNSET:
-            field_dict["activityIds"] = activity_ids
+            field_dict['activityIds'] = activity_ids
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        invoice_id = d.pop("invoiceId")
+        invoice_id = d.pop('invoiceId')
 
-        issuer_id = d.pop("issuerId")
+        issuer_id = d.pop('issuerId')
 
-        recipient_id = d.pop("recipientId")
+        recipient_id = d.pop('recipientId')
 
-        payee_addr = d.pop("payeeAddr")
+        payee_addr = d.pop('payeeAddr')
 
-        payer_addr = d.pop("payerAddr")
+        payer_addr = d.pop('payerAddr')
 
-        payment_platform = d.pop("paymentPlatform")
+        payment_platform = d.pop('paymentPlatform')
 
-        timestamp = isoparse(d.pop("timestamp"))
+        timestamp = isoparse(d.pop('timestamp'))
 
-        agreement_id = d.pop("agreementId")
+        agreement_id = d.pop('agreementId')
 
-        amount = d.pop("amount")
+        amount = d.pop('amount')
 
-        payment_due_date = isoparse(d.pop("paymentDueDate"))
+        payment_due_date = isoparse(d.pop('paymentDueDate'))
 
-        status = InvoiceStatus(d.pop("status"))
+        status = InvoiceStatus(d.pop('status'))
 
-        activity_ids = cast(List[str], d.pop("activityIds", UNSET))
+        activity_ids = cast(List[str], d.pop('activityIds', UNSET))
 
         invoice = cls(
             invoice_id=invoice_id,

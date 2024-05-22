@@ -3,30 +3,30 @@ from typing import Any, Dict, Optional, Union, cast
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...models.create_activity_request import CreateActivityRequest
-from ...models.create_activity_result import CreateActivityResult
-from ...types import UNSET, Response, Unset
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.create_activity_request import CreateActivityRequest
+from golem_node_api_client.models.create_activity_result import CreateActivityResult
+from golem_node_api_client.types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    body: Union["CreateActivityRequest", str],
+    body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     params: Dict[str, Any] = {}
 
-    params["timeout"] = timeout
+    params['timeout'] = timeout
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: Dict[str, Any] = {
-        "method": "post",
-        "url": "/activity-api/v1/activity",
-        "params": params,
+        'method': 'post',
+        'url': '/activity-api/v1/activity',
+        'params': params,
     }
 
     _body: Union[Dict[str, Any], str]
@@ -35,19 +35,19 @@ def _get_kwargs(
     else:
         _body = body
 
-    _kwargs["json"] = _body
-    headers["Content-Type"] = "application/json"
+    _kwargs['json'] = _body
+    headers['Content-Type'] = 'application/json'
 
-    _kwargs["headers"] = headers
+    _kwargs['headers'] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, Union["CreateActivityResult", str]]]:
+) -> Optional[Union[Any, Union['CreateActivityResult', str]]]:
     if response.status_code == HTTPStatus.CREATED:
 
-        def _parse_response_201(data: object) -> Union["CreateActivityResult", str]:
+        def _parse_response_201(data: object) -> Union['CreateActivityResult', str]:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
@@ -56,7 +56,7 @@ def _parse_response(
                 return response_201_type_1
             except:  # noqa: E722
                 pass
-            return cast(Union["CreateActivityResult", str], data)
+            return cast(Union['CreateActivityResult', str], data)
 
         response_201 = _parse_response_201(response.json())
 
@@ -81,7 +81,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, Union["CreateActivityResult", str]]]:
+) -> Response[Union[Any, Union['CreateActivityResult', str]]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -93,9 +93,9 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: Union["CreateActivityRequest", str],
+    body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, Union["CreateActivityResult", str]]]:
+) -> Response[Union[Any, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -127,9 +127,9 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: Union["CreateActivityRequest", str],
+    body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, Union["CreateActivityResult", str]]]:
+) -> Optional[Union[Any, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -156,9 +156,9 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: Union["CreateActivityRequest", str],
+    body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, Union["CreateActivityResult", str]]]:
+) -> Response[Union[Any, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -188,9 +188,9 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: Union["CreateActivityRequest", str],
+    body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, Union["CreateActivityResult", str]]]:
+) -> Optional[Union[Any, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).

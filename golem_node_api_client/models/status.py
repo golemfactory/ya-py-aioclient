@@ -1,14 +1,12 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="Status")
+T = TypeVar('T', bound='Status')
 
 
-@_attrs_define
+@dataclass
 class Status:
     """
     Attributes:
@@ -22,7 +20,7 @@ class Status:
     sessions: int
     listen_ip: Union[Unset, str] = UNSET
     public_ip: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         node_id = self.node_id
@@ -37,27 +35,27 @@ class Status:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "nodeId": node_id,
-                "sessions": sessions,
+                'nodeId': node_id,
+                'sessions': sessions,
             }
         )
         if listen_ip is not UNSET:
-            field_dict["listenIp"] = listen_ip
+            field_dict['listenIp'] = listen_ip
         if public_ip is not UNSET:
-            field_dict["publicIp"] = public_ip
+            field_dict['publicIp'] = public_ip
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        node_id = d.pop("nodeId")
+        node_id = d.pop('nodeId')
 
-        sessions = d.pop("sessions")
+        sessions = d.pop('sessions')
 
-        listen_ip = d.pop("listenIp", UNSET)
+        listen_ip = d.pop('listenIp', UNSET)
 
-        public_ip = d.pop("publicIp", UNSET)
+        public_ip = d.pop('publicIp', UNSET)
 
         status = cls(
             node_id=node_id,

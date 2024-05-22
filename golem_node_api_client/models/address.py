@@ -1,12 +1,10 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-T = TypeVar("T", bound="Address")
+T = TypeVar('T', bound='Address')
 
 
-@_attrs_define
+@dataclass
 class Address:
     """
     Attributes:
@@ -14,7 +12,7 @@ class Address:
     """
 
     ip: str
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         ip = self.ip
@@ -23,7 +21,7 @@ class Address:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "ip": ip,
+                'ip': ip,
             }
         )
 
@@ -32,7 +30,7 @@ class Address:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ip = d.pop("ip")
+        ip = d.pop('ip')
 
         address = cls(
             ip=ip,

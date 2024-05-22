@@ -1,15 +1,13 @@
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+from golem_node_api_client.models.capture_format import CaptureFormat
+from golem_node_api_client.types import UNSET, Unset
 
-from ..models.capture_format import CaptureFormat
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="CaptureStreamBody")
+T = TypeVar('T', bound='CaptureStreamBody')
 
 
-@_attrs_define
+@dataclass
 class CaptureStreamBody:
     """
     Attributes:
@@ -19,7 +17,7 @@ class CaptureStreamBody:
 
     limit: Union[Unset, float] = UNSET
     format_: Union[Unset, CaptureFormat] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         limit = self.limit
@@ -32,18 +30,18 @@ class CaptureStreamBody:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if limit is not UNSET:
-            field_dict["limit"] = limit
+            field_dict['limit'] = limit
         if format_ is not UNSET:
-            field_dict["format"] = format_
+            field_dict['format'] = format_
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        limit = d.pop("limit", UNSET)
+        limit = d.pop('limit', UNSET)
 
-        _format_ = d.pop("format", UNSET)
+        _format_ = d.pop('format', UNSET)
         format_: Union[Unset, CaptureFormat]
         if isinstance(_format_, Unset):
             format_ = UNSET

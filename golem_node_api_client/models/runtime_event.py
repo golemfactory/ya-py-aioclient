@@ -1,16 +1,14 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.runtime_event_kind import RuntimeEventKind
+    from golem_node_api_client.models.runtime_event_kind import RuntimeEventKind
 
 
-T = TypeVar("T", bound="RuntimeEvent")
+T = TypeVar('T', bound='RuntimeEvent')
 
 
-@_attrs_define
+@dataclass
 class RuntimeEvent:
     """Structure returned as data element of event stream.
 
@@ -24,8 +22,8 @@ class RuntimeEvent:
     batch_id: str
     index: int
     timestamp: str
-    kind: "RuntimeEventKind"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    kind: 'RuntimeEventKind'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         batch_id = self.batch_id
@@ -40,10 +38,10 @@ class RuntimeEvent:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "batchId": batch_id,
-                "index": index,
-                "timestamp": timestamp,
-                "kind": kind,
+                'batchId': batch_id,
+                'index': index,
+                'timestamp': timestamp,
+                'kind': kind,
             }
         )
 
@@ -51,16 +49,16 @@ class RuntimeEvent:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.runtime_event_kind import RuntimeEventKind
+        from golem_node_api_client.models.runtime_event_kind import RuntimeEventKind
 
         d = src_dict.copy()
-        batch_id = d.pop("batchId")
+        batch_id = d.pop('batchId')
 
-        index = d.pop("index")
+        index = d.pop('index')
 
-        timestamp = d.pop("timestamp")
+        timestamp = d.pop('timestamp')
 
-        kind = RuntimeEventKind.from_dict(d.pop("kind"))
+        kind = RuntimeEventKind.from_dict(d.pop('kind'))
 
         runtime_event = cls(
             batch_id=batch_id,

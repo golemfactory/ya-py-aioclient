@@ -3,9 +3,9 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...types import UNSET, Response, Unset
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.types import UNSET, Response, Unset
 
 
 def _get_kwargs(
@@ -15,16 +15,16 @@ def _get_kwargs(
 ) -> Dict[str, Any]:
     params: Dict[str, Any] = {}
 
-    params["timeout"] = timeout
+    params['timeout'] = timeout
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: Dict[str, Any] = {
-        "method": "post",
-        "url": "/payment-api/v1/invoices/{invoice_id}/accept".format(
+        'method': 'post',
+        'url': '/payment-api/v1/invoices/{invoice_id}/accept'.format(
             invoice_id=invoice_id,
         ),
-        "params": params,
+        'params': params,
     }
 
     return _kwargs

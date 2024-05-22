@@ -1,16 +1,14 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.exe_script_command import ExeScriptCommand
+    from golem_node_api_client.models.exe_script_command import ExeScriptCommand
 
 
-T = TypeVar("T", bound="RuntimeEventKindStarted")
+T = TypeVar('T', bound='RuntimeEventKindStarted')
 
 
-@_attrs_define
+@dataclass
 class RuntimeEventKindStarted:
     """
     Attributes:
@@ -32,8 +30,8 @@ class RuntimeEventKindStarted:
             depend on automatically-generated code.
     """
 
-    started: "ExeScriptCommand"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    started: 'ExeScriptCommand'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         started = self.started.to_dict()
@@ -42,7 +40,7 @@ class RuntimeEventKindStarted:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "started": started,
+                'started': started,
             }
         )
 
@@ -50,10 +48,10 @@ class RuntimeEventKindStarted:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.exe_script_command import ExeScriptCommand
+        from golem_node_api_client.models.exe_script_command import ExeScriptCommand
 
         d = src_dict.copy()
-        started = ExeScriptCommand.from_dict(d.pop("started"))
+        started = ExeScriptCommand.from_dict(d.pop('started'))
 
         runtime_event_kind_started = cls(
             started=started,

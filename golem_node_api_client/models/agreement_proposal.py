@@ -1,14 +1,13 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-T = TypeVar("T", bound="AgreementProposal")
+T = TypeVar('T', bound='AgreementProposal')
 
 
-@_attrs_define
+@dataclass
 class AgreementProposal:
     """
     Attributes:
@@ -20,7 +19,7 @@ class AgreementProposal:
 
     proposal_id: str
     valid_to: datetime.datetime
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         proposal_id = self.proposal_id
@@ -31,8 +30,8 @@ class AgreementProposal:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "proposalId": proposal_id,
-                "validTo": valid_to,
+                'proposalId': proposal_id,
+                'validTo': valid_to,
             }
         )
 
@@ -41,9 +40,9 @@ class AgreementProposal:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        proposal_id = d.pop("proposalId")
+        proposal_id = d.pop('proposalId')
 
-        valid_to = isoparse(d.pop("validTo"))
+        valid_to = isoparse(d.pop('validTo'))
 
         agreement_proposal = cls(
             proposal_id=proposal_id,

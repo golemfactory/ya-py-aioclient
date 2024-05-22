@@ -1,19 +1,17 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
-from ..models.capture_format import CaptureFormat
-from ..types import UNSET, Unset
+from golem_node_api_client.models.capture_format import CaptureFormat
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.capture_part import CapturePart
+    from golem_node_api_client.models.capture_part import CapturePart
 
 
-T = TypeVar("T", bound="CaptureAtEndBody")
+T = TypeVar('T', bound='CaptureAtEndBody')
 
 
-@_attrs_define
+@dataclass
 class CaptureAtEndBody:
     """
     Attributes:
@@ -21,9 +19,9 @@ class CaptureAtEndBody:
         format_ (Union[Unset, CaptureFormat]):
     """
 
-    part: Union[Unset, "CapturePart"] = UNSET
+    part: Union[Unset, 'CapturePart'] = UNSET
     format_: Union[Unset, CaptureFormat] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         part: Union[Unset, Dict[str, Any]] = UNSET
@@ -38,25 +36,25 @@ class CaptureAtEndBody:
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if part is not UNSET:
-            field_dict["part"] = part
+            field_dict['part'] = part
         if format_ is not UNSET:
-            field_dict["format"] = format_
+            field_dict['format'] = format_
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.capture_part import CapturePart
+        from golem_node_api_client.models.capture_part import CapturePart
 
         d = src_dict.copy()
-        _part = d.pop("part", UNSET)
+        _part = d.pop('part', UNSET)
         part: Union[Unset, CapturePart]
         if isinstance(_part, Unset):
             part = UNSET
         else:
             part = CapturePart.from_dict(_part)
 
-        _format_ = d.pop("format", UNSET)
+        _format_ = d.pop('format', UNSET)
         format_: Union[Unset, CaptureFormat]
         if isinstance(_format_, Unset):
             format_ = UNSET

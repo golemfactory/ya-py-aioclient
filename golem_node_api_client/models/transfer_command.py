@@ -1,24 +1,22 @@
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
-
 if TYPE_CHECKING:
-    from ..models.transfer_command_body import TransferCommandBody
+    from golem_node_api_client.models.transfer_command_body import TransferCommandBody
 
 
-T = TypeVar("T", bound="TransferCommand")
+T = TypeVar('T', bound='TransferCommand')
 
 
-@_attrs_define
+@dataclass
 class TransferCommand:
     """
     Attributes:
         transfer (TransferCommandBody):
     """
 
-    transfer: "TransferCommandBody"
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    transfer: 'TransferCommandBody'
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         transfer = self.transfer.to_dict()
@@ -27,7 +25,7 @@ class TransferCommand:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "transfer": transfer,
+                'transfer': transfer,
             }
         )
 
@@ -35,10 +33,10 @@ class TransferCommand:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.transfer_command_body import TransferCommandBody
+        from golem_node_api_client.models.transfer_command_body import TransferCommandBody
 
         d = src_dict.copy()
-        transfer = TransferCommandBody.from_dict(d.pop("transfer"))
+        transfer = TransferCommandBody.from_dict(d.pop('transfer'))
 
         transfer_command = cls(
             transfer=transfer,

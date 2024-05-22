@@ -3,10 +3,10 @@ from typing import Any, Dict, Optional, Union, cast
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...models.exe_script_request import ExeScriptRequest
-from ...types import Response
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.exe_script_request import ExeScriptRequest
+from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
@@ -17,18 +17,18 @@ def _get_kwargs(
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "post",
-        "url": "/activity-api/v1/activity/{activity_id}/exec".format(
+        'method': 'post',
+        'url': '/activity-api/v1/activity/{activity_id}/exec'.format(
             activity_id=activity_id,
         ),
     }
 
     _body = body.to_dict()
 
-    _kwargs["json"] = _body
-    headers["Content-Type"] = "application/json"
+    _kwargs['json'] = _body
+    headers['Content-Type'] = 'application/json'
 
-    _kwargs["headers"] = headers
+    _kwargs['headers'] = headers
     return _kwargs
 
 

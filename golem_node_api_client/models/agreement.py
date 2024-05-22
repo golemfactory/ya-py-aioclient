@@ -1,22 +1,21 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.agreement_state import AgreementState
-from ..types import UNSET, Unset
+from golem_node_api_client.models.agreement_state import AgreementState
+from golem_node_api_client.types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.demand import Demand
-    from ..models.offer import Offer
+    from golem_node_api_client.models.demand import Demand
+    from golem_node_api_client.models.offer import Offer
 
 
-T = TypeVar("T", bound="Agreement")
+T = TypeVar('T', bound='Agreement')
 
 
-@_attrs_define
+@dataclass
 class Agreement:
     """
     Attributes:
@@ -43,8 +42,8 @@ class Agreement:
     """
 
     agreement_id: str
-    demand: "Demand"
-    offer: "Offer"
+    demand: 'Demand'
+    offer: 'Offer'
     valid_to: datetime.datetime
     state: AgreementState
     timestamp: datetime.datetime
@@ -53,7 +52,7 @@ class Agreement:
     proposed_signature: Union[Unset, str] = UNSET
     approved_signature: Union[Unset, str] = UNSET
     committed_signature: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         agreement_id = self.agreement_id
@@ -84,59 +83,59 @@ class Agreement:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "agreementId": agreement_id,
-                "demand": demand,
-                "offer": offer,
-                "validTo": valid_to,
-                "state": state,
-                "timestamp": timestamp,
+                'agreementId': agreement_id,
+                'demand': demand,
+                'offer': offer,
+                'validTo': valid_to,
+                'state': state,
+                'timestamp': timestamp,
             }
         )
         if approved_date is not UNSET:
-            field_dict["approvedDate"] = approved_date
+            field_dict['approvedDate'] = approved_date
         if app_session_id is not UNSET:
-            field_dict["appSessionId"] = app_session_id
+            field_dict['appSessionId'] = app_session_id
         if proposed_signature is not UNSET:
-            field_dict["proposedSignature"] = proposed_signature
+            field_dict['proposedSignature'] = proposed_signature
         if approved_signature is not UNSET:
-            field_dict["approvedSignature"] = approved_signature
+            field_dict['approvedSignature'] = approved_signature
         if committed_signature is not UNSET:
-            field_dict["committedSignature"] = committed_signature
+            field_dict['committedSignature'] = committed_signature
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.demand import Demand
-        from ..models.offer import Offer
+        from golem_node_api_client.models.demand import Demand
+        from golem_node_api_client.models.offer import Offer
 
         d = src_dict.copy()
-        agreement_id = d.pop("agreementId")
+        agreement_id = d.pop('agreementId')
 
-        demand = Demand.from_dict(d.pop("demand"))
+        demand = Demand.from_dict(d.pop('demand'))
 
-        offer = Offer.from_dict(d.pop("offer"))
+        offer = Offer.from_dict(d.pop('offer'))
 
-        valid_to = isoparse(d.pop("validTo"))
+        valid_to = isoparse(d.pop('validTo'))
 
-        state = AgreementState(d.pop("state"))
+        state = AgreementState(d.pop('state'))
 
-        timestamp = isoparse(d.pop("timestamp"))
+        timestamp = isoparse(d.pop('timestamp'))
 
-        _approved_date = d.pop("approvedDate", UNSET)
+        _approved_date = d.pop('approvedDate', UNSET)
         approved_date: Union[Unset, datetime.datetime]
         if isinstance(_approved_date, Unset):
             approved_date = UNSET
         else:
             approved_date = isoparse(_approved_date)
 
-        app_session_id = d.pop("appSessionId", UNSET)
+        app_session_id = d.pop('appSessionId', UNSET)
 
-        proposed_signature = d.pop("proposedSignature", UNSET)
+        proposed_signature = d.pop('proposedSignature', UNSET)
 
-        approved_signature = d.pop("approvedSignature", UNSET)
+        approved_signature = d.pop('approvedSignature', UNSET)
 
-        committed_signature = d.pop("committedSignature", UNSET)
+        committed_signature = d.pop('committedSignature', UNSET)
 
         agreement = cls(
             agreement_id=agreement_id,

@@ -4,10 +4,10 @@ from typing import Any, Dict, Optional, Union
 
 import httpx
 
-from ... import errors
-from ...client import AuthenticatedClient, Client
-from ...models.agreement_state import AgreementState
-from ...types import UNSET, Response, Unset
+from golem_node_api_client import errors
+from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.agreement_state import AgreementState
+from golem_node_api_client.types import UNSET, Response, Unset
 
 
 def _get_kwargs(
@@ -19,30 +19,30 @@ def _get_kwargs(
 ) -> Dict[str, Any]:
     params: Dict[str, Any] = {}
 
-    params["appSessionId"] = app_session_id
+    params['appSessionId'] = app_session_id
 
     json_state: Union[Unset, str] = UNSET
     if not isinstance(state, Unset):
         json_state = state.value
 
-    params["state"] = json_state
+    params['state'] = json_state
 
     json_after_timestamp: Union[Unset, str] = UNSET
     if not isinstance(after_timestamp, Unset):
         json_after_timestamp = after_timestamp.isoformat()
-    params["afterTimestamp"] = json_after_timestamp
+    params['afterTimestamp'] = json_after_timestamp
 
     json_before_timestamp: Union[Unset, str] = UNSET
     if not isinstance(before_timestamp, Unset):
         json_before_timestamp = before_timestamp.isoformat()
-    params["beforeTimestamp"] = json_before_timestamp
+    params['beforeTimestamp'] = json_before_timestamp
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/market-api/v1/agreements",
-        "params": params,
+        'method': 'get',
+        'url': '/market-api/v1/agreements',
+        'params': params,
     }
 
     return _kwargs

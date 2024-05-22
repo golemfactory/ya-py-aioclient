@@ -1,16 +1,15 @@
 import datetime
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..types import UNSET, Unset
+from golem_node_api_client.types import UNSET, Unset
 
-T = TypeVar("T", bound="AgreementListEntry")
+T = TypeVar('T', bound='AgreementListEntry')
 
 
-@_attrs_define
+@dataclass
 class AgreementListEntry:
     """
     Attributes:
@@ -24,7 +23,7 @@ class AgreementListEntry:
     role: str
     timestamp: Union[Unset, datetime.datetime] = UNSET
     approved_date: Union[Unset, datetime.datetime] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = field(init=False, default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -43,32 +42,32 @@ class AgreementListEntry:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "id": id,
-                "role": role,
+                'id': id,
+                'role': role,
             }
         )
         if timestamp is not UNSET:
-            field_dict["timestamp"] = timestamp
+            field_dict['timestamp'] = timestamp
         if approved_date is not UNSET:
-            field_dict["approvedDate"] = approved_date
+            field_dict['approvedDate'] = approved_date
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id")
+        id = d.pop('id')
 
-        role = d.pop("role")
+        role = d.pop('role')
 
-        _timestamp = d.pop("timestamp", UNSET)
+        _timestamp = d.pop('timestamp', UNSET)
         timestamp: Union[Unset, datetime.datetime]
         if isinstance(_timestamp, Unset):
             timestamp = UNSET
         else:
             timestamp = isoparse(_timestamp)
 
-        _approved_date = d.pop("approvedDate", UNSET)
+        _approved_date = d.pop('approvedDate', UNSET)
         approved_date: Union[Unset, datetime.datetime]
         if isinstance(_approved_date, Unset):
             approved_date = UNSET
