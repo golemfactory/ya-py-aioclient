@@ -1,0 +1,8 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Golem Node API",
+        "version": "0.1.0",
+        "description": "Golem Node API root description"
+    }
+}

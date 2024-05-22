@@ -1,41 +1,16 @@
 [tool.poetry]
-name = "ya-aioclient"
-version = "0.6.4"
-description = ""
-authors = ["Przemysław K. Rekucki <prekucki@rcl.pl>"]
+name = "golem-node-api-python"
+version = "0.1.0"
+description = "Golem Network (https://golem.network/) Node API for Python"
+authors = ["Golem Factory <contact@golem.network>"]
 license = "LGPL-3.0-or-later"
 
-packages = [
-    { include = "ya_market", from="src"},
-    { include = "ya_payment", from="src" },
-    { include = "ya_activity", from="src" },
-    { include = "ya_net", from="src" }
-]
-include=["py.typed"]
-exclude=["**/*.py.orig", "**/*.py.rej"]
-
 [tool.poetry.dependencies]
-python = "^3.10"
-aiohttp = "^3.6.2"
-python-dateutil = "^2.8.1"
-certifi="^2020.6.20"
-pydantic = "^2.5.2"
+python = "^3.8.1"
 
-[tool.poetry.dev-dependencies]
-pyyaml = "5.3"
-dataclasses = { version = "^0.7", python = "~3.6"}
-mypy = "^0.782"
-any_case = "^0.1.6"
-pylint = "^2.5.3"
-pytest = "^5.4.3"
-
-[tool.poe.tasks]
-lint = "pylint -E src"
-mypy = "mypy src"
-test = "pytest src"
-diff = "./build-scripts/diff-module.sh"
-
+[tool.poetry.group.dev.dependencies]
+openapi-python-client = "^0.20.0"
 
 [build-system]
-requires = ["poetry>=1.5"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
