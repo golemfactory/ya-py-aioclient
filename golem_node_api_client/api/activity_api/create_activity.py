@@ -7,6 +7,7 @@ from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
 from golem_node_api_client.models.create_activity_request import CreateActivityRequest
 from golem_node_api_client.models.create_activity_result import CreateActivityResult
+from golem_node_api_client.models.error_message import ErrorMessage
 from golem_node_api_client.types import UNSET, Response, Unset
 
 
@@ -44,7 +45,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, Union['CreateActivityResult', str]]]:
+) -> Optional[Union[ErrorMessage, Union['CreateActivityResult', str]]]:
     if response.status_code == HTTPStatus.CREATED:
 
         def _parse_response_201(data: object) -> Union['CreateActivityResult', str]:
@@ -54,7 +55,7 @@ def _parse_response(
                 response_201_type_1 = CreateActivityResult.from_dict(data)
 
                 return response_201_type_1
-            except:  # noqa: E722
+            except Exception:
                 pass
             return cast(Union['CreateActivityResult', str], data)
 
@@ -62,16 +63,20 @@ def _parse_response(
 
         return response_201
     if response.status_code == HTTPStatus.BAD_REQUEST:
-        response_400 = cast(Any, None)
+        response_400 = ErrorMessage.from_dict(response.json())
+
         return response_400
     if response.status_code == HTTPStatus.FORBIDDEN:
-        response_403 = cast(Any, None)
+        response_403 = ErrorMessage.from_dict(response.json())
+
         return response_403
     if response.status_code == HTTPStatus.NOT_FOUND:
-        response_404 = cast(Any, None)
+        response_404 = ErrorMessage.from_dict(response.json())
+
         return response_404
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-        response_500 = cast(Any, None)
+        response_500 = ErrorMessage.from_dict(response.json())
+
         return response_500
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -81,7 +86,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, Union['CreateActivityResult', str]]]:
+) -> Response[Union[ErrorMessage, Union['CreateActivityResult', str]]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -95,7 +100,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, Union['CreateActivityResult', str]]]:
+) -> Response[Union[ErrorMessage, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -109,7 +114,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, Union['CreateActivityResult', str]]]
+        Response[Union[ErrorMessage, Union['CreateActivityResult', str]]]
     """
 
     kwargs = _get_kwargs(
@@ -129,7 +134,7 @@ def sync(
     client: AuthenticatedClient,
     body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, Union['CreateActivityResult', str]]]:
+) -> Optional[Union[ErrorMessage, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -143,7 +148,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, Union['CreateActivityResult', str]]
+        Union[ErrorMessage, Union['CreateActivityResult', str]]
     """
 
     return sync_detailed(
@@ -158,7 +163,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, Union['CreateActivityResult', str]]]:
+) -> Response[Union[ErrorMessage, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -172,7 +177,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, Union['CreateActivityResult', str]]]
+        Response[Union[ErrorMessage, Union['CreateActivityResult', str]]]
     """
 
     kwargs = _get_kwargs(
@@ -190,7 +195,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: Union['CreateActivityRequest', str],
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, Union['CreateActivityResult', str]]]:
+) -> Optional[Union[ErrorMessage, Union['CreateActivityResult', str]]]:
     """Creates new Activity based on given Agreement.
 
      **Note:** This call shall get routed as a provider event (see ProviderEvent structure).
@@ -204,7 +209,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, Union['CreateActivityResult', str]]
+        Union[ErrorMessage, Union['CreateActivityResult', str]]
     """
 
     return (

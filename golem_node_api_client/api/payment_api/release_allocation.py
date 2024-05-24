@@ -1,10 +1,11 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, cast
 
 import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.error_message import ErrorMessage
 from golem_node_api_client.types import Response
 
 
@@ -23,17 +24,26 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Any]:
+) -> Optional[Union[Any, ErrorMessage]]:
     if response.status_code == HTTPStatus.OK:
-        return None
+        response_200 = cast(Any, None)
+        return response_200
     if response.status_code == HTTPStatus.UNAUTHORIZED:
-        return None
+        response_401 = ErrorMessage.from_dict(response.json())
+
+        return response_401
     if response.status_code == HTTPStatus.NOT_FOUND:
-        return None
+        response_404 = ErrorMessage.from_dict(response.json())
+
+        return response_404
     if response.status_code == HTTPStatus.GONE:
-        return None
+        response_410 = ErrorMessage.from_dict(response.json())
+
+        return response_410
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-        return None
+        response_500 = ErrorMessage.from_dict(response.json())
+
+        return response_500
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -42,7 +52,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Any]:
+) -> Response[Union[Any, ErrorMessage]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,7 +65,7 @@ def sync_detailed(
     allocation_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Response[Union[Any, ErrorMessage]]:
     """Release Allocation.
 
      The Allocation of amount is released. Note that this operation releases currently allocated amount
@@ -77,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[Union[Any, ErrorMessage]]
     """
 
     kwargs = _get_kwargs(
@@ -91,11 +101,11 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     allocation_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Optional[Union[Any, ErrorMessage]]:
     """Release Allocation.
 
      The Allocation of amount is released. Note that this operation releases currently allocated amount
@@ -117,7 +127,42 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Union[Any, ErrorMessage]
+    """
+
+    return sync_detailed(
+        allocation_id=allocation_id,
+        client=client,
+    ).parsed
+
+
+async def asyncio_detailed(
+    allocation_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Response[Union[Any, ErrorMessage]]:
+    """Release Allocation.
+
+     The Allocation of amount is released. Note that this operation releases currently allocated amount
+    (which may have been reduced by subsequent Invoice Payments).
+
+    **WARNING:** Deposits not implemented.
+
+    If the Allocation was connected with a Deposit the release amount from Deposit shall be marked as
+    pending to be paid back to Requestor - and eventually will be paid back, unless a subsequent
+    Allocation with Deposit is made. The Payment Platform implementations may optimize unnecessary fund
+    transfers (i.e. will not pay back the Deposit if released funds can be assigned to a new Allocation
+    with Deposit).
+
+    Args:
+        allocation_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Union[Any, ErrorMessage]]
     """
 
     kwargs = _get_kwargs(
@@ -127,3 +172,40 @@ async def asyncio_detailed(
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    allocation_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Optional[Union[Any, ErrorMessage]]:
+    """Release Allocation.
+
+     The Allocation of amount is released. Note that this operation releases currently allocated amount
+    (which may have been reduced by subsequent Invoice Payments).
+
+    **WARNING:** Deposits not implemented.
+
+    If the Allocation was connected with a Deposit the release amount from Deposit shall be marked as
+    pending to be paid back to Requestor - and eventually will be paid back, unless a subsequent
+    Allocation with Deposit is made. The Payment Platform implementations may optimize unnecessary fund
+    transfers (i.e. will not pay back the Deposit if released funds can be assigned to a new Allocation
+    with Deposit).
+
+    Args:
+        allocation_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Union[Any, ErrorMessage]
+    """
+
+    return (
+        await asyncio_detailed(
+            allocation_id=allocation_id,
+            client=client,
+        )
+    ).parsed

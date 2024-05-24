@@ -1,11 +1,12 @@
 from http import HTTPStatus
 from io import BytesIO
-from typing import Any, Dict, Optional, Union, cast
+from typing import Any, Dict, Optional, Union
 
 import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.error_message import ErrorMessage
 from golem_node_api_client.types import File, Response
 
 
@@ -34,16 +35,18 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, File]]:
+) -> Optional[Union[ErrorMessage, File]]:
     if response.status_code == HTTPStatus.OK:
         response_200 = File(payload=BytesIO(response.content))
 
         return response_200
     if response.status_code == HTTPStatus.NOT_FOUND:
-        response_404 = cast(Any, None)
+        response_404 = ErrorMessage.from_dict(response.json())
+
         return response_404
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-        response_500 = cast(Any, None)
+        response_500 = ErrorMessage.from_dict(response.json())
+
         return response_500
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -53,7 +56,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, File]]:
+) -> Response[Union[ErrorMessage, File]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -67,7 +70,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: File,
-) -> Response[Union[Any, File]]:
+) -> Response[Union[ErrorMessage, File]]:
     """Sends encrypted command to secure exe-unit.
 
     Args:
@@ -79,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, File]]
+        Response[Union[ErrorMessage, File]]
     """
 
     kwargs = _get_kwargs(
@@ -99,7 +102,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: File,
-) -> Optional[Union[Any, File]]:
+) -> Optional[Union[ErrorMessage, File]]:
     """Sends encrypted command to secure exe-unit.
 
     Args:
@@ -111,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, File]
+        Union[ErrorMessage, File]
     """
 
     return sync_detailed(
@@ -126,7 +129,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: File,
-) -> Response[Union[Any, File]]:
+) -> Response[Union[ErrorMessage, File]]:
     """Sends encrypted command to secure exe-unit.
 
     Args:
@@ -138,7 +141,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, File]]
+        Response[Union[ErrorMessage, File]]
     """
 
     kwargs = _get_kwargs(
@@ -156,7 +159,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: File,
-) -> Optional[Union[Any, File]]:
+) -> Optional[Union[ErrorMessage, File]]:
     """Sends encrypted command to secure exe-unit.
 
     Args:
@@ -168,7 +171,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, File]
+        Union[ErrorMessage, File]
     """
 
     return (

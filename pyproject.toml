@@ -16,6 +16,7 @@ python = "^3.8.1"
 openapi-python-client = "^0.20.0"
 poethepoet = "^0.26.1"
 ruff = "^0.4.4"
+jsonpointer = "^2.4"
 
 [tool.poe.tasks]
 prepare-spec-bundle.script = 'scripts.prepare-spec-bundle:main'

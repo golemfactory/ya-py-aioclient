@@ -1,10 +1,12 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.error_message import ErrorMessage
+from golem_node_api_client.models.network import Network
 from golem_node_api_client.types import Response
 
 
@@ -19,13 +21,24 @@ def _get_kwargs() -> Dict[str, Any]:
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Any]:
+) -> Optional[Union[ErrorMessage, List['Network']]]:
     if response.status_code == HTTPStatus.OK:
-        return None
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = Network.from_dict(response_200_item_data)
+
+            response_200.append(response_200_item)
+
+        return response_200
     if response.status_code == HTTPStatus.BAD_REQUEST:
-        return None
+        response_400 = ErrorMessage.from_dict(response.json())
+
+        return response_400
     if response.status_code == HTTPStatus.UNAUTHORIZED:
-        return None
+        response_401 = ErrorMessage.from_dict(response.json())
+
+        return response_401
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -34,7 +47,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, List['Network']]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -46,7 +59,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, List['Network']]]:
     """GetNetworks - Fetches Networks created by the Requestor.
 
     Raises:
@@ -54,7 +67,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[Union[ErrorMessage, List['Network']]]
     """
 
     kwargs = _get_kwargs()
@@ -66,10 +79,10 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Optional[Union[ErrorMessage, List['Network']]]:
     """GetNetworks - Fetches Networks created by the Requestor.
 
     Raises:
@@ -77,7 +90,26 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Union[ErrorMessage, List['Network']]
+    """
+
+    return sync_detailed(
+        client=client,
+    ).parsed
+
+
+async def asyncio_detailed(
+    *,
+    client: AuthenticatedClient,
+) -> Response[Union[ErrorMessage, List['Network']]]:
+    """GetNetworks - Fetches Networks created by the Requestor.
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Union[ErrorMessage, List['Network']]]
     """
 
     kwargs = _get_kwargs()
@@ -85,3 +117,24 @@ async def asyncio_detailed(
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    *,
+    client: AuthenticatedClient,
+) -> Optional[Union[ErrorMessage, List['Network']]]:
+    """GetNetworks - Fetches Networks created by the Requestor.
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Union[ErrorMessage, List['Network']]
+    """
+
+    return (
+        await asyncio_detailed(
+            client=client,
+        )
+    ).parsed

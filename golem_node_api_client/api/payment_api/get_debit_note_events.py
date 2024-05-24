@@ -1,11 +1,13 @@
 import datetime
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.debit_note_event import DebitNoteEvent
+from golem_node_api_client.models.error_message import ErrorMessage
 from golem_node_api_client.types import UNSET, Response, Unset
 
 
@@ -42,13 +44,24 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Any]:
+) -> Optional[Union[ErrorMessage, List['DebitNoteEvent']]]:
     if response.status_code == HTTPStatus.OK:
-        return None
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = DebitNoteEvent.from_dict(response_200_item_data)
+
+            response_200.append(response_200_item)
+
+        return response_200
     if response.status_code == HTTPStatus.UNAUTHORIZED:
-        return None
+        response_401 = ErrorMessage.from_dict(response.json())
+
+        return response_401
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-        return None
+        response_500 = ErrorMessage.from_dict(response.json())
+
+        return response_500
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -57,7 +70,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, List['DebitNoteEvent']]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,7 +86,7 @@ def sync_detailed(
     after_timestamp: Union[Unset, datetime.datetime] = UNSET,
     max_events: Union[Unset, int] = 10,
     app_session_id: Union[Unset, str] = UNSET,
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, List['DebitNoteEvent']]]:
     """Get Debit Note events.
 
      Listen for Debit Note-related events using long-polling. If there are any events the method will
@@ -95,7 +108,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[Union[ErrorMessage, List['DebitNoteEvent']]]
     """
 
     kwargs = _get_kwargs(
@@ -112,14 +125,14 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     *,
     client: AuthenticatedClient,
     timeout: Union[Unset, float] = 5.0,
     after_timestamp: Union[Unset, datetime.datetime] = UNSET,
     max_events: Union[Unset, int] = 10,
     app_session_id: Union[Unset, str] = UNSET,
-) -> Response[Any]:
+) -> Optional[Union[ErrorMessage, List['DebitNoteEvent']]]:
     """Get Debit Note events.
 
      Listen for Debit Note-related events using long-polling. If there are any events the method will
@@ -141,7 +154,48 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Union[ErrorMessage, List['DebitNoteEvent']]
+    """
+
+    return sync_detailed(
+        client=client,
+        timeout=timeout,
+        after_timestamp=after_timestamp,
+        max_events=max_events,
+        app_session_id=app_session_id,
+    ).parsed
+
+
+async def asyncio_detailed(
+    *,
+    client: AuthenticatedClient,
+    timeout: Union[Unset, float] = 5.0,
+    after_timestamp: Union[Unset, datetime.datetime] = UNSET,
+    max_events: Union[Unset, int] = 10,
+    app_session_id: Union[Unset, str] = UNSET,
+) -> Response[Union[ErrorMessage, List['DebitNoteEvent']]]:
+    """Get Debit Note events.
+
+     Listen for Debit Note-related events using long-polling. If there are any events the method will
+    return them immediately. If there are none the method will wait until one appears or timeout passes.
+    `afterTimestamp` parameter can be used in order to get just the 'new' events. Setting the parameter
+    value to the timestamp of the last processed event ensures that no events will go unnoticed.
+
+    **NOTE:** The events are persistent, ie. calling the API does not remove the event records from
+    receiving queue.
+
+    Args:
+        timeout (Union[Unset, float]):  Default: 5.0.
+        after_timestamp (Union[Unset, datetime.datetime]):
+        max_events (Union[Unset, int]):  Default: 10.
+        app_session_id (Union[Unset, str]):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Union[ErrorMessage, List['DebitNoteEvent']]]
     """
 
     kwargs = _get_kwargs(
@@ -154,3 +208,46 @@ async def asyncio_detailed(
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    *,
+    client: AuthenticatedClient,
+    timeout: Union[Unset, float] = 5.0,
+    after_timestamp: Union[Unset, datetime.datetime] = UNSET,
+    max_events: Union[Unset, int] = 10,
+    app_session_id: Union[Unset, str] = UNSET,
+) -> Optional[Union[ErrorMessage, List['DebitNoteEvent']]]:
+    """Get Debit Note events.
+
+     Listen for Debit Note-related events using long-polling. If there are any events the method will
+    return them immediately. If there are none the method will wait until one appears or timeout passes.
+    `afterTimestamp` parameter can be used in order to get just the 'new' events. Setting the parameter
+    value to the timestamp of the last processed event ensures that no events will go unnoticed.
+
+    **NOTE:** The events are persistent, ie. calling the API does not remove the event records from
+    receiving queue.
+
+    Args:
+        timeout (Union[Unset, float]):  Default: 5.0.
+        after_timestamp (Union[Unset, datetime.datetime]):
+        max_events (Union[Unset, int]):  Default: 10.
+        app_session_id (Union[Unset, str]):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Union[ErrorMessage, List['DebitNoteEvent']]
+    """
+
+    return (
+        await asyncio_detailed(
+            client=client,
+            timeout=timeout,
+            after_timestamp=after_timestamp,
+            max_events=max_events,
+            app_session_id=app_session_id,
+        )
+    ).parsed

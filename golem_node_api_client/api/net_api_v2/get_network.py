@@ -5,6 +5,8 @@ import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.error_message import ErrorMessage
+from golem_node_api_client.models.network import Network
 from golem_node_api_client.types import Response
 
 
@@ -23,15 +25,23 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Any]:
+) -> Optional[Union[ErrorMessage, Network]]:
     if response.status_code == HTTPStatus.OK:
-        return None
+        response_200 = Network.from_dict(response.json())
+
+        return response_200
     if response.status_code == HTTPStatus.UNAUTHORIZED:
-        return None
+        response_401 = ErrorMessage.from_dict(response.json())
+
+        return response_401
     if response.status_code == HTTPStatus.FORBIDDEN:
-        return None
+        response_403 = ErrorMessage.from_dict(response.json())
+
+        return response_403
     if response.status_code == HTTPStatus.NOT_FOUND:
-        return None
+        response_404 = ErrorMessage.from_dict(response.json())
+
+        return response_404
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -40,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, Network]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -53,7 +63,7 @@ def sync_detailed(
     network_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, Network]]:
     """GetNetwork - Fetches a Network created by the Requestor.
 
     Args:
@@ -64,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[Union[ErrorMessage, Network]]
     """
 
     kwargs = _get_kwargs(
@@ -78,11 +88,11 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     network_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Optional[Union[ErrorMessage, Network]]:
     """GetNetwork - Fetches a Network created by the Requestor.
 
     Args:
@@ -93,7 +103,31 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Union[ErrorMessage, Network]
+    """
+
+    return sync_detailed(
+        network_id=network_id,
+        client=client,
+    ).parsed
+
+
+async def asyncio_detailed(
+    network_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Response[Union[ErrorMessage, Network]]:
+    """GetNetwork - Fetches a Network created by the Requestor.
+
+    Args:
+        network_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Union[ErrorMessage, Network]]
     """
 
     kwargs = _get_kwargs(
@@ -103,3 +137,29 @@ async def asyncio_detailed(
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    network_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Optional[Union[ErrorMessage, Network]]:
+    """GetNetwork - Fetches a Network created by the Requestor.
+
+    Args:
+        network_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Union[ErrorMessage, Network]
+    """
+
+    return (
+        await asyncio_detailed(
+            network_id=network_id,
+            client=client,
+        )
+    ).parsed

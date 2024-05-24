@@ -1,7 +1,10 @@
 import json
 import os
+from copy import deepcopy
 from pathlib import Path
 from typing import Dict
+
+from jsonpointer import resolve_pointer
 
 from scripts.common import (
     BUILD_DIR,
@@ -51,6 +54,40 @@ def transform_paths(spec_dict: Dict) -> None:
         spec_paths[f'{base_url}{original_path}'] = spec_paths.pop(original_path)
 
 
+def dereference_request_bodies(spec_dict: Dict) -> None:
+    for path in spec_dict['paths'].values():
+        for method_name, method in path.items():
+            if method_name.lower() not in HTTP_METHODS:
+                continue
+
+            request_body = method.get("requestBody")
+
+            if not request_body:
+                continue
+
+            ref = request_body.pop("$ref", None)
+
+            if not ref:
+                continue
+
+            request_body.update(deepcopy(resolve_pointer(spec_dict, ref[1:])))
+
+
+def dereference_response_bodies(spec_dict: Dict) -> None:
+    for path in spec_dict['paths'].values():
+        for method_name, method in path.items():
+            if method_name.lower() not in HTTP_METHODS:
+                continue
+
+            for response in method['responses'].values():
+                ref = response.pop("$ref", None)
+
+                if not ref:
+                    continue
+
+                response.update(deepcopy(resolve_pointer(spec_dict, ref[1:])))
+
+
 def join_build_specs():
     os.system(
         'npx @redocly/cli join {root_spec_file} {spec_files} --output {output}.json'.format(
@@ -82,6 +119,8 @@ def main():
 
         transform_tags(spec_dict, spec_name)
         transform_paths(spec_dict)
+        dereference_request_bodies(spec_dict)
+        dereference_response_bodies(spec_dict)
 
         save_spec_dict(spec_file_path, spec_dict)
 

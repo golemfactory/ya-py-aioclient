@@ -1,10 +1,11 @@
 from http import HTTPStatus
-from typing import Any, Dict, List, Optional, Union, cast
+from typing import Any, Dict, List, Optional, Union
 
 import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.error_message import ErrorMessage
 from golem_node_api_client.models.exe_script_command_result import ExeScriptCommandResult
 from golem_node_api_client.types import UNSET, Response, Unset
 
@@ -38,7 +39,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, List['ExeScriptCommandResult']]]:
+) -> Optional[Union[ErrorMessage, List['ExeScriptCommandResult']]]:
     if response.status_code == HTTPStatus.OK:
         response_200 = []
         _response_200 = response.json()
@@ -49,16 +50,20 @@ def _parse_response(
 
         return response_200
     if response.status_code == HTTPStatus.BAD_REQUEST:
-        response_400 = cast(Any, None)
+        response_400 = ErrorMessage.from_dict(response.json())
+
         return response_400
     if response.status_code == HTTPStatus.FORBIDDEN:
-        response_403 = cast(Any, None)
+        response_403 = ErrorMessage.from_dict(response.json())
+
         return response_403
     if response.status_code == HTTPStatus.NOT_FOUND:
-        response_404 = cast(Any, None)
+        response_404 = ErrorMessage.from_dict(response.json())
+
         return response_404
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-        response_500 = cast(Any, None)
+        response_500 = ErrorMessage.from_dict(response.json())
+
         return response_500
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -68,7 +73,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, List['ExeScriptCommandResult']]]:
+) -> Response[Union[ErrorMessage, List['ExeScriptCommandResult']]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -84,7 +89,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, List['ExeScriptCommandResult']]]:
+) -> Response[Union[ErrorMessage, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -112,7 +117,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, List['ExeScriptCommandResult']]]
+        Response[Union[ErrorMessage, List['ExeScriptCommandResult']]]
     """
 
     kwargs = _get_kwargs(
@@ -136,7 +141,7 @@ def sync(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, List['ExeScriptCommandResult']]]:
+) -> Optional[Union[ErrorMessage, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -164,7 +169,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, List['ExeScriptCommandResult']]
+        Union[ErrorMessage, List['ExeScriptCommandResult']]
     """
 
     return sync_detailed(
@@ -183,7 +188,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Response[Union[Any, List['ExeScriptCommandResult']]]:
+) -> Response[Union[ErrorMessage, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -211,7 +216,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, List['ExeScriptCommandResult']]]
+        Response[Union[ErrorMessage, List['ExeScriptCommandResult']]]
     """
 
     kwargs = _get_kwargs(
@@ -233,7 +238,7 @@ async def asyncio(
     client: AuthenticatedClient,
     command_index: Union[Unset, float] = UNSET,
     timeout: Union[Unset, float] = 5.0,
-) -> Optional[Union[Any, List['ExeScriptCommandResult']]]:
+) -> Optional[Union[ErrorMessage, List['ExeScriptCommandResult']]]:
     """Queries for ExeScript batch results.
 
      'This call shall collect ExeScriptCommand result objects received directly from ExeUnit (via the
@@ -261,7 +266,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, List['ExeScriptCommandResult']]
+        Union[ErrorMessage, List['ExeScriptCommandResult']]
     """
 
     return (

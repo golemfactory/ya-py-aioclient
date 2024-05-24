@@ -1,17 +1,23 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, cast
 
 import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.demand_offer_base import DemandOfferBase
+from golem_node_api_client.models.error_message import ErrorMessage
 from golem_node_api_client.types import Response
 
 
 def _get_kwargs(
     subscription_id: str,
     proposal_id: str,
+    *,
+    body: DemandOfferBase,
 ) -> Dict[str, Any]:
+    headers: Dict[str, Any] = {}
+
     _kwargs: Dict[str, Any] = {
         'method': 'post',
         'url': '/market-api/v1/offers/{subscription_id}/proposals/{proposal_id}'.format(
@@ -20,22 +26,36 @@ def _get_kwargs(
         ),
     }
 
+    _body = body.to_dict()
+
+    _kwargs['json'] = _body
+    headers['Content-Type'] = 'application/json'
+
+    _kwargs['headers'] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Any]:
+) -> Optional[Union[Any, ErrorMessage, str]]:
     if response.status_code == HTTPStatus.CREATED:
-        return None
+        response_201 = cast(str, response.json())
+        return response_201
     if response.status_code == HTTPStatus.BAD_REQUEST:
-        return None
+        response_400 = ErrorMessage.from_dict(response.json())
+
+        return response_400
     if response.status_code == HTTPStatus.UNAUTHORIZED:
-        return None
+        response_401 = ErrorMessage.from_dict(response.json())
+
+        return response_401
     if response.status_code == HTTPStatus.NOT_FOUND:
-        return None
+        response_404 = ErrorMessage.from_dict(response.json())
+
+        return response_404
     if response.status_code == HTTPStatus.GONE:
-        return None
+        response_410 = cast(Any, None)
+        return response_410
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -44,7 +64,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Any]:
+) -> Response[Union[Any, ErrorMessage, str]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,7 +78,8 @@ def sync_detailed(
     proposal_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+    body: DemandOfferBase,
+) -> Response[Union[Any, ErrorMessage, str]]:
     """CounterProposalOffer - Responds with a bespoke Offer to received Demand.
 
      Creates and sends a modified version of original Offer (a counter-proposal) adjusted to previously
@@ -67,18 +88,20 @@ def sync_detailed(
     Args:
         subscription_id (str):
         proposal_id (str):
+        body (DemandOfferBase):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[Union[Any, ErrorMessage, str]]
     """
 
     kwargs = _get_kwargs(
         subscription_id=subscription_id,
         proposal_id=proposal_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -88,12 +111,13 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     subscription_id: str,
     proposal_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+    body: DemandOfferBase,
+) -> Optional[Union[Any, ErrorMessage, str]]:
     """CounterProposalOffer - Responds with a bespoke Offer to received Demand.
 
      Creates and sends a modified version of original Offer (a counter-proposal) adjusted to previously
@@ -102,20 +126,90 @@ async def asyncio_detailed(
     Args:
         subscription_id (str):
         proposal_id (str):
+        body (DemandOfferBase):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Union[Any, ErrorMessage, str]
+    """
+
+    return sync_detailed(
+        subscription_id=subscription_id,
+        proposal_id=proposal_id,
+        client=client,
+        body=body,
+    ).parsed
+
+
+async def asyncio_detailed(
+    subscription_id: str,
+    proposal_id: str,
+    *,
+    client: AuthenticatedClient,
+    body: DemandOfferBase,
+) -> Response[Union[Any, ErrorMessage, str]]:
+    """CounterProposalOffer - Responds with a bespoke Offer to received Demand.
+
+     Creates and sends a modified version of original Offer (a counter-proposal) adjusted to previously
+    received Proposal (ie. Demand). Changes Proposal state to `Draft`. Returns created Proposal id.
+
+    Args:
+        subscription_id (str):
+        proposal_id (str):
+        body (DemandOfferBase):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Union[Any, ErrorMessage, str]]
     """
 
     kwargs = _get_kwargs(
         subscription_id=subscription_id,
         proposal_id=proposal_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    subscription_id: str,
+    proposal_id: str,
+    *,
+    client: AuthenticatedClient,
+    body: DemandOfferBase,
+) -> Optional[Union[Any, ErrorMessage, str]]:
+    """CounterProposalOffer - Responds with a bespoke Offer to received Demand.
+
+     Creates and sends a modified version of original Offer (a counter-proposal) adjusted to previously
+    received Proposal (ie. Demand). Changes Proposal state to `Draft`. Returns created Proposal id.
+
+    Args:
+        subscription_id (str):
+        proposal_id (str):
+        body (DemandOfferBase):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Union[Any, ErrorMessage, str]
+    """
+
+    return (
+        await asyncio_detailed(
+            subscription_id=subscription_id,
+            proposal_id=proposal_id,
+            client=client,
+            body=body,
+        )
+    ).parsed

@@ -5,6 +5,8 @@ import httpx
 
 from golem_node_api_client import errors
 from golem_node_api_client.client import AuthenticatedClient, Client
+from golem_node_api_client.models.error_message import ErrorMessage
+from golem_node_api_client.models.market_decoration import MarketDecoration
 from golem_node_api_client.types import UNSET, Response
 
 
@@ -31,15 +33,23 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Any]:
+) -> Optional[Union[ErrorMessage, MarketDecoration]]:
     if response.status_code == HTTPStatus.OK:
-        return None
+        response_200 = MarketDecoration.from_dict(response.json())
+
+        return response_200
     if response.status_code == HTTPStatus.BAD_REQUEST:
-        return None
+        response_400 = ErrorMessage.from_dict(response.json())
+
+        return response_400
     if response.status_code == HTTPStatus.UNAUTHORIZED:
-        return None
+        response_401 = ErrorMessage.from_dict(response.json())
+
+        return response_401
     if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-        return None
+        response_500 = ErrorMessage.from_dict(response.json())
+
+        return response_500
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -48,7 +58,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, MarketDecoration]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,7 +71,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     allocation_ids: List[str],
-) -> Response[Any]:
+) -> Response[Union[ErrorMessage, MarketDecoration]]:
     """Obtain Demand elements specific to the given allocations, to be appended to a market Demand.
 
      Generate payment-related properties and constraints to be added to a demand published on the
@@ -76,7 +86,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[Union[ErrorMessage, MarketDecoration]]
     """
 
     kwargs = _get_kwargs(
@@ -90,11 +100,11 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     *,
     client: AuthenticatedClient,
     allocation_ids: List[str],
-) -> Response[Any]:
+) -> Optional[Union[ErrorMessage, MarketDecoration]]:
     """Obtain Demand elements specific to the given allocations, to be appended to a market Demand.
 
      Generate payment-related properties and constraints to be added to a demand published on the
@@ -109,7 +119,35 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Union[ErrorMessage, MarketDecoration]
+    """
+
+    return sync_detailed(
+        client=client,
+        allocation_ids=allocation_ids,
+    ).parsed
+
+
+async def asyncio_detailed(
+    *,
+    client: AuthenticatedClient,
+    allocation_ids: List[str],
+) -> Response[Union[ErrorMessage, MarketDecoration]]:
+    """Obtain Demand elements specific to the given allocations, to be appended to a market Demand.
+
+     Generate payment-related properties and constraints to be added to a demand published on the
+    marketplace. As a parameter it accepts a list of IDs of allocations to be used to pay for invoices
+    resulting from the decorated demand.
+
+    Args:
+        allocation_ids (List[str]):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[Union[ErrorMessage, MarketDecoration]]
     """
 
     kwargs = _get_kwargs(
@@ -119,3 +157,33 @@ async def asyncio_detailed(
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    *,
+    client: AuthenticatedClient,
+    allocation_ids: List[str],
+) -> Optional[Union[ErrorMessage, MarketDecoration]]:
+    """Obtain Demand elements specific to the given allocations, to be appended to a market Demand.
+
+     Generate payment-related properties and constraints to be added to a demand published on the
+    marketplace. As a parameter it accepts a list of IDs of allocations to be used to pay for invoices
+    resulting from the decorated demand.
+
+    Args:
+        allocation_ids (List[str]):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Union[ErrorMessage, MarketDecoration]
+    """
+
+    return (
+        await asyncio_detailed(
+            client=client,
+            allocation_ids=allocation_ids,
+        )
+    ).parsed
